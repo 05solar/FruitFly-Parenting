@@ -1,14 +1,18 @@
 using System;
 using FruitFlyParenting.Fly;
+using FruitFlyParenting.Data;
+using FruitFlyParenting.Tool;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace FruitFlyParenting.Room
 {
-    // 물품 상호작용 지점(스펙 2.3/4.2). 아직 S/I/H/P/L 효과는 붙지 않는다 — 04/05번에서 연결한다.
+    // 물품 상호작용 지점. 05 방 컨트롤러가 방문 이벤트를 효과/서사/저장에 연결한다.
     [RequireComponent(typeof(SphereCollider))]
     public class ItemSlot : MonoBehaviour
     {
         [SerializeField] string itemId;
+        [SerializeField] ItemDefinition definition;
         [SerializeField] float interactionRadius = 1.2f;
         [SerializeField] float footprint = 2.5f; // 경고 영역 한 변 길이(정사각형), Gizmo 전용
         [SerializeField] float minDwellSeconds = 2f;
@@ -17,6 +21,34 @@ namespace FruitFlyParenting.Room
         public event Action OnRevisit;
 
         public string ItemId => itemId;
+        public ItemDefinition Definition => definition;
+        public void AssignDefinition(ItemDefinition item) { definition = item; itemId = item.itemId; }
+        public float InteractionRadius => interactionRadius;
+        public ItemVisitContext LastVisitContext { get; private set; }
+        FlyAgent occupant;
+
+        // 슬롯 중심에는 가구가 있으므로, 상호작용 반경 안의 바닥 중 도달 가능한 점을 고른다.
+        public bool TryGetNavigationPoint(Vector3 from, int agentTypeId, out Vector3 destination)
+        {
+            destination = default;
+            var filter = new NavMeshQueryFilter { agentTypeID = agentTypeId, areaMask = NavMesh.AllAreas };
+            var path = new NavMeshPath();
+            float closest = float.PositiveInfinity;
+            for (int i = 0; i < 16; i++)
+            {
+                float angle = i * Mathf.PI * 2f / 16f;
+                Vector3 candidate = transform.position + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * (interactionRadius * 0.8f);
+                candidate.y = 0f;
+                if (!NavMesh.SamplePosition(candidate, out var hit, 0.2f, filter) ||
+                    !NavMesh.CalculatePath(from, hit.position, filter, path) || path.status != NavMeshPathStatus.PathComplete)
+                    continue;
+                float distance = (from - hit.position).sqrMagnitude;
+                if (distance >= closest) continue;
+                closest = distance;
+                destination = hit.position;
+            }
+            return !float.IsPositiveInfinity(closest);
+        }
 
         RoomController room;
         ItemDwellTracker dwellTracker;
@@ -56,6 +88,8 @@ namespace FruitFlyParenting.Room
             if (dwellTracker != null && dwellTracker.Tick(Time.deltaTime))
             {
                 bool isFirstVisit = room != null && room.TryMarkFirstVisit(itemId);
+                var receiver = occupant != null ? occupant.GetComponent<FlyContactReceiver>() : null;
+                LastVisitContext = receiver != null ? receiver.PrepareItemVisit(this, isFirstVisit, Time.time) : default;
                 if (isFirstVisit)
                 {
                     OnFirstVisit?.Invoke();
@@ -64,12 +98,15 @@ namespace FruitFlyParenting.Room
                 {
                     OnRevisit?.Invoke();
                 }
+                receiver?.CompleteItemVisit(LastVisitContext);
             }
         }
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponentInParent<FlyAgent>() == null) return;
+            var fly = other.GetComponentInParent<FlyAgent>();
+            if (fly == null) return;
+            occupant = fly;
             dwellTracker?.OnEnter();
         }
 

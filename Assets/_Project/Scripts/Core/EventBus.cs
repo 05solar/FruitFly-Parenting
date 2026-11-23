@@ -18,6 +18,12 @@ namespace FruitFlyParenting.Core
         public static event Action<PushSource, Vector3, string> ToolUsed; // source, direction, targetItemId(nullable)
         public static event Action<string> RoomEntered; // roomId
         public static event Action<string> RoomExited; // roomId
+        public static event Action<Vector3> ElectricShockVisual; // target world position
+
+        public static void RaiseElectricShockVisual(Vector3 position) => ElectricShockVisual?.Invoke(position);
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => ClearAllSubscribers();
 
         public static void RaiseItemVisited(string itemId, bool isFirstVisit) =>
             ItemVisited?.Invoke(itemId, isFirstVisit);
@@ -36,6 +42,7 @@ namespace FruitFlyParenting.Core
             ToolUsed = null;
             RoomEntered = null;
             RoomExited = null;
+            ElectricShockVisual = null;
         }
     }
 }

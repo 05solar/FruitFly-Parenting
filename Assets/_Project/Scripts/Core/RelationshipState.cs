@@ -22,6 +22,8 @@ namespace FruitFlyParenting.Core
         public float Trust { get; private set; }
         public int TotalInterventionCount { get; private set; }
         public int AutonomousVisitCount { get; private set; }
+        public float? LastInterventionTime => recentInterventionTimestamps.Count == 0
+            ? (float?)null : recentInterventionTimestamps[recentInterventionTimestamps.Count - 1];
 
         readonly List<float> recentInterventionTimestamps = new List<float>();
         readonly Dictionary<string, int> itemRevisitCounts = new Dictionary<string, int>();

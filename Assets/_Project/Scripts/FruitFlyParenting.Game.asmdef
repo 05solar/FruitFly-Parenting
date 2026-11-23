@@ -2,7 +2,11 @@
     "name": "FruitFlyParenting.Game",
     "rootNamespace": "",
     "references": [
-        "Unity.AI.Navigation"
+        "Unity.AI.Navigation",
+        "UnityEngine.UI",
+        "Unity.InputSystem",
+        "Unity.XR.CoreUtils",
+        "Unity.XR.Interaction.Toolkit"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

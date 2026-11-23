@@ -11,6 +11,16 @@ namespace FruitFlyParenting.Core
         [SerializeField] GameBalanceConfig config;
         [SerializeField] int runSeed;
         [SerializeField] bool useRandomSeedIfZero = true;
+        GameState ownedState;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => GameState.SetCurrent(null);
+
+        void OnDestroy()
+        {
+            if (ownedState != null && ReferenceEquals(GameState.Current, ownedState))
+                GameState.SetCurrent(null);
+        }
 
         // 에디터/런타임 빌더가 공통으로 쓰는 설정 경로(SerializedObject를 쓰지 않음).
         public void ConfigureForBuilder(GameBalanceConfig gameBalanceConfig, int seed)
@@ -41,6 +51,7 @@ namespace FruitFlyParenting.Core
             }
 
             var state = new GameState(config, seed);
+            ownedState = state;
             GameState.SetCurrent(state);
             DontDestroyOnLoad(gameObject);
         }

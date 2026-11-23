@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using FruitFlyParenting.Core;
 using FruitFlyParenting.Data;
 using FruitFlyParenting.Room;
+using FruitFlyParenting.Tool;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,6 +24,18 @@ namespace FruitFlyParenting.Fly
         float arrivalTime;
         string currentDestinationId;
         bool hasArrivedAtCurrentDestination;
+        Vector3 pushTarget;
+        float pushEndsAt;
+        bool beingPushed;
+        bool complying;
+        bool pendingExit;
+        Vector3 complianceDirection;
+        readonly List<ItemSlot> pushOriginSlots = new List<ItemSlot>();
+        public bool IsBeingPushed => beingPushed;
+        public bool IsComplying => complying;
+        public Vector3 ComplianceDestination { get; private set; }
+        public bool UsedComplianceFallback { get; private set; }
+        public string CurrentDestinationId => currentDestinationId;
 
         void Awake()
         {
@@ -40,6 +54,12 @@ namespace FruitFlyParenting.Fly
 
         void Start()
         {
+            if (config == null || room == null || !agent.isOnNavMesh)
+            {
+                Debug.LogError("FlyAgent: config, room 또는 베이크된 NavMesh가 없습니다.", this);
+                enabled = false;
+                return;
+            }
             IRandomSource randomSource = GameState.Current != null
                 ? new SystemRandomSource(GameState.Current.Random)
                 : new SystemRandomSource(new System.Random());
@@ -51,8 +71,34 @@ namespace FruitFlyParenting.Fly
 
         void Update()
         {
-            if (agent == null || movement == null || room == null) return;
+            if (agent == null || movement == null || room == null || !agent.isOnNavMesh) return;
+            if (complying)
+            {
+                RecordPushDepartures();
+                if (!agent.pathPending && agent.pathStatus != NavMeshPathStatus.PathComplete)
+                    GuideCompliance(complianceDirection);
+                return;
+            }
+            if (beingPushed)
+            {
+                float remaining = pushEndsAt - Time.time;
+                var delta = (pushTarget - agent.nextPosition) * Mathf.Clamp01(Time.deltaTime / Mathf.Max(Time.deltaTime, remaining));
+                var next = agent.nextPosition + delta;
+                var heightOffset = Vector3.up * agent.baseOffset;
+                if (NavMesh.Raycast(agent.nextPosition - heightOffset, next - heightOffset, out var edge, agent.areaMask)) next = edge.position + heightOffset;
+                next.y = agent.nextPosition.y;
+                agent.Move(next - agent.nextPosition);
+                RecordPushDepartures();
+                if (remaining <= 0f || (pushTarget - agent.nextPosition).sqrMagnitude < 0.0001f) ResumeAutonomy();
+                return;
+            }
             if (agent.pathPending) return;
+
+            if (agent.pathStatus != NavMeshPathStatus.PathComplete)
+            {
+                PickAndMoveToNext();
+                return;
+            }
 
             if (!hasArrivedAtCurrentDestination && agent.remainingDistance <= agent.stoppingDistance + 0.01f)
             {
@@ -72,18 +118,30 @@ namespace FruitFlyParenting.Fly
 
         void PickAndMoveToNext()
         {
-            var candidateIds = room.GetAllItemIds();
+            var candidateIds = room.GetDestinationIds();
             if (candidateIds.Count == 0) return;
 
             float timeSinceRoomEnter = Time.time - roomEnterTime;
             string nextId = movement.PickNextDestination(candidateIds, currentDestinationId, timeSinceRoomEnter);
 
+            if (nextId == RoomController.ExitDestinationId)
+            {
+                HeadToExit();
+                return;
+            }
+
             ItemSlot targetSlot = FindSlot(nextId);
             if (targetSlot == null) return;
+            if (!targetSlot.TryGetNavigationPoint(transform.position, agent.agentTypeID, out var target))
+            {
+                Debug.LogError($"FlyAgent: 물품 {nextId}의 상호작용 영역에 도달할 수 없습니다.", this);
+                enabled = false;
+                return;
+            }
 
             currentDestinationId = nextId;
             hasArrivedAtCurrentDestination = false;
-            agent.SetDestination(targetSlot.transform.position);
+            agent.SetDestination(target);
         }
 
         ItemSlot FindSlot(string id)
@@ -93,6 +151,103 @@ namespace FruitFlyParenting.Fly
                 if (slot.ItemId == id) return slot;
             }
             return null;
+        }
+
+        public void HeadToExit()
+        {
+            if (agent == null || !agent.isOnNavMesh || !room.ExitAvailable) return;
+            if (complying) { pendingExit = true; return; }
+            var filter = new NavMeshQueryFilter { agentTypeID = agent.agentTypeID, areaMask = agent.areaMask };
+            if (!NavMesh.SamplePosition(room.ExitPoint, out var hit, 0.5f, filter)) return;
+            pendingExit = false;
+            RecordPushDepartures();
+            pushOriginSlots.Clear();
+            beingPushed = false;
+            agent.isStopped = false;
+            currentDestinationId = RoomController.ExitDestinationId;
+            hasArrivedAtCurrentDestination = false;
+            agent.SetDestination(hit.position);
+        }
+
+        public void ApplyPush(PushResult push)
+        {
+            if (agent == null || !agent.isOnNavMesh) return;
+            // Nearest-point sampling alone can jump across walls. Clip the straight segment first.
+            Vector3 heightOffset = Vector3.up * agent.baseOffset;
+            Vector3 from = agent.nextPosition - heightOffset;
+            Vector3 wanted = from + push.Direction * push.Force;
+            if (NavMesh.Raycast(from, wanted, out var hit, agent.areaMask)) wanted = hit.position;
+            var filter = new NavMeshQueryFilter { agentTypeID = agent.agentTypeID, areaMask = agent.areaMask };
+            if (!NavMesh.SamplePosition(wanted, out var sampled, 0.1f, filter)) return;
+            pushOriginSlots.Clear();
+            var body = GetComponent<Collider>();
+            if (body != null)
+                foreach (var slot in room.ItemSlots)
+                    if (slot.Definition != null && OverlapsSlot(body,slot,agent.nextPosition)) pushOriginSlots.Add(slot);
+            pushTarget = sampled.position + heightOffset;
+            pushEndsAt = Time.time + config.pushDurationSeconds;
+            beingPushed = true;
+            agent.isStopped = true;
+            hasArrivedAtCurrentDestination = false;
+        }
+
+        public void GuideCompliance(Vector3 direction)
+        {
+            if (agent == null || !agent.isOnNavMesh) return;
+            complying = true; beingPushed = false; complianceDirection = direction;
+            var from = agent.nextPosition - Vector3.up * agent.baseOffset;
+            if (ComplianceNavigation.TryFindDestination(from, direction, agent.agentTypeID, agent.areaMask,
+                room.ItemSlots, config, out var destination, out bool fallback))
+            {
+                ComplianceDestination = destination; UsedComplianceFallback = fallback;
+                agent.isStopped = false;
+                agent.SetDestination(destination);
+            }
+            else { agent.ResetPath(); agent.isStopped = true; }
+        }
+
+        public void ReleaseCompliance()
+        {
+            complying = false;
+            ResumeAutonomy();
+        }
+
+        public void ResumeAutonomy()
+        {
+            if (agent == null || !agent.isOnNavMesh) return;
+            RecordPushDepartures();
+            pushOriginSlots.Clear();
+            if (pendingExit || room.ExitOnly || currentDestinationId == RoomController.ExitDestinationId) { HeadToExit(); return; }
+            beingPushed = false;
+            agent.isStopped = false;
+            hasArrivedAtCurrentDestination = false;
+            // 이전 물품을 금지하지 않는다. 밀려나도 자유 의지로 돌아갈 수 있다.
+            var slot = FindSlot(currentDestinationId);
+            if (slot != null && slot.TryGetNavigationPoint(agent.nextPosition, agent.agentTypeID, out var point))
+                agent.SetDestination(point);
+            else if (movement != null) PickAndMoveToNext();
+        }
+
+        void RecordPushDepartures()
+        {
+            var body = GetComponent<Collider>();
+            if (body == null) return;
+            for (int i=pushOriginSlots.Count-1;i>=0;i--)
+            {
+                var slot = pushOriginSlots[i];
+                if (slot == null) { pushOriginSlots.RemoveAt(i); continue; }
+                if (OverlapsSlot(body,slot,agent.nextPosition)) continue;
+                // OnTriggerExit는 다음 물리 틱에 도착할 수 있다. 실제 밀기 위치에서 먼저 기록해
+                // 한 프레임에 끝나는 밀기도 놓치지 않으며, 벽에 막힌 밀기는 이탈로 세지 않는다.
+                var state = GameState.Current;
+                if (state != null) state.LogEvent(Time.time,state.CurrentRoomId,"item_pushed_away",slot.ItemId);
+                pushOriginSlots.RemoveAt(i);
+            }
+        }
+        bool OverlapsSlot(Collider body, ItemSlot slot, Vector3 position)
+        {
+            var region = slot.GetComponent<SphereCollider>();
+            return Physics.ComputePenetration(body,position,transform.rotation,region,region.transform.position,region.transform.rotation,out _,out _);
         }
     }
 }

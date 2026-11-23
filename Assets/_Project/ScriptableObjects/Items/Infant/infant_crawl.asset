@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4393d9f6c2bff44f8822a75f0a6c836, type: 3}
+  m_Name: infant_crawl
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Data.ItemDefinition
+  itemId: infant_crawl
+  displayName: "\uD63C\uC790 \uAE30\uC5B4\uAC00\uAE30 \uAE38"
+  tags:
+  - "\uC6B4\uB3D9"
+  statDeltas:
+  - stat: 0
+    amount: 2
+  - stat: 1
+    amount: 2
+  - stat: 2
+    amount: 8
+  - stat: 3
+    amount: 0
+  - stat: 4
+    amount: 2
+  isExtreme: 0
+  narrativeLines:
+  - "\uAE38 \uB05D\uC5D0\uC11C \uB4A4\uB3CC\uC544\uBCF4\uBA70 \uC6C3\uC5B4\uC694."
+  - "\uC870\uAE08 \uB354 \uC775\uC219\uD558\uAC8C \uAE38\uC744 \uB530\uB77C\uAC00\uC694."
+  childReflectionLine: "\uB098 \uD63C\uC790 \uC5EC\uAE30\uAE4C\uC9C0 \uC654\uC5B4\uC694."

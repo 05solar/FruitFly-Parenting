@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5288a637aa3167f448fcd6b822db9b72, type: 3}
+  m_Name: ChildhoodToAdolescence
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Data.RoomTransitionDefinition
+  fromStage: 2
+  toStage: 3
+  fromRoomId: 03_Childhood
+  toRoomId: 04_Adolescence
+  corridorId: corridor_02
+  recapTitle: "\uB0B4\uAC00 \uC9C0\uB098\uC628 \uC2DC\uAC04"
+  nextRoomTitle: "\uAC08\uB9BC\uAE38"
+  narration: "\uC544\uC774\uB294 \uC88B\uC544\uD558\uB294 \uAC83\uC758 \uC774\uB984\uC744 \uB9D0\uD558\uAE30 \uC2DC\uC791\uD588\uB2E4."
+  nextRoomLine: "\uC774\uBC88\uC5D0\uB294 \uB0B4\uAC00 \uBB38\uC744 \uC5F4\uC5B4 \uBCFC\uAC8C."
+  themeColor: {r: 0.4, g: 0.65, b: 0.7, a: 1}
+  previousRoomSound: {fileID: 8300000, guid: 12f3934cbfbba78438059a01a2f5bc8f, type: 3}
+  nextRoomSound: {fileID: 8300000, guid: f9c00b8920d9f284d89ad8bb5f979cf4, type: 3}

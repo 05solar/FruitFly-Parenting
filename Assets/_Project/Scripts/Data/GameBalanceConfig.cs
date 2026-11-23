@@ -48,63 +48,94 @@ namespace FruitFlyParenting.Data
         [Tooltip("방치 보상으로 얻는 신뢰 T의 방당 누적 최대치")]
         public float neglectRewardTrustCapPerRoom = 4f;
 
-        // ----- 아래는 07번 프롬프트(4.5 강제/반복 훈련, 4.6 순응)에서 값을 채우는 자리다. -----
-        // 지금은 필드 이름과 주석만 정의해 둔다. 기본값 0은 "아직 미설정"을 의미한다.
+        [Header("04 휠체어 이동 — 임시 편안함 설정")]
+        public float wheelchairMaxSpeed = 0.8f;
+        public float wheelchairAcceleration = 0.6f;
+        public float wheelchairDeceleration = 1.2f;
+        public float wheelchairTurnSpeed = 30f;
+        public float wheelchairTurnAcceleration = 60f;
+        public float wheelchairTurnDeceleration = 90f;
+        public float wheelchairStickDeadzone = 0.15f;
+        public float wheelchairMinSpeedForPush = 0.05f;
+        public float wheelchairPushCooldownSeconds = 1f;
 
-        [Header("4.5 강제 유도 판정 — 07번 프롬프트에서 값 채움")]
-        [Tooltip("TODO(07): 휠체어 약한 밀기로 유도한 강제 훈련의 R 증가")]
-        public float coercionWheelchairRebellionDelta;
-        [Tooltip("TODO(07): 휠체어 약한 밀기로 유도한 강제 훈련의 S 증가")]
-        public float coercionWheelchairStressDelta;
-        [Tooltip("TODO(07): 전기 봉(사랑의 매)으로 유도한 강제 훈련의 R 증가")]
-        public float coercionElectricStickRebellionDelta;
-        [Tooltip("TODO(07): 전기 봉으로 유도한 강제 훈련의 S 증가")]
-        public float coercionElectricStickStressDelta;
-        [Tooltip("TODO(07): 물품 방문 전 강제 유도로 판정하는 윈도(초)")]
-        public float coercionDetectionWindowSeconds;
-        [Tooltip("TODO(07): '같은 방향으로 밀었다' 판정 각도 허용치(도)")]
-        public float coercionDirectionToleranceDegrees;
+        [Header("04 밀기 — NavMesh 위 이동 거리(m), 힘의 게임 내 표현")]
+        public float wheelchairPushForce = 1.5f;
+        public float strongPushForce = 3f;
+        public float pushDurationSeconds = 0.3f;
+        public float electricStickImmediateStressDelta = 2f;
+        public float shockVisualDurationSeconds = 0.25f;
+        public int interventionUnweightedCount = 2;
 
-        [Header("4.5 반복 훈련 — 07번 프롬프트에서 값 채움")]
-        [Tooltip("TODO(07): 반복 훈련 추가 R(세 번째 방문부터)")]
-        public float repeatedTrainingRebellionDelta;
-        [Tooltip("TODO(07): 반복 훈련 추가 S(세 번째 방문부터)")]
-        public float repeatedTrainingStressDelta;
-        [Tooltip("TODO(07): 반복 훈련 추가 효과가 시작되는 방문 순번(기본 3번째)")]
-        public int repeatedTrainingStartVisitCount;
-        [Tooltip("TODO(07): 한 방에서 반복 훈련 추가 효과의 최대 적용 횟수(기본 3회)")]
-        public int repeatedTrainingMaxApplications;
+        [Header("04 잠깐 혼자 해볼래")]
+        public int avoidanceContactThreshold = 4;
+        public float avoidanceDurationSeconds = 12f;
+        [Tooltip("연속 접촉의 임시 정의: 직전 접촉과 5초 미만. 5초 이상 쉬면 새 연속 구간.")]
+        public float consecutiveContactGapSeconds = 5f;
 
-        [Header("4.5 회복 행동 — 07번 프롬프트에서 값 채움")]
-        [Tooltip("TODO(07): 60초 무개입 지켜볼 때 R 감소량")]
-        public float watchingOnlyRebellionDelta;
-        [Tooltip("TODO(07): 방치 관찰로 인한 R 감소의 방당 누적 최대치")]
-        public float watchingOnlyRebellionCapPerRoom;
+        [Header("05 영유아 방 시간과 1회 효과")]
+        public float toolCooldownOnRoomEnterSeconds = 90f;
+        public float roomEarliestExitSeconds = 420f;
+        public float roomDoorOpenSeconds = 480f;
+        public float roomEffectsStopSeconds = 600f;
+        public int roomExitChoiceWeight = 3;
+        public float roomFadeSeconds = 0.75f;
+        public float normalItemStatDeltaLimit = 12f;
+        public float autonomousVisitContactWindowSeconds = 6f;
+        [Tooltip("개발용 게임 시간 배속. 페이드는 실제 시간을 사용한다. 출하 기본값 1.")]
+        public float infantDebugTimeScale = 1f;
 
-        [Header("4.6 지속적인 밀기와 순응 — 07번 프롬프트에서 값 채움")]
-        [Tooltip("TODO(07): 순응 판정 누적 윈도(초, 기본 30)")]
-        public float complianceAccumulationWindowSeconds;
-        [Tooltip("TODO(07): 휠체어 밀기 1회당 누적 점수(기본 1)")]
-        public float complianceWheelchairPushScore;
-        [Tooltip("TODO(07): 전기 봉 1회당 누적 점수(기본 2)")]
-        public float complianceElectricStickPushScore;
-        [Tooltip("TODO(07): R < complianceRebellionBoundary일 때 순응 임계점(기본 6)")]
-        public float complianceThresholdLowRebellion;
-        [Tooltip("TODO(07): R >= complianceRebellionBoundary일 때 순응 임계점(기본 8)")]
-        public float complianceThresholdHighRebellion;
-        [Tooltip("TODO(07): 임계점 분기에 쓰는 R 경계값(기본 70)")]
-        public float complianceRebellionBoundary;
-        [Tooltip("TODO(07): 추가 접촉 없이 누적이 리셋되는 유휴 시간(초, 기본 10)")]
-        public float complianceResetIdleSeconds;
-        [Tooltip("TODO(07): 순응 상태 지속 시간(초, 기본 8)")]
-        public float complianceDurationSeconds;
-        [Tooltip("TODO(07): 순응 임계점 도달 즉시 적용되는 S 증가")]
-        public float complianceThresholdStressDelta;
-        [Tooltip("TODO(07): 순응 임계점 도달 즉시 적용되는 R 증가")]
-        public float complianceThresholdRebellionDelta;
-        [Tooltip("TODO(07): 순응 상태 중 추가 유효 접촉마다 적용되는 S 증가")]
-        public float compliancePerContactStressDelta;
-        [Tooltip("TODO(07): 순응 상태 중 추가 유효 접촉마다 적용되는 R 증가")]
-        public float compliancePerContactRebellionDelta;
+        [Header("06 복도 — 길이 4 + 6 + 4m, 폭 4m")]
+        public float corridorWidth = 4f;
+        public float corridorLength = 14f;
+        public float corridorRecapLength = 4f;
+        public float corridorSilhouetteLength = 4f;
+        public int corridorRecapCount = 3;
+        public int corridorUneasyContactThreshold = 4;
+        public float corridorFrameTiltDegrees = 4f;
+        public float corridorMusicVolume = 0.12f;
+        public float corridorAudioBlendSeconds = 1f;
+
+        [Header("07 Rebellion and coercion")]
+        public float extremeItemStatDeltaLimit = 25f;
+        public float trainingMinimumBenefit = 5f;
+        public float coercionWheelchairRebellionDelta = 2f;
+        public float coercionWheelchairStressDelta = 1f;
+        public float coercionElectricStickRebellionDelta = 5f;
+        public float coercionElectricStickStressDelta = 3f;
+        public float coercionDetectionWindowSeconds = 10f;
+        [Tooltip("Item direction tolerance; tune through playtesting.")]
+        public float coercionDirectionToleranceDegrees = 45f;
+        public float repeatedTrainingRebellionDelta = 4f;
+        public float repeatedTrainingStressDelta = 3f;
+        public int repeatedTrainingStartVisitCount = 3;
+        public int repeatedTrainingMaxApplications = 3;
+        public float watchingOnlyRebellionDelta = -2f;
+        public float watchingOnlyRebellionCapPerRoom = 8f;
+        public float highRebellionDialogueThreshold = 35f;
+        public float flightSmokeRebellionThreshold = 60f;
+
+        [Header("07 Directional compliance")]
+        public float complianceAccumulationWindowSeconds = 30f;
+        public float complianceWheelchairPushScore = 1f;
+        public float complianceElectricStickPushScore = 2f;
+        public float complianceThresholdLowRebellion = 6f;
+        public float complianceThresholdHighRebellion = 8f;
+        public float complianceRebellionBoundary = 70f;
+        public float complianceResetIdleSeconds = 10f;
+        public float complianceDurationSeconds = 8f;
+        public float complianceThresholdStressDelta = 4f;
+        public float complianceThresholdRebellionDelta = 6f;
+        public float compliancePerContactStressDelta = 1f;
+        public float compliancePerContactRebellionDelta = 2f;
+        public float complianceMinimumContactIntervalSeconds = 1f;
+        [Tooltip("90 degrees leaves the forward hemisphere and resets accumulation.")]
+        public float complianceOppositeAngleDegrees = 90f;
+        public float complianceSameDirectionToleranceDegrees = 45f;
+        public float complianceNavigationDistance = 6f;
+        public float complianceNavigationSampleRadius = 0.5f;
+        public int complianceNavigationDistanceSteps = 6;
+        public float complianceNavigationFallbackAngleDegrees = 60f;
+        public int complianceNavigationAngleSteps = 6;
     }
 }

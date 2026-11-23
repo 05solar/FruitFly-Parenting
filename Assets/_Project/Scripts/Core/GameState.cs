@@ -11,6 +11,7 @@ namespace FruitFlyParenting.Core
         public string roomId; // 전역 이벤트는 빈 문자열을 쓴다.
         public string eventType;
         public string payload;
+        public ItemExperience experience;
     }
 
     // JsonUtility 직렬화 전용 DTO. GameState 자체는 System.Random 등 직렬화 불가능한 멤버를 들고 있어
@@ -18,6 +19,9 @@ namespace FruitFlyParenting.Core
     [Serializable]
     public class GameStateSaveData
     {
+        public bool adolescenceExitCaptured;
+        public float adolescenceExitRebellion;
+        public bool flightSmokeEventTriggered;
         public int runSeed;
         public string currentRoomId;
         public StatType[] statTypes;
@@ -38,6 +42,22 @@ namespace FruitFlyParenting.Core
 
         public static void SetCurrent(GameState state) => Current = state;
 
+        readonly GameBalanceConfig config;
+        public bool IsHighRebellionDialogue => Stats.GetValue(StatType.Rebellion) >= config.highRebellionDialogueThreshold;
+        public bool IsFlightSmokeEventEligible => Stats.GetValue(StatType.Rebellion) >= config.flightSmokeRebellionThreshold;
+        public bool IsFlightSmokeEventTriggered { get; private set; }
+        public bool AdolescenceExitCaptured { get; private set; }
+        public float AdolescenceExitRebellion { get; private set; }
+        // Step 10 calls this once when the adolescence door opens. Later R changes cannot alter it.
+        public void CaptureAdolescenceExit(float now)
+        {
+            if (AdolescenceExitCaptured) return;
+            AdolescenceExitCaptured = true;
+            AdolescenceExitRebellion = Stats.GetValue(StatType.Rebellion);
+            IsFlightSmokeEventTriggered = IsFlightSmokeEventEligible;
+            LogEvent(now, CurrentRoomId, "adolescence_exit_rebellion",
+                AdolescenceExitRebellion.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
         public StatSystem Stats { get; }
         public RelationshipState Relationship { get; }
         public string CurrentRoomId { get; set; } = string.Empty;
@@ -49,13 +69,14 @@ namespace FruitFlyParenting.Core
 
         public GameState(GameBalanceConfig config, int runSeed)
         {
+            this.config = config;
             RunSeed = runSeed;
             Random = new System.Random(runSeed);
             Stats = new StatSystem(config);
             Relationship = new RelationshipState(config);
         }
 
-        public void LogEvent(float timestamp, string roomId, string eventType, string payload)
+        public void LogEvent(float timestamp, string roomId, string eventType, string payload, ItemExperience experience = null)
         {
             eventLog.Add(new EventLogEntry
             {
@@ -63,6 +84,7 @@ namespace FruitFlyParenting.Core
                 roomId = roomId ?? string.Empty,
                 eventType = eventType,
                 payload = payload,
+                experience = experience,
             });
         }
 
@@ -78,6 +100,9 @@ namespace FruitFlyParenting.Core
 
             var data = new GameStateSaveData
             {
+                adolescenceExitCaptured = AdolescenceExitCaptured,
+                adolescenceExitRebellion = AdolescenceExitRebellion,
+                flightSmokeEventTriggered = IsFlightSmokeEventTriggered,
                 runSeed = RunSeed,
                 currentRoomId = CurrentRoomId,
                 statTypes = statTypes,
@@ -105,6 +130,9 @@ namespace FruitFlyParenting.Core
             var state = new GameState(config, data.runSeed)
             {
                 CurrentRoomId = data.currentRoomId,
+                AdolescenceExitCaptured = data.adolescenceExitCaptured,
+                AdolescenceExitRebellion = data.adolescenceExitRebellion,
+                IsFlightSmokeEventTriggered = data.flightSmokeEventTriggered,
             };
 
             for (int i = 0; i < data.statTypes.Length; i++)

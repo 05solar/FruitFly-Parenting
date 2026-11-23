@@ -19,6 +19,9 @@ MonoBehaviour:
   trustDefaultValue: 50
   trustMin: 0
   trustMax: 100
+  freeRoamDurationSeconds: 120
+  randomExplorationFloor: 0.35
+  maxItemDwellSeconds: 30
   baseInterventionStressDelta: 0.4
   interventionWindowWeightCoefficient: 0.25
   interventionStressDeltaCap: 3
@@ -28,27 +31,76 @@ MonoBehaviour:
   neglectRewardIntervalSeconds: 60
   neglectRewardTrustGain: 1
   neglectRewardTrustCapPerRoom: 4
-  coercionWheelchairRebellionDelta: 0
-  coercionWheelchairStressDelta: 0
-  coercionElectricStickRebellionDelta: 0
-  coercionElectricStickStressDelta: 0
-  coercionDetectionWindowSeconds: 0
-  coercionDirectionToleranceDegrees: 0
-  repeatedTrainingRebellionDelta: 0
-  repeatedTrainingStressDelta: 0
-  repeatedTrainingStartVisitCount: 0
-  repeatedTrainingMaxApplications: 0
-  watchingOnlyRebellionDelta: 0
-  watchingOnlyRebellionCapPerRoom: 0
-  complianceAccumulationWindowSeconds: 0
-  complianceWheelchairPushScore: 0
-  complianceElectricStickPushScore: 0
-  complianceThresholdLowRebellion: 0
-  complianceThresholdHighRebellion: 0
-  complianceRebellionBoundary: 0
-  complianceResetIdleSeconds: 0
-  complianceDurationSeconds: 0
-  complianceThresholdStressDelta: 0
-  complianceThresholdRebellionDelta: 0
-  compliancePerContactStressDelta: 0
-  compliancePerContactRebellionDelta: 0
+  wheelchairMaxSpeed: 0.8
+  wheelchairAcceleration: 0.6
+  wheelchairDeceleration: 1.2
+  wheelchairTurnSpeed: 30
+  wheelchairTurnAcceleration: 60
+  wheelchairTurnDeceleration: 90
+  wheelchairStickDeadzone: 0.15
+  wheelchairMinSpeedForPush: 0.05
+  wheelchairPushCooldownSeconds: 1
+  wheelchairPushForce: 1.5
+  strongPushForce: 3
+  pushDurationSeconds: 0.3
+  electricStickImmediateStressDelta: 2
+  shockVisualDurationSeconds: 0.25
+  interventionUnweightedCount: 2
+  avoidanceContactThreshold: 4
+  avoidanceDurationSeconds: 12
+  consecutiveContactGapSeconds: 5
+  toolCooldownOnRoomEnterSeconds: 90
+  roomEarliestExitSeconds: 420
+  roomDoorOpenSeconds: 480
+  roomEffectsStopSeconds: 600
+  roomExitChoiceWeight: 3
+  roomFadeSeconds: 0.75
+  normalItemStatDeltaLimit: 12
+  autonomousVisitContactWindowSeconds: 6
+  infantDebugTimeScale: 1
+  corridorWidth: 4
+  corridorLength: 14
+  corridorRecapLength: 4
+  corridorSilhouetteLength: 4
+  corridorRecapCount: 3
+  corridorUneasyContactThreshold: 4
+  corridorFrameTiltDegrees: 4
+  corridorMusicVolume: 0.12
+  corridorAudioBlendSeconds: 1
+  coercionWheelchairRebellionDelta: 2
+  coercionWheelchairStressDelta: 1
+  coercionElectricStickRebellionDelta: 5
+  coercionElectricStickStressDelta: 3
+  coercionDetectionWindowSeconds: 10
+  coercionDirectionToleranceDegrees: 45
+  repeatedTrainingRebellionDelta: 4
+  repeatedTrainingStressDelta: 3
+  repeatedTrainingStartVisitCount: 3
+  repeatedTrainingMaxApplications: 3
+  watchingOnlyRebellionDelta: -2
+  watchingOnlyRebellionCapPerRoom: 8
+  complianceAccumulationWindowSeconds: 30
+  complianceWheelchairPushScore: 1
+  complianceElectricStickPushScore: 2
+  complianceThresholdLowRebellion: 6
+  complianceThresholdHighRebellion: 8
+  complianceRebellionBoundary: 70
+  complianceResetIdleSeconds: 10
+  complianceDurationSeconds: 8
+  complianceThresholdStressDelta: 4
+  complianceThresholdRebellionDelta: 6
+  compliancePerContactStressDelta: 1
+  compliancePerContactRebellionDelta: 2
+
+  extremeItemStatDeltaLimit: 25
+  trainingMinimumBenefit: 5
+  highRebellionDialogueThreshold: 35
+  flightSmokeRebellionThreshold: 60
+  complianceMinimumContactIntervalSeconds: 1
+  complianceOppositeAngleDegrees: 90
+  complianceSameDirectionToleranceDegrees: 45
+  complianceNavigationDistance: 6
+  complianceNavigationSampleRadius: 0.5
+  complianceNavigationDistanceSteps: 6
+  complianceNavigationFallbackAngleDegrees: 60
+  complianceNavigationAngleSteps: 6

@@ -1,5 +1,6 @@
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace FruitFlyParenting.Room
 {
@@ -9,7 +10,8 @@ namespace FruitFlyParenting.Room
     public static class RoomShellBuilder
     {
         public const float WallThickness = 0.3f;
-        public const float FurnitureSize = 1.2f;
+        // 북측 보조 슬롯(z=20)과 북벽(z=22) 사이에도 1.5m 통로를 남긴다.
+        public const float FurnitureSize = 1f;
         public const float FurnitureHeight = 1.8f;
 
         public static GameObject BuildAndBake()
@@ -28,6 +30,7 @@ namespace FruitFlyParenting.Room
 
             var navSurface = root.AddComponent<NavMeshSurface>();
             navSurface.collectObjects = CollectObjects.Children;
+            navSurface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
             navSurface.BuildNavMesh();
 
             root.GetComponent<RoomController>().RefreshItemSlots();
@@ -84,6 +87,9 @@ namespace FruitFlyParenting.Room
                 furniture.transform.SetParent(slotsRoot.transform, false);
                 furniture.transform.localPosition = new Vector3(pos.x, FurnitureHeight / 2f, pos.y);
                 furniture.transform.localScale = new Vector3(FurnitureSize, FurnitureHeight, FurnitureSize);
+                var modifier = furniture.AddComponent<NavMeshModifier>();
+                modifier.overrideArea = true;
+                modifier.area = NavMesh.GetAreaFromName("Not Walkable");
             }
         }
 

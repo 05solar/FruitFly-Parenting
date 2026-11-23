@@ -4,7 +4,15 @@
     "references": [
         "FruitFlyParenting.Game",
         "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner"
+        "UnityEditor.TestRunner",
+        "Unity.AI.Navigation",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.XR.CoreUtils",
+        "Unity.InputSystem",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor",
+        "Unity.XR.OpenXR",
+        "Unity.XR.Interaction.Toolkit"
     ],
     "includePlatforms": [
         "Editor"

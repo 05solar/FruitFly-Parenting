@@ -7,6 +7,21 @@ namespace FruitFlyParenting.Room
     // 06번에서 복도/방 전환 로직이 이 컨트롤러를 확장한다.
     public class RoomController : MonoBehaviour
     {
+        public const string ExitDestinationId = "__exit";
+        public bool ExitAvailable { get; private set; }
+        public bool ExitOnly { get; private set; }
+        public Vector3 ExitPoint { get; private set; }
+        int exitChoiceWeight;
+        public void ConfigureExit(bool available, bool onlyExit, Vector3 point, int weight)
+        { ExitAvailable = available; ExitOnly = onlyExit; ExitPoint = point; exitChoiceWeight = Mathf.Max(1, weight); }
+
+        public List<string> GetDestinationIds()
+        {
+            var ids = ExitOnly && ExitAvailable ? new List<string>() : GetAllItemIds();
+            if (ExitAvailable)
+                for (int i = 0; i < exitChoiceWeight; i++) ids.Add(ExitDestinationId);
+            return ids;
+        }
         readonly HashSet<string> visitedItemIds = new HashSet<string>();
 
         public IReadOnlyList<ItemSlot> ItemSlots { get; private set; } = System.Array.Empty<ItemSlot>();
