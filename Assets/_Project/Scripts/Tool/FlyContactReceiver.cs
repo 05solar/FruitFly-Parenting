@@ -64,13 +64,18 @@ namespace FruitFlyParenting.Tool
                 state.Stats.ApplyDelta(StatType.Stress, entry ? config.complianceThresholdStressDelta : config.compliancePerContactStressDelta, reason);
                 state.Stats.ApplyDelta(StatType.Rebellion, entry ? config.complianceThresholdRebellionDelta : config.compliancePerContactRebellionDelta, reason);
                 state.LogEvent(currentTime, state.CurrentRoomId, reason, source.ToString());
+                fly.RecordLearningContact(source, currentTime);
                 fly.GuideCompliance(Compliance.Direction);
             }
             if (Compliance.State == ComplianceState.Complying) return;
             if (fly.IsComplying) fly.ReleaseCompliance();
             // 회피는 이동 저항이다. 접촉 집계/전기 +2/감전 표시는 계속 발생한다.
             if (Usage.Mood.IsAvoiding(currentTime)) fly.ResumeAutonomy();
-            else fly.ApplyPush(result);
+            else
+            {
+                fly.RecordLearningContact(source, currentTime);
+                fly.ApplyPush(result);
+            }
         }
 
         public void ForceEndAvoidance() => Usage?.Mood.ForceEndAvoidance();

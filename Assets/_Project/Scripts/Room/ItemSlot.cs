@@ -25,6 +25,7 @@ namespace FruitFlyParenting.Room
         public void AssignDefinition(ItemDefinition item) { definition = item; itemId = item.itemId; }
         public float InteractionRadius => interactionRadius;
         public ItemVisitContext LastVisitContext { get; private set; }
+        public bool HasConfirmedCurrentStay => dwellTracker != null && dwellTracker.HasConfirmedVisit;
         FlyAgent occupant;
 
         // 슬롯 중심에는 가구가 있으므로, 상호작용 반경 안의 바닥 중 도달 가능한 점을 고른다.
@@ -88,6 +89,7 @@ namespace FruitFlyParenting.Room
             if (dwellTracker != null && dwellTracker.Tick(Time.deltaTime))
             {
                 bool isFirstVisit = room != null && room.TryMarkFirstVisit(itemId);
+                occupant?.ConfirmLearningArrival(this, Time.time);
                 var receiver = occupant != null ? occupant.GetComponent<FlyContactReceiver>() : null;
                 LastVisitContext = receiver != null ? receiver.PrepareItemVisit(this, isFirstVisit, Time.time) : default;
                 if (isFirstVisit)

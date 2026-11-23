@@ -104,3 +104,21 @@ MonoBehaviour:
   complianceNavigationDistanceSteps: 6
   complianceNavigationFallbackAngleDegrees: 60
   complianceNavigationAngleSteps: 6
+  infantExplorationFloor: 0.65
+  childhoodExplorationFloor: 0.55
+  adolescenceExplorationFloor: 0.45
+  youngAdultExplorationFloor: 0.35
+  learningInterventionWindowSeconds: 6
+  avoidanceWheelchairLearningGain: 0.3
+  avoidanceElectricLearningGain: 0.6
+  avoidanceEpisodeGainLimit: 1.8
+  avoidanceMemoryLimit: 1000
+  preferenceMemoryLimit: 10
+  preferenceStressWeight: 1
+  preferenceGrowthWeight: 0.5
+  preferenceLearningRate: 0.05
+  preferenceVisitGainLimit: 1
+  restStressNeedWeight: 1.5
+  exerciseHealthNeedWeight: 1
+  choiceNoiseAmplitude: 0.1
+  debugHudRefreshSeconds: 0.25

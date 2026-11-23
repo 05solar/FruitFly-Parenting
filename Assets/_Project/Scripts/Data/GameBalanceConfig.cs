@@ -21,9 +21,9 @@ namespace FruitFlyParenting.Data
         public float trustMax = 100f;
 
         [Header("초파리 자율 이동 (스펙 4.2)")]
-        [Tooltip("방 진입 후 이 시간(초) 동안은 선호 없이 100% 무작위로 목적지를 고른다(기본 120=2분)")]
+        [Tooltip("영유아 방 진입 후 이 시간(초) 동안은 선호 없이 균등 탐색한다(기본 120=2분). 이후 시기는 처음부터 태그 기억을 사용한다.")]
         public float freeRoamDurationSeconds = 120f;
-        [Tooltip("자유 로밍 구간이 끝난 뒤에도 유지되는 무작위 탐색 확률의 하한(기본 0.35). 실제 선호 가중 혼합은 08번에서 구현한다.")]
+        [Tooltip("시기별 탐색 비율이 이 값보다 작아지지 않도록 하는 공통 하한. 기본 0.35.")]
         public float randomExplorationFloor = 0.35f;
         [Tooltip("한 물품에 이 시간(초) 이상 머물면 강제로 다른 지점으로 이동한다")]
         public float maxItemDwellSeconds = 30f;
@@ -137,5 +137,25 @@ namespace FruitFlyParenting.Data
         public int complianceNavigationDistanceSteps = 6;
         public float complianceNavigationFallbackAngleDegrees = 60f;
         public int complianceNavigationAngleSteps = 6;
+
+        [Header("08 Preference learning and exploration")]
+        [Range(0.35f, 1f)] public float infantExplorationFloor = 0.65f;
+        [Range(0.35f, 1f)] public float childhoodExplorationFloor = 0.55f;
+        [Range(0.35f, 1f)] public float adolescenceExplorationFloor = 0.45f;
+        [Range(0.35f, 1f)] public float youngAdultExplorationFloor = 0.35f;
+        public float learningInterventionWindowSeconds = 6f;
+        public float avoidanceWheelchairLearningGain = 0.3f;
+        public float avoidanceElectricLearningGain = 0.6f;
+        public float avoidanceEpisodeGainLimit = 1.8f;
+        public float avoidanceMemoryLimit = 1000f;
+        public float preferenceMemoryLimit = 10f;
+        public float preferenceStressWeight = 1f;
+        public float preferenceGrowthWeight = 0.5f;
+        public float preferenceLearningRate = 0.05f;
+        public float preferenceVisitGainLimit = 1f;
+        public float restStressNeedWeight = 1.5f;
+        public float exerciseHealthNeedWeight = 1f;
+        public float choiceNoiseAmplitude = 0.1f;
+        public float debugHudRefreshSeconds = 0.25f;
     }
 }

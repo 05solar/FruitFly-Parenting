@@ -53,6 +53,7 @@ namespace FruitFlyParenting.Room
             effects = new ItemEffectApplier(config, GameState.Current, RoomId);
             saves = new SaveSystem(config);
             room.RefreshItemSlots();
+            room.ConfigureLifeStage(LifeStage.Infant);
             room.ResetVisits();
             contact = fly.GetComponent<FlyContactReceiver>();
             contact.ContactsEnabled = false;

@@ -9,6 +9,7 @@ namespace FruitFlyParenting.Room
         bool isOccupied;
         float dwellTimer;
         bool visitTriggeredThisStay;
+        public bool HasConfirmedVisit => visitTriggeredThisStay;
 
         public ItemDwellTracker(float minDwellSeconds)
         {

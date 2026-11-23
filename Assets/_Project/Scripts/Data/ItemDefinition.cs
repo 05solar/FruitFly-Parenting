@@ -18,9 +18,16 @@ namespace FruitFlyParenting.Data
         public string itemId;
         public string displayName;
         public string[] tags = Array.Empty<string>();
+        public float baseAttraction = 0f;
         public ItemStatDelta[] statDeltas = Array.Empty<ItemStatDelta>();
         public bool isExtreme;
         [TextArea] public string[] narrativeLines = Array.Empty<string>();
         [TextArea] public string childReflectionLine;
+        public void ValidateTags() => TagDefinitions.ValidateAndDistinct(tags);
+        void OnValidate()
+        {
+            try { ValidateTags(); }
+            catch (ArgumentException exception) { Debug.LogError(itemId + ": " + exception.Message, this); }
+        }
     }
 }

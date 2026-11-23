@@ -5,6 +5,7 @@ using System.Text;
 using FruitFlyParenting.Core;
 using FruitFlyParenting.Data;
 using FruitFlyParenting.Tool;
+using FruitFlyParenting.Fly;
 
 namespace FruitFlyParenting.Room
 {
@@ -40,6 +41,7 @@ namespace FruitFlyParenting.Room
         public ItemVisitResult Visit(ItemDefinition item, bool firstVisitEvent, bool effectsEnabled, float now, ItemVisitContext context = default)
         {
             if (item == null || string.IsNullOrEmpty(item.itemId)) throw new ArgumentException("Item definition/id is required.");
+            item.ValidateTags();
             bool newId = visited.Add(item.itemId);
             bool first = firstVisitEvent && newId;
             visits.TryGetValue(item.itemId, out int count);
@@ -52,6 +54,7 @@ namespace FruitFlyParenting.Room
             {
                 // 같은 스탯의 중복 항목도 합산 후 방문 단위 상한을 적용한다.
                 var totals = new Dictionary<StatType, float>();
+                var actualChanges = new Dictionary<StatType, float>();
                 foreach (var delta in item.statDeltas)
                 {
                     totals.TryGetValue(delta.stat, out float value);
@@ -63,10 +66,12 @@ namespace FruitFlyParenting.Room
                     float limit = item.isExtreme ? config.extremeItemStatDeltaLimit : config.normalItemStatDeltaLimit;
                     float amount = Math.Max(-limit, Math.Min(limit, pair.Value));
                     state.Stats.ApplyDelta(pair.Key, amount, "item_first:" + item.itemId);
+                    actualChanges[pair.Key] = state.Stats.GetValue(pair.Key) - before;
                     if (pair.Key != StatType.Rebellion) magnitude += Math.Abs(state.Stats.GetValue(pair.Key) - before);
                     log.AppendFormat(CultureInfo.InvariantCulture, ";{0}={1}->{2} ({3:+0.##;-0.##;0})",
                         pair.Key, before, state.Stats.GetValue(pair.Key), state.Stats.GetValue(pair.Key) - before);
                 }
+                PreferenceLearningTracker.LearnVisit(config, state, roomId, item, actualChanges, now);
             }
             if (apply && CoercionDetector.IsTrainingItem(item, config))
             {

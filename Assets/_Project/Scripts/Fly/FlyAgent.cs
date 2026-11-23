@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using FruitFlyParenting.Core;
 using FruitFlyParenting.Data;
 using FruitFlyParenting.Room;
@@ -19,6 +20,8 @@ namespace FruitFlyParenting.Fly
 
         NavMeshAgent agent;
         FlyAutonomousMovement movement;
+        public PreferenceLearningTracker Learning { get; private set; }
+        public ItemChoiceDecision LastChoice => movement?.LastDecision;
 
         float roomEnterTime;
         float arrivalTime;
@@ -36,6 +39,9 @@ namespace FruitFlyParenting.Fly
         public Vector3 ComplianceDestination { get; private set; }
         public bool UsedComplianceFallback { get; private set; }
         public string CurrentDestinationId => currentDestinationId;
+        void OnEnable() => EventBus.RoomEntered += OnRoomEntered;
+        void OnDisable() => EventBus.RoomEntered -= OnRoomEntered;
+        void OnRoomEntered(string id) { roomEnterTime = Time.time; Learning?.Reset(); }
 
         void Awake()
         {
@@ -64,9 +70,15 @@ namespace FruitFlyParenting.Fly
                 ? new SystemRandomSource(GameState.Current.Random)
                 : new SystemRandomSource(new System.Random());
 
-            movement = new FlyAutonomousMovement(config, randomSource);
+            movement = new FlyAutonomousMovement(config, randomSource, GameState.Current);
+            if (GameState.Current != null) Learning = new PreferenceLearningTracker(config, GameState.Current);
             roomEnterTime = Time.time;
             PickAndMoveToNext();
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            var hud = GetComponent<DebugHud>();
+            if (hud == null) hud = gameObject.AddComponent<DebugHud>();
+            hud.Configure(this, config);
+#endif
         }
 
         void Update()
@@ -116,13 +128,33 @@ namespace FruitFlyParenting.Fly
             }
         }
 
-        void PickAndMoveToNext()
+        public void PickAndMoveToNext()
         {
+            if (movement == null || !agent.isOnNavMesh || complying || beingPushed) return;
             var candidateIds = room.GetDestinationIds();
             if (candidateIds.Count == 0) return;
-
+            var candidates = new List<ItemChoiceCandidate>();
+            var points = new Dictionary<string, Vector3>();
+            foreach (var group in candidateIds.GroupBy(id => id))
+            {
+                string id = group.Key;
+                if (id == RoomController.ExitDestinationId)
+                {
+                    var filter = new NavMeshQueryFilter { agentTypeID = agent.agentTypeID, areaMask = agent.areaMask };
+                    var path = new NavMeshPath();
+                    if (NavMesh.SamplePosition(room.ExitPoint, out var exit, .5f, filter) &&
+                        NavMesh.CalculatePath(agent.nextPosition, exit.position, filter, path) && path.status == NavMeshPathStatus.PathComplete)
+                        candidates.Add(new ItemChoiceCandidate(id, tickets: group.Count()));
+                    continue;
+                }
+                var slot = FindSlot(id);
+                if (slot == null || !slot.TryGetNavigationPoint(agent.nextPosition, agent.agentTypeID, out var point)) continue;
+                points.Add(id, point);
+                candidates.Add(new ItemChoiceCandidate(id, slot.Definition?.tags, slot.Definition != null ? slot.Definition.baseAttraction : 0f));
+            }
+            if (candidates.Count == 0) { agent.ResetPath(); return; }
             float timeSinceRoomEnter = Time.time - roomEnterTime;
-            string nextId = movement.PickNextDestination(candidateIds, currentDestinationId, timeSinceRoomEnter);
+            string nextId = movement.PickNextDestination(candidates, currentDestinationId, timeSinceRoomEnter, room.Stage);
 
             if (nextId == RoomController.ExitDestinationId)
             {
@@ -130,18 +162,10 @@ namespace FruitFlyParenting.Fly
                 return;
             }
 
-            ItemSlot targetSlot = FindSlot(nextId);
-            if (targetSlot == null) return;
-            if (!targetSlot.TryGetNavigationPoint(transform.position, agent.agentTypeID, out var target))
-            {
-                Debug.LogError($"FlyAgent: 물품 {nextId}의 상호작용 영역에 도달할 수 없습니다.", this);
-                enabled = false;
-                return;
-            }
-
             currentDestinationId = nextId;
             hasArrivedAtCurrentDestination = false;
-            agent.SetDestination(target);
+            agent.isStopped = false;
+            agent.SetDestination(points[nextId]);
         }
 
         ItemSlot FindSlot(string id)
@@ -179,11 +203,7 @@ namespace FruitFlyParenting.Fly
             if (NavMesh.Raycast(from, wanted, out var hit, agent.areaMask)) wanted = hit.position;
             var filter = new NavMeshQueryFilter { agentTypeID = agent.agentTypeID, areaMask = agent.areaMask };
             if (!NavMesh.SamplePosition(wanted, out var sampled, 0.1f, filter)) return;
-            pushOriginSlots.Clear();
-            var body = GetComponent<Collider>();
-            if (body != null)
-                foreach (var slot in room.ItemSlots)
-                    if (slot.Definition != null && OverlapsSlot(body,slot,agent.nextPosition)) pushOriginSlots.Add(slot);
+            CapturePushOrigins();
             pushTarget = sampled.position + heightOffset;
             pushEndsAt = Time.time + config.pushDurationSeconds;
             beingPushed = true;
@@ -194,6 +214,7 @@ namespace FruitFlyParenting.Fly
         public void GuideCompliance(Vector3 direction)
         {
             if (agent == null || !agent.isOnNavMesh) return;
+            CapturePushOrigins();
             complying = true; beingPushed = false; complianceDirection = direction;
             var from = agent.nextPosition - Vector3.up * agent.baseOffset;
             if (ComplianceNavigation.TryFindDestination(from, direction, agent.agentTypeID, agent.areaMask,
@@ -241,6 +262,7 @@ namespace FruitFlyParenting.Fly
                 // 한 프레임에 끝나는 밀기도 놓치지 않으며, 벽에 막힌 밀기는 이탈로 세지 않는다.
                 var state = GameState.Current;
                 if (state != null) state.LogEvent(Time.time,state.CurrentRoomId,"item_pushed_away",slot.ItemId);
+                if (state != null) Learning?.ConfirmPushedAway(state.CurrentRoomId, slot.ItemId, Time.time);
                 pushOriginSlots.RemoveAt(i);
             }
         }
@@ -248,6 +270,31 @@ namespace FruitFlyParenting.Fly
         {
             var region = slot.GetComponent<SphereCollider>();
             return Physics.ComputePenetration(body,position,transform.rotation,region,region.transform.position,region.transform.rotation,out _,out _);
+        }
+
+        void CapturePushOrigins()
+        {
+            RecordPushDepartures();
+            pushOriginSlots.Clear();
+            var body = GetComponent<Collider>();
+            if (body == null) return;
+            foreach (var slot in room.ItemSlots)
+                if (slot.Definition != null && OverlapsSlot(body, slot, agent.nextPosition)) pushOriginSlots.Add(slot);
+        }
+        public void RecordLearningContact(PushSource source, float now)
+        {
+            if (Learning == null || GameState.Current == null) return;
+            var body = GetComponent<Collider>();
+            var intended = body != null ? room.ItemSlots.FirstOrDefault(slot =>
+                slot.Definition != null && slot.HasConfirmedCurrentStay && OverlapsSlot(body, slot, agent.nextPosition)) : null;
+            if (intended == null) intended = FindSlot(currentDestinationId);
+            var direction = intended != null ? intended.transform.position - transform.position : Vector3.zero;
+            Learning.RecordContact(GameState.Current.CurrentRoomId, intended?.Definition, direction, source, now,
+                GameState.Current.Stats.GetValue(StatType.Stress));
+        }
+        public void ConfirmLearningArrival(ItemSlot slot, float now)
+        {
+            if (GameState.Current != null) Learning?.ConfirmArrival(GameState.Current.CurrentRoomId, slot.ItemId, now);
         }
     }
 }

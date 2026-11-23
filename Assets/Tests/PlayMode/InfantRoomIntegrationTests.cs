@@ -118,6 +118,10 @@ namespace FruitFlyParenting.Tests.PlayMode
             Assert.AreEqual(9,GameState.Current.EventLog.Count(e=>e.eventType=="checkpoint" && e.payload.StartsWith("item_first:")));
             var saved = JsonUtility.FromJson<GameStateSaveData>(File.ReadAllText(checkpoint));
             CollectionAssert.AreEqual(Enumerable.Range(0,6).Select(i=>GameState.Current.Stats.GetValue((StatType)i)).ToArray(),saved.statValues);
+            Assert.AreEqual(9,GameState.Current.EventLog.Count(e=>e.eventType=="learning_preference"));
+            Assert.AreEqual(9,saved.eventLog.Count(e=>e.eventType=="learning_preference"));
+            Assert.IsTrue(saved.tagMemory.Any(entry=>entry.preference!=0));
+            File.WriteAllText("Logs/preference-infant-checkpoint.json",JsonUtility.ToJson(saved,true));
             File.WriteAllLines("Logs/infant-first-visits.txt",logs.Select(e=>$"{e.timestamp:0.00}s {e.payload}"));
         }
 

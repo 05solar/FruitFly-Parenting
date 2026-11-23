@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FruitFlyParenting.Data;
+using FruitFlyParenting.Fly;
 
 namespace FruitFlyParenting.Core
 {
@@ -12,6 +13,7 @@ namespace FruitFlyParenting.Core
         public string eventType;
         public string payload;
         public ItemExperience experience;
+        public LearningExperience learning;
     }
 
     // JsonUtility 직렬화 전용 DTO. GameState 자체는 System.Random 등 직렬화 불가능한 멤버를 들고 있어
@@ -31,6 +33,7 @@ namespace FruitFlyParenting.Core
         public int autonomousVisitCount;
         public List<ItemRevisitEntry> itemRevisits = new List<ItemRevisitEntry>();
         public List<EventLogEntry> eventLog = new List<EventLogEntry>();
+        public List<TagMemoryEntry> tagMemory = new List<TagMemoryEntry>();
     }
 
     // 회차 전체에 걸친 상태를 들고 있는 순수 C# 클래스.
@@ -60,6 +63,7 @@ namespace FruitFlyParenting.Core
         }
         public StatSystem Stats { get; }
         public RelationshipState Relationship { get; }
+        public PreferenceMemory Preferences { get; }
         public string CurrentRoomId { get; set; } = string.Empty;
         public int RunSeed { get; }
         public System.Random Random { get; }
@@ -74,6 +78,7 @@ namespace FruitFlyParenting.Core
             Random = new System.Random(runSeed);
             Stats = new StatSystem(config);
             Relationship = new RelationshipState(config);
+            Preferences = new PreferenceMemory(config);
         }
 
         public void LogEvent(float timestamp, string roomId, string eventType, string payload, ItemExperience experience = null)
@@ -86,6 +91,12 @@ namespace FruitFlyParenting.Core
                 payload = payload,
                 experience = experience,
             });
+        }
+
+        public void LogLearning(float timestamp, string roomId, string eventType, LearningExperience learning)
+        {
+            eventLog.Add(new EventLogEntry { timestamp = timestamp, roomId = roomId, eventType = eventType,
+                payload = learning.originalItemId + ";outcome=" + learning.outcome, learning = learning });
         }
 
         // SaveSystem이 직렬화할 평탄화된 스냅샷을 만든다.
@@ -110,6 +121,7 @@ namespace FruitFlyParenting.Core
                 trust = Relationship.Trust,
                 totalInterventionCount = Relationship.TotalInterventionCount,
                 autonomousVisitCount = Relationship.AutonomousVisitCount,
+                tagMemory = Preferences.Snapshot(),
             };
 
             foreach (var kvp in Relationship.ItemRevisitCounts)
@@ -146,6 +158,7 @@ namespace FruitFlyParenting.Core
             float trustDelta = data.trust - state.Relationship.Trust;
             state.Relationship.AdjustTrust(trustDelta, "save_load_restore");
             state.Relationship.RestoreCounters(data.totalInterventionCount, data.autonomousVisitCount, data.itemRevisits);
+            state.Preferences.Restore(data.tagMemory);
 
             state.eventLog.AddRange(data.eventLog);
 
