@@ -5,20 +5,25 @@ namespace FruitFlyParenting.Room
     public class ItemDwellTracker
     {
         readonly float minDwellSeconds;
+        readonly float hesitationSeconds;
+        float hesitationRemaining;
 
         bool isOccupied;
         float dwellTimer;
         bool visitTriggeredThisStay;
         public bool HasConfirmedVisit => visitTriggeredThisStay;
+        public bool IsHesitating => isOccupied && hesitationRemaining > 0f;
 
-        public ItemDwellTracker(float minDwellSeconds)
+        public ItemDwellTracker(float minDwellSeconds, float hesitationSeconds = 0f)
         {
             this.minDwellSeconds = minDwellSeconds;
+            this.hesitationSeconds = System.Math.Max(0f, hesitationSeconds);
         }
 
         public void OnEnter()
         {
             isOccupied = true;
+            hesitationRemaining = hesitationSeconds;
             dwellTimer = 0f;
             visitTriggeredThisStay = false;
         }
@@ -38,7 +43,10 @@ namespace FruitFlyParenting.Room
                 return false;
             }
 
-            dwellTimer += deltaTime;
+            float available = System.Math.Max(0f, deltaTime);
+            float hesitation = System.Math.Min(available, hesitationRemaining);
+            hesitationRemaining -= hesitation;
+            dwellTimer += available - hesitation;
             if (dwellTimer >= minDwellSeconds)
             {
                 visitTriggeredThisStay = true;

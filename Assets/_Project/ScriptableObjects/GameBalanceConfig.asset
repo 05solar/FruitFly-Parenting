@@ -67,6 +67,8 @@ MonoBehaviour:
   corridorFrameTiltDegrees: 4
   corridorMusicVolume: 0.12
   corridorAudioBlendSeconds: 1
+  extremeItemStatDeltaLimit: 25
+  trainingMinimumBenefit: 5
   coercionWheelchairRebellionDelta: 2
   coercionWheelchairStressDelta: 1
   coercionElectricStickRebellionDelta: 5
@@ -79,6 +81,8 @@ MonoBehaviour:
   repeatedTrainingMaxApplications: 3
   watchingOnlyRebellionDelta: -2
   watchingOnlyRebellionCapPerRoom: 8
+  highRebellionDialogueThreshold: 35
+  flightSmokeRebellionThreshold: 60
   complianceAccumulationWindowSeconds: 30
   complianceWheelchairPushScore: 1
   complianceElectricStickPushScore: 2
@@ -91,11 +95,6 @@ MonoBehaviour:
   complianceThresholdRebellionDelta: 6
   compliancePerContactStressDelta: 1
   compliancePerContactRebellionDelta: 2
-
-  extremeItemStatDeltaLimit: 25
-  trainingMinimumBenefit: 5
-  highRebellionDialogueThreshold: 35
-  flightSmokeRebellionThreshold: 60
   complianceMinimumContactIntervalSeconds: 1
   complianceOppositeAngleDegrees: 90
   complianceSameDirectionToleranceDegrees: 45
@@ -122,3 +121,11 @@ MonoBehaviour:
   exerciseHealthNeedWeight: 1
   choiceNoiseAmplitude: 0.1
   debugHudRefreshSeconds: 0.25
+  extremeItemHesitationSeconds: 2
+  paperAirplaneTriggerFraction: 0.4375
+  paperAirplaneLowTrustThreshold: 40
+  paperAirplaneSceneSeconds: 6
+  hesitationSwayDegrees: 8
+  hesitationSwayFrequency: 0.8
+  pressureOutfitBothStressThreshold: 70
+  pressureOutfitAverageStressThreshold: 75

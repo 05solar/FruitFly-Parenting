@@ -10,8 +10,10 @@ namespace FruitFlyParenting.Corridor
         public bool ContentReady { get; set; } = true;
         public bool ReadyForEntry => prepared && ContentReady && gameObject.activeInHierarchy;
         public bool Entered { get; private set; }
+        [SerializeField] bool ownsPresentation;
+        public bool OwnsPresentation => ownsPresentation;
         public event System.Action Entering;
-        public void Configure(GameObject gate) => entranceGate = gate;
+        public void Configure(GameObject gate, bool ownsView = false) { entranceGate = gate; ownsPresentation = ownsView; }
         public void Prepare() { gameObject.SetActive(true); entranceGate.SetActive(false); prepared = true; }
         public void Enter()
         {

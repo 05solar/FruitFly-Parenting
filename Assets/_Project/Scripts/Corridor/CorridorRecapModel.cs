@@ -14,6 +14,7 @@ namespace FruitFlyParenting.Corridor
     {
         public RecapMemory[] Memories { get; internal set; }
         public int InterventionCount { get; internal set; }
+        public bool HadInterruptedActivity { get; internal set; }
     }
 
     public static class CorridorRecapModel
@@ -34,7 +35,8 @@ namespace FruitFlyParenting.Corridor
                 .OrderByDescending(e => e.actualChangeMagnitude)
                 .Take(Math.Max(0, Math.Min(3, count)))
                 .Select(e => new RecapMemory { Experience = e, WasPushedAway = pushed.Contains(e.itemId) }).ToArray();
-            return new CorridorRecap { Memories = memories, InterventionCount = events.Count(e => e.eventType == "contact") };
+            return new CorridorRecap { Memories = memories, InterventionCount = events.Count(e => e.eventType == "contact"),
+                HadInterruptedActivity = events.Any(e => e.eventType == "item_pushed_away") };
         }
         static ItemExperience LegacyExperience(string payload)
         {

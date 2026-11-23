@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4393d9f6c2bff44f8822a75f0a6c836, type: 3}
+  m_Name: childhood_family
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Data.ItemDefinition
+  itemId: childhood_family
+  displayName: "\uAC00\uC871 \uC2DD\uD0C1"
+  tags:
+  - "\uAD00\uACC4"
+  - "\uD734\uC2DD"
+  baseAttraction: 0
+  statDeltas:
+  - stat: 0
+    amount: -5
+  - stat: 1
+    amount: 0
+  - stat: 2
+    amount: 2
+  - stat: 3
+    amount: 0
+  - stat: 4
+    amount: 8
+  isExtreme: 0
+  trustDelta: 0
+  narrativeLines:
+  - "\uBCF4\uD638\uC790\uC640 \uCCAB \uC57D\uC18D\uC744 \uB098\uB220\uC694."
+  - "\uC6B0\uB9AC \uC57D\uC18D\uC744 \uB2E4\uC2DC \uC774\uC57C\uAE30\uD574\uC694."
+  childReflectionLine: "\uC6B0\uB9AC \uC57D\uC18D\uC744 \uB2E4\uC2DC \uC774\uC57C\uAE30\uD574\uC694."

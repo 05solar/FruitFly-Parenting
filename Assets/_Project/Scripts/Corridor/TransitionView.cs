@@ -24,6 +24,7 @@ namespace FruitFlyParenting.Corridor
         }
         public void SetFade(float value) => curtain.color = new Color(0,0,0,Mathf.Clamp01(value));
         public void ShowSubtitle(string value) { hud.gameObject.SetActive(true); subtitle.text = value; }
+        public void HideSubtitle() { if (hud != null) hud.gameObject.SetActive(false); }
         void OnDestroy()
         {
             if (hud != null) Destroy(hud.gameObject);

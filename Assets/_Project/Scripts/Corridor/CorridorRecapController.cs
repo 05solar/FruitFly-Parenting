@@ -1,6 +1,7 @@
 using System.Linq;
 using FruitFlyParenting.Core;
 using FruitFlyParenting.Data;
+using FruitFlyParenting.Room;
 using UnityEngine;
 
 namespace FruitFlyParenting.Corridor
@@ -11,12 +12,27 @@ namespace FruitFlyParenting.Corridor
         [SerializeField] Transform[] anchors;
         [SerializeField] GameBalanceConfig config;
         public CorridorRecap Recap { get; private set; }
+        public string PaperAirplaneLine { get; private set; } = string.Empty;
         public void Configure(Font textFont, Transform[] frames, GameBalanceConfig balance)
         { font = textFont; anchors = frames; config = balance; }
 
         public void Show(GameState state, string previousRoomId)
         {
             Recap = CorridorRecapModel.Build(state.EventLog, previousRoomId, config.corridorRecapCount);
+            PaperAirplaneLine = previousRoomId == ChildhoodRoomController.RoomId ?
+                PaperAirplaneEvent.CorridorLine(state.ChildhoodAirplaneOutcome,Recap.HadInterruptedActivity) : string.Empty;
+            if (!string.IsNullOrEmpty(PaperAirplaneLine))
+            {
+                var old = transform.Find("Paper Airplane Memory");
+                if (old != null) { old.gameObject.SetActive(false); Destroy(old.gameObject); }
+                var board = CorridorUI.Canvas("Paper Airplane Memory",transform,new Vector3(6,1.65f,-1.96f),new Vector2(1500,520),.002f);
+                board.transform.localRotation = Quaternion.Euler(0,180,0);
+                CorridorUI.Image(board.transform,"Backdrop",new Vector2(1500,520),Vector2.zero,new Color(.08f,.16f,.19f));
+                CorridorUI.Text(board.transform,"Paper memory",font,"종이비행기에 남은 약속\n"+PaperAirplaneLine,new Vector2(1400,380),new Vector2(0,-30),34);
+                bool repaired = state.ChildhoodAirplaneOutcome == PaperAirplaneOutcome.ApologizeAndRepair;
+                var wing = CorridorUI.Image(board.transform,"Paper wings",new Vector2(200,36),new Vector2(0,205),repaired?new Color(.75f,.95f,.8f):new Color(1,.78f,.5f));
+                wing.transform.localRotation = Quaternion.Euler(0,0,repaired?0:18);
+            }
             foreach (var anchor in anchors)
                 foreach (Transform child in anchor) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
             for (int i = 0; i < Recap.Memories.Length && i < anchors.Length; i++)

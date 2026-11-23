@@ -16,16 +16,19 @@ namespace FruitFlyParenting.Room
         [SerializeField] float interactionRadius = 1.2f;
         [SerializeField] float footprint = 2.5f; // 경고 영역 한 변 길이(정사각형), Gizmo 전용
         [SerializeField] float minDwellSeconds = 2f;
+        [SerializeField] float extremeHesitationSeconds = 2f;
 
         public event Action OnFirstVisit;
         public event Action OnRevisit;
 
         public string ItemId => itemId;
         public ItemDefinition Definition => definition;
-        public void AssignDefinition(ItemDefinition item) { definition = item; itemId = item.itemId; }
+        public void AssignDefinition(ItemDefinition item) { definition = item; itemId = item.itemId; ResetTracker(); }
+        public void ConfigureHesitation(float seconds) { extremeHesitationSeconds = seconds; ResetTracker(); }
         public float InteractionRadius => interactionRadius;
         public ItemVisitContext LastVisitContext { get; private set; }
         public bool HasConfirmedCurrentStay => dwellTracker != null && dwellTracker.HasConfirmedVisit;
+        public bool IsHesitating => dwellTracker != null && dwellTracker.IsHesitating;
         FlyAgent occupant;
 
         // 슬롯 중심에는 가구가 있으므로, 상호작용 반경 안의 바닥 중 도달 가능한 점을 고른다.
@@ -60,7 +63,7 @@ namespace FruitFlyParenting.Room
             ApplyColliderSettings();
             if (dwellTracker == null)
             {
-                dwellTracker = new ItemDwellTracker(minDwellSeconds);
+                ResetTracker();
             }
         }
 
@@ -72,7 +75,7 @@ namespace FruitFlyParenting.Room
             interactionRadius = radius;
             footprint = footprintSize;
             minDwellSeconds = dwellSeconds;
-            dwellTracker = new ItemDwellTracker(minDwellSeconds);
+            ResetTracker();
             ApplyColliderSettings();
         }
 
@@ -86,7 +89,9 @@ namespace FruitFlyParenting.Room
 
         void Update()
         {
-            if (dwellTracker != null && dwellTracker.Tick(Time.deltaTime))
+            bool confirmed = dwellTracker != null && dwellTracker.Tick(Time.deltaTime);
+            if (!IsHesitating) occupant?.EndHesitation(this);
+            if (confirmed)
             {
                 bool isFirstVisit = room != null && room.TryMarkFirstVisit(itemId);
                 occupant?.ConfirmLearningArrival(this, Time.time);
@@ -110,13 +115,17 @@ namespace FruitFlyParenting.Room
             if (fly == null) return;
             occupant = fly;
             dwellTracker?.OnEnter();
+            if (IsHesitating) fly.BeginHesitation(this);
         }
 
         void OnTriggerExit(Collider other)
         {
             if (other.GetComponentInParent<FlyAgent>() == null) return;
             dwellTracker?.OnExit();
+            occupant?.EndHesitation(this);
         }
+        void ResetTracker() => dwellTracker = new ItemDwellTracker(minDwellSeconds,
+            definition != null && definition.isExtreme ? extremeHesitationSeconds : 0f);
 
         void OnDrawGizmos()
         {

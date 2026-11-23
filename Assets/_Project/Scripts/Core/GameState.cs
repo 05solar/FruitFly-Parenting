@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using FruitFlyParenting.Data;
 using FruitFlyParenting.Fly;
+using FruitFlyParenting.Corridor;
+using FruitFlyParenting.Room;
 
 namespace FruitFlyParenting.Core
 {
@@ -22,6 +24,10 @@ namespace FruitFlyParenting.Core
     public class GameStateSaveData
     {
         public bool adolescenceExitCaptured;
+        public bool infantExitStressCaptured, childhoodExitStressCaptured;
+        public float infantExitStress, childhoodExitStress;
+        public PaperAirplaneOutcome childhoodAirplaneOutcome;
+        public float childhoodAirplaneTrust;
         public float adolescenceExitRebellion;
         public bool flightSmokeEventTriggered;
         public int runSeed;
@@ -46,6 +52,30 @@ namespace FruitFlyParenting.Core
         public static void SetCurrent(GameState state) => Current = state;
 
         readonly GameBalanceConfig config;
+        public bool InfantExitStressCaptured { get; private set; }
+        public bool ChildhoodExitStressCaptured { get; private set; }
+        public float InfantExitStress { get; private set; }
+        public float ChildhoodExitStress { get; private set; }
+        public PaperAirplaneOutcome ChildhoodAirplaneOutcome { get; private set; }
+        public float ChildhoodAirplaneTrust { get; private set; }
+        public bool IsPressureOutfitEligible => InfantExitStressCaptured && ChildhoodExitStressCaptured &&
+            ((InfantExitStress >= config.pressureOutfitBothStressThreshold && ChildhoodExitStress >= config.pressureOutfitBothStressThreshold) ||
+             (InfantExitStress + ChildhoodExitStress) * .5f >= config.pressureOutfitAverageStressThreshold);
+        public void CaptureRoomExitStress(LifeStage stage, float now)
+        {
+            float value = Stats.GetValue(StatType.Stress);
+            if (stage == LifeStage.Infant && !InfantExitStressCaptured) { InfantExitStressCaptured = true; InfantExitStress = value; }
+            else if (stage == LifeStage.Childhood && !ChildhoodExitStressCaptured) { ChildhoodExitStressCaptured = true; ChildhoodExitStress = value; }
+            else return;
+            LogEvent(now, CurrentRoomId, "room_exit_stress", stage + ";S=" + value.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
+        public void RecordPaperAirplane(PaperAirplaneOutcome outcome, float now)
+        {
+            if (outcome == PaperAirplaneOutcome.None || ChildhoodAirplaneOutcome != PaperAirplaneOutcome.None) return;
+            ChildhoodAirplaneOutcome = outcome; ChildhoodAirplaneTrust = Relationship.Trust;
+            // A torn toy airplane is not the adolescence delinquency record (spec 5.4).
+            LogEvent(now, CurrentRoomId, "paper_airplane", outcome + ";T=" + ChildhoodAirplaneTrust.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
         public bool IsHighRebellionDialogue => Stats.GetValue(StatType.Rebellion) >= config.highRebellionDialogueThreshold;
         public bool IsFlightSmokeEventEligible => Stats.GetValue(StatType.Rebellion) >= config.flightSmokeRebellionThreshold;
         public bool IsFlightSmokeEventTriggered { get; private set; }
@@ -112,6 +142,9 @@ namespace FruitFlyParenting.Core
             var data = new GameStateSaveData
             {
                 adolescenceExitCaptured = AdolescenceExitCaptured,
+                infantExitStressCaptured = InfantExitStressCaptured, childhoodExitStressCaptured = ChildhoodExitStressCaptured,
+                infantExitStress = InfantExitStress, childhoodExitStress = ChildhoodExitStress,
+                childhoodAirplaneOutcome = ChildhoodAirplaneOutcome, childhoodAirplaneTrust = ChildhoodAirplaneTrust,
                 adolescenceExitRebellion = AdolescenceExitRebellion,
                 flightSmokeEventTriggered = IsFlightSmokeEventTriggered,
                 runSeed = RunSeed,
@@ -143,6 +176,9 @@ namespace FruitFlyParenting.Core
             {
                 CurrentRoomId = data.currentRoomId,
                 AdolescenceExitCaptured = data.adolescenceExitCaptured,
+                InfantExitStressCaptured = data.infantExitStressCaptured, ChildhoodExitStressCaptured = data.childhoodExitStressCaptured,
+                InfantExitStress = data.infantExitStress, ChildhoodExitStress = data.childhoodExitStress,
+                ChildhoodAirplaneOutcome = data.childhoodAirplaneOutcome, ChildhoodAirplaneTrust = data.childhoodAirplaneTrust,
                 AdolescenceExitRebellion = data.adolescenceExitRebellion,
                 IsFlightSmokeEventTriggered = data.flightSmokeEventTriggered,
             };

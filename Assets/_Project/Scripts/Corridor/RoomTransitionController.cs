@@ -73,6 +73,7 @@ namespace FruitFlyParenting.Corridor
                 if (sequence.Phase == TransitionPhase.RevealingCorridor) EnterCorridor();
                 else if (sequence.Phase == TransitionPhase.RevealingRoom) EnterNextRoom();
                 else if (sequence.MovementAllowed) RestoreMovement();
+                if (sequence.Phase == TransitionPhase.Complete && destination.OwnsPresentation) view.HideSubtitle();
             }
             view.SetFade(sequence.FadeAlpha);
             if (Phase == TransitionPhase.Corridor || Phase == TransitionPhase.RevealingCorridor)
@@ -84,6 +85,7 @@ namespace FruitFlyParenting.Corridor
         }
         void EnterCorridor()
         {
+            GameState.Current.CaptureRoomExitStress(route.fromStage, Time.time);
             // 물리 좌표는 그대로다. 인접한 컨테이너만 완전한 암전에서 교체한다.
             corridor.gameObject.SetActive(true);
             corridor.SetRoute(route);
@@ -114,7 +116,8 @@ namespace FruitFlyParenting.Corridor
             lastSection = (int)section;
             GameState.Current.LogEvent(Time.time,route.corridorId,"corridor_section",section.ToString());
             string line = section == CorridorSection.Recap ? route.recapTitle + "\n벽에 남은 기억을 천천히 둘러보세요." :
-                section == CorridorSection.Narration ? route.narration : route.nextRoomTitle + "\n다음 문으로 함께 가요.";
+                section == CorridorSection.Narration ? route.narration +
+                    (string.IsNullOrEmpty(corridor.Recap.PaperAirplaneLine) ? "" : "\n" + corridor.Recap.PaperAirplaneLine) : route.nextRoomTitle + "\n다음 문으로 함께 가요.";
             view.ShowSubtitle(line);
         }
         void Save(string checkpoint)

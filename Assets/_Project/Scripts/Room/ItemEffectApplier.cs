@@ -52,6 +52,12 @@ namespace FruitFlyParenting.Room
             log.Append(";effects=").Append(apply);
             if (apply)
             {
+                if (item.trustDelta != 0f)
+                {
+                    float beforeTrust = state.Relationship.Trust;
+                    state.Relationship.AdjustTrust(item.trustDelta, "item_first:" + item.itemId);
+                    log.AppendFormat(CultureInfo.InvariantCulture, ";Trust={0}->{1}", beforeTrust, state.Relationship.Trust);
+                }
                 // 같은 스탯의 중복 항목도 합산 후 방문 단위 상한을 적용한다.
                 var totals = new Dictionary<StatType, float>();
                 var actualChanges = new Dictionary<StatType, float>();

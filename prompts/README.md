@@ -30,7 +30,7 @@
 | 06 | corridor-transition-system.md | 복도, 회상 연출, 페이드 전환 |
 | 07 | rebellion-coercion-compliance.md | 반항 R, 강제/반복 훈련(4.5), 순응 상태머신(4.6) |
 | 08 | preference-learning-system.md | 태그 선호/회피 기억, softmax 선택, 디버그 패널(4.2~4.3) |
-| 09 | childhood-room.md | 아동기 방, 종이비행기 사건, 비행기록 플래그 |
+| 09 | childhood-room.md | 아동기 방, 종이비행기 사건, 종료 Stress 기록 |
 | 10 | adolescence-room.md | 청소년기 방, 히든 의상, 비행·흡연 이벤트 |
 | 11 | youngadult-room.md | 청년기 방, 도박파산/고위험계약/연락차단/퇴사 플래그 |
 | 12 | middleage-and-endings.md | 중년기 방, 14개 엔딩 분기, 엔딩 카드, 회고 갤러리 |

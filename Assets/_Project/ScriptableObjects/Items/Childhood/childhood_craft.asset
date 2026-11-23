@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4393d9f6c2bff44f8822a75f0a6c836, type: 3}
+  m_Name: childhood_craft
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Data.ItemDefinition
+  itemId: childhood_craft
+  displayName: "\uB9CC\uB4E4\uAE30 \uCC45\uC0C1"
+  tags:
+  - "\uCC3D\uC791"
+  - "\uACF5\uBD80"
+  baseAttraction: 0
+  statDeltas:
+  - stat: 0
+    amount: 1
+  - stat: 1
+    amount: 7
+  - stat: 2
+    amount: 1
+  - stat: 3
+    amount: 2
+  - stat: 4
+    amount: 3
+  isExtreme: 0
+  trustDelta: 0
+  narrativeLines:
+  - "\uC2E4\uD328\uD55C \uC885\uC774\uBE44\uD589\uAE30\uB97C \uB2E4\uC2DC \uC811\uC5B4\uC694."
+  - "\uC774\uBC88\uC5D0\uB294 \uB2E4\uB978 \uB0A0\uAC1C\uB97C \uC811\uC5B4 \uBD10\uC694."
+  childReflectionLine: "\uC774\uBC88\uC5D0\uB294 \uB2E4\uB978 \uB0A0\uAC1C\uB97C \uC811\uC5B4 \uBD10\uC694."

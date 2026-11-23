@@ -49,6 +49,18 @@ namespace FruitFlyParenting.Tests.PlayMode
         {
             SceneManager.sceneLoaded-=InjectSave;
             if(left!=null) InputSystem.RemoveDevice(left);
+            // The destination now has live gameplay; remove it before tests that build a room without loading a scene.
+            if(flow!=null)
+            {
+                var childhood=flow.Destination.GetComponent<ChildhoodRoomController>();
+                if(childhood!=null)
+                {
+                    Object.Destroy(childhood.Transition.Corridor.gameObject);
+                    Object.Destroy(childhood.Transition.Destination.gameObject);
+                    Object.Destroy(childhood.Transition.gameObject);
+                    Object.Destroy(childhood.gameObject);
+                }
+            }
             if(flow!=null) Object.Destroy(flow.gameObject);
             if(infant!=null) Object.Destroy(infant.gameObject);
             foreach(var bootstrap in Object.FindObjectsByType<GameStateBootstrap>()) Object.Destroy(bootstrap.gameObject);
@@ -100,6 +112,8 @@ namespace FruitFlyParenting.Tests.PlayMode
             int scenes=SceneManager.sceneCount; float began=Time.realtimeSinceStartup;
             yield return EnterCorridor();
             Assert.IsFalse(infant.Room.gameObject.activeSelf); Assert.IsTrue(flow.Corridor.gameObject.activeSelf);
+            var childhood=flow.Destination.GetComponent<ChildhoodRoomController>();
+            Assert.IsNotNull(childhood); Assert.IsFalse(childhood.HasEntered); Assert.IsFalse(childhood.Fly.gameObject.activeSelf);
             Assert.AreEqual("corridor_01",state.CurrentRoomId); Assert.GreaterOrEqual(flow.LastFadeOutSeconds,.5f);
             Vector3 stopped=chair.transform.position; Quaternion rotation=chair.transform.rotation;
             yield return new WaitForSecondsRealtime(.5f);
@@ -120,6 +134,10 @@ namespace FruitFlyParenting.Tests.PlayMode
             Assert.Less(Vector3.Distance(fadePosition,chair.transform.position),.01f);
             Assert.AreSame(state,GameState.Current); Assert.AreEqual(handle,SceneManager.GetActiveScene().handle); Assert.AreEqual(scenes,SceneManager.sceneCount);
             Assert.AreEqual("03_Childhood",state.CurrentRoomId); Assert.IsTrue(flow.Destination.Entered); Assert.IsFalse(flow.Corridor.gameObject.activeSelf);
+            Assert.IsTrue(childhood.HasEntered); Assert.IsTrue(childhood.Fly.gameObject.activeSelf);
+            Assert.AreEqual(12,childhood.Room.ItemSlots.Count); Assert.Less(childhood.Timeline.Elapsed,15);
+            Assert.AreSame(flow.Sound.Next,childhood.Transition.Sound.Previous);
+            Assert.IsTrue(state.InfantExitStressCaptured); Assert.IsFalse(state.ChildhoodExitStressCaptured);
             Assert.IsTrue(chair.enabled); Assert.AreEqual(0,flow.View.FadeAlpha);
             var checkpoints=state.EventLog.Where(e=>e.eventType=="checkpoint").Select(e=>e.payload).ToArray();
             Assert.AreEqual(1,checkpoints.Count(c=>c=="corridor_start")); Assert.AreEqual(1,checkpoints.Count(c=>c=="corridor_end")); Assert.AreEqual(2,checkpoints.Count(c=>c=="room_enter"));

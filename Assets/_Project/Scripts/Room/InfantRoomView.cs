@@ -14,12 +14,15 @@ namespace FruitFlyParenting.Room
         Camera viewer;
         readonly List<Transform> labels = new List<Transform>();
         float narrativeUntil;
+        string roomTitle = "첫 손길";
+        int itemCount = 9;
         public string StatusText => status != null ? status.text : string.Empty;
         public string NarrativeText => narrative != null ? narrative.text : string.Empty;
         public void Configure(Font textFont) => font = textFont;
 
-        public void Initialize(Camera camera, RoomController room)
+        public void Initialize(Camera camera, RoomController room, string title = "첫 손길")
         {
+            roomTitle = title; itemCount = room.ItemSlots.Count;
             viewer = camera;
             hud = CanvasAt("Infant HUD", camera.transform, new Vector3(0f, -0.42f, 1.5f), new Vector2(1100, 250), 10);
             Panel(hud.transform, new Color(0.04f, 0.07f, 0.1f, 0.88f));
@@ -42,7 +45,7 @@ namespace FruitFlyParenting.Room
                 clock.ExitOnly ? "이제 복도로 갈 시간이에요 · 왼손 스틱으로 동쪽 문까지 이동하세요" :
                 clock.DoorOpen ? "동쪽 문이 열렸어요 · 왼손 스틱으로 출구를 통과하세요" : "왼손: 이동·회전  |  오른손: 전기 봉 접촉";
             var s = state.Stats;
-            status.text = $"첫 손길  {Mathf.FloorToInt(clock.Elapsed / 60):00}:{Mathf.FloorToInt(clock.Elapsed % 60):00}  ·  경험 {visited}/9\n{guidance}\n" +
+            status.text = $"{roomTitle}  {Mathf.FloorToInt(clock.Elapsed / 60):00}:{Mathf.FloorToInt(clock.Elapsed % 60):00}  ·  경험 {visited}/{itemCount}\n{guidance}\n" +
                 $"스트레스 {s.GetValue(StatType.Stress):0} · 지능 {s.GetValue(StatType.Intelligence):0} · 건강 {s.GetValue(StatType.Health):0} · 인기 {s.GetValue(StatType.Popularity):0} · 사랑 {s.GetValue(StatType.Love):0} · 반항 {s.GetValue(StatType.Rebellion):0}";
             if (Time.time > narrativeUntil) narrative.text = string.Empty;
         }

@@ -157,5 +157,15 @@ namespace FruitFlyParenting.Data
         public float exerciseHealthNeedWeight = 1f;
         public float choiceNoiseAmplitude = 0.1f;
         public float debugHudRefreshSeconds = 0.25f;
+
+        [Header("09 Childhood")]
+        public float extremeItemHesitationSeconds = 2f;
+        [Range(0f,1f)] public float paperAirplaneTriggerFraction = 0.4375f; // 480s x 0.4375 = 210s.
+        public float paperAirplaneLowTrustThreshold = 40f;
+        public float paperAirplaneSceneSeconds = 6f;
+        public float hesitationSwayDegrees = 8f;
+        public float hesitationSwayFrequency = 0.8f;
+        public float pressureOutfitBothStressThreshold = 70f;
+        public float pressureOutfitAverageStressThreshold = 75f;
     }
 }

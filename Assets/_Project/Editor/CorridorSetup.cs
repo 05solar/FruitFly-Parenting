@@ -41,9 +41,11 @@ namespace FruitFlyParenting.Editor
             shell.transform.position = new Vector3(RoomCoordinates.EastExit.x,0,RoomCoordinates.EastExit.y);
             shell.gameObject.SetActive(false);
 
-            var destination = CreateNextRoom(config,font,route,floor,wall,trim,blue);
-            destination.transform.position = new Vector3(RoomCoordinates.EastExit.x + config.corridorLength,0,0);
-            destination.gameObject.SetActive(false);
+            var chair = Object.FindAnyObjectByType<WheelchairLocomotion>();
+            var fly = Object.FindAnyObjectByType<FlyAgent>();
+            var sourceRoom = Object.FindAnyObjectByType<RoomController>();
+            var child = ChildhoodRoomSetup.Create(config,font,fly,chair,new Vector3(24 + config.corridorLength,0,0));
+            var destination = child.GetComponent<RoomDestination>();
             var root = new GameObject("Room Transition");
             var transition = root.AddComponent<RoomTransitionController>();
             var view = root.AddComponent<TransitionView>(); view.Configure(font);
@@ -53,11 +55,10 @@ namespace FruitFlyParenting.Editor
             foreach (var source in new[]{previous,next}) { source.loop = true; source.playOnAwake = false; source.spatialBlend = 0f; }
             var echo = previous.gameObject.AddComponent<AudioEchoFilter>(); echo.delay = 320; echo.decayRatio = .25f; echo.dryMix = 1; echo.wetMix = 0;
             sound.Configure(previous,next,echo);
-            var chair = Object.FindAnyObjectByType<WheelchairLocomotion>();
-            var fly = Object.FindAnyObjectByType<FlyAgent>();
-            transition.Configure(config,route,Object.FindAnyObjectByType<RoomController>().gameObject,
+            transition.Configure(config,route,sourceRoom.gameObject,
                 fly.gameObject,chair,shell,destination,view,sound);
             infant.ConfigureTransition(transition);
+            child.ConfigureIncoming(transition);
             var sourceTrigger = GameObject.Find("East Exit Boundary").GetComponent<RoomExitTrigger>();
             sourceTrigger.Configure(transition,false);
             var exit = new GameObject("Corridor Exit Boundary"); exit.transform.SetParent(root.transform,false);
@@ -105,9 +106,9 @@ namespace FruitFlyParenting.Editor
             var shell = root.AddComponent<CorridorShell>(); shell.Configure(config,door,recap,middle.GetComponentInChildren<UnityEngine.UI.Text>()); return shell;
         }
 
-        static RoomDestination CreateNextRoom(GameBalanceConfig config, Font font, RoomTransitionDefinition route, Material floor, Material wall, Material trim, Material blue)
+        internal static RoomDestination CreateNextRoom(GameBalanceConfig config, Font font, RoomTransitionDefinition route, Material floor, Material wall, Material trim, Material blue)
         {
-            var root = new GameObject("Childhood Room");
+            var root = new GameObject(route.toStage + " Room");
             Box("Floor",root.transform,new Vector3(12,-.1f,11),new Vector3(24,.2f,22),floor,true);
             Box("North Wall",root.transform,new Vector3(12,3,22.1f),new Vector3(24,6,.2f),wall,true);
             Box("South Wall",root.transform,new Vector3(12,3,-.1f),new Vector3(24,6,.2f),wall,true);
@@ -143,7 +144,7 @@ namespace FruitFlyParenting.Editor
             return infant;
         }
 
-        static AudioClip Sound(string name, float frequency)
+        internal static AudioClip Sound(string name, float frequency)
         {
             string path = Root + "Audio/" + name + ".wav";
             if (!File.Exists(path))
@@ -167,20 +168,20 @@ namespace FruitFlyParenting.Editor
             }
             return AssetDatabase.LoadAssetAtPath<AudioClip>(path);
         }
-        static Material Material(string name, Color color)
+        internal static Material Material(string name, Color color)
         {
             string path = Root + "Art/Materials/" + name + ".mat";
             var value = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (value == null) { value = new Material(Shader.Find("Universal Render Pipeline/Lit")) { color = color }; AssetDatabase.CreateAsset(value,path); }
             return value;
         }
-        static GameObject Shape(string name, Transform parent, PrimitiveType primitive, Vector3 at, Vector3 size, Material material)
+        internal static GameObject Shape(string name, Transform parent, PrimitiveType primitive, Vector3 at, Vector3 size, Material material)
         {
             var go = GameObject.CreatePrimitive(primitive); go.name = name; go.transform.SetParent(parent,false);
             go.transform.localPosition = at; go.transform.localScale = size; Object.DestroyImmediate(go.GetComponent<Collider>());
             go.GetComponent<Renderer>().sharedMaterial = material; return go;
         }
-        static GameObject Box(string name, Transform parent, Vector3 at, Vector3 size, Material material, bool collide)
+        internal static GameObject Box(string name, Transform parent, Vector3 at, Vector3 size, Material material, bool collide)
         {
             var go = Shape(name,parent,PrimitiveType.Cube,at,size,material); if (collide) go.AddComponent<BoxCollider>(); return go;
         }

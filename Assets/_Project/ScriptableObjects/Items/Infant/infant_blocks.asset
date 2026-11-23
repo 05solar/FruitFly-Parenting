@@ -17,6 +17,7 @@ MonoBehaviour:
   tags:
   - "\uB180\uC774"
   - "\uCC3D\uC791"
+  baseAttraction: 0
   statDeltas:
   - stat: 0
     amount: 0
@@ -29,8 +30,8 @@ MonoBehaviour:
   - stat: 4
     amount: 3
   isExtreme: 0
+  trustDelta: 0
   narrativeLines:
   - "\uD0D1\uC744 \uBB34\uB108\uB728\uB9AC\uACE0 \uB2E4\uC2DC \uC313\uC544\uC694."
   - "\uC774\uBC88\uC5D0\uB294 \uB2E4\uB978 \uBAA8\uC591\uC758 \uD0D1\uC744 \uB9CC\uB4E4\uC5B4\uC694."
   childReflectionLine: "\uB0B4\uAC00 \uC313\uC558\uC5B4\uC694!"
-  baseAttraction: 0

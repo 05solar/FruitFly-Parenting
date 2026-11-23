@@ -32,6 +32,15 @@ namespace FruitFlyParenting.Fly
         bool beingPushed;
         bool complying;
         bool pendingExit;
+        ItemSlot hesitationSlot;
+        public bool IsHesitating => hesitationSlot != null && hesitationSlot.IsHesitating && !beingPushed;
+        public void BeginHesitation(ItemSlot slot) { hesitationSlot = slot; }
+        public void EndHesitation(ItemSlot slot)
+        {
+            if (hesitationSlot != slot) return;
+            hesitationSlot = null;
+            if (agent != null && agent.isOnNavMesh && !beingPushed) agent.isStopped = false;
+        }
         Vector3 complianceDirection;
         readonly List<ItemSlot> pushOriginSlots = new List<ItemSlot>();
         public bool IsBeingPushed => beingPushed;
@@ -84,6 +93,7 @@ namespace FruitFlyParenting.Fly
         void Update()
         {
             if (agent == null || movement == null || room == null || !agent.isOnNavMesh) return;
+            if (IsHesitating) { agent.isStopped = true; return; }
             if (complying)
             {
                 RecordPushDepartures();

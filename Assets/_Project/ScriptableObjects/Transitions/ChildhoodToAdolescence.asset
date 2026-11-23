@@ -22,5 +22,5 @@ MonoBehaviour:
   narration: "\uC544\uC774\uB294 \uC88B\uC544\uD558\uB294 \uAC83\uC758 \uC774\uB984\uC744 \uB9D0\uD558\uAE30 \uC2DC\uC791\uD588\uB2E4."
   nextRoomLine: "\uC774\uBC88\uC5D0\uB294 \uB0B4\uAC00 \uBB38\uC744 \uC5F4\uC5B4 \uBCFC\uAC8C."
   themeColor: {r: 0.4, g: 0.65, b: 0.7, a: 1}
-  previousRoomSound: {fileID: 8300000, guid: 12f3934cbfbba78438059a01a2f5bc8f, type: 3}
-  nextRoomSound: {fileID: 8300000, guid: f9c00b8920d9f284d89ad8bb5f979cf4, type: 3}
+  previousRoomSound: {fileID: 8300000, guid: f9c00b8920d9f284d89ad8bb5f979cf4, type: 3}
+  nextRoomSound: {fileID: 8300000, guid: 3e331c189228c3c4dba154a965a264ef, type: 3}
