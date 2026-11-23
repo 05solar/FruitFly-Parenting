@@ -1,0 +1,46 @@
+# Unity generated
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Visual Studio / Rider / VSCode
+.vs/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Claude Code 세션 로컬 파일
+.claude/
+
+# OS / editor junk
+.DS_Store
+*.swp
+*~
+
+# Unity crash/log files
+sysinfo.txt
+*.stackdump
+
+# Project-local setup logs (this repo's own batch-mode run logs)
+unity_*.log
+
+# Simulation reports (16번 프롬프트 산출물, 커밋 대상 아님)
+/SimulationReports/

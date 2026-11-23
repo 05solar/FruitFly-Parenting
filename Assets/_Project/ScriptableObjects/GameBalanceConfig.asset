@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2b2f01387110c48bd7c778f6f331ae, type: 3}
+  m_Name: GameBalanceConfig
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Data.GameBalanceConfig
+  statDefaultValue: 50
+  statMin: 0
+  statMax: 100
+  rebellionInitialValue: 0
+  trustDefaultValue: 50
+  trustMin: 0
+  trustMax: 100
+  baseInterventionStressDelta: 0.4
+  interventionWindowWeightCoefficient: 0.25
+  interventionStressDeltaCap: 3
+  interventionWindowSeconds: 60
+  rapidRepeatThresholdSeconds: 5
+  rapidRepeatTrustPenalty: -1
+  neglectRewardIntervalSeconds: 60
+  neglectRewardTrustGain: 1
+  neglectRewardTrustCapPerRoom: 4
+  coercionWheelchairRebellionDelta: 0
+  coercionWheelchairStressDelta: 0
+  coercionElectricStickRebellionDelta: 0
+  coercionElectricStickStressDelta: 0
+  coercionDetectionWindowSeconds: 0
+  coercionDirectionToleranceDegrees: 0
+  repeatedTrainingRebellionDelta: 0
+  repeatedTrainingStressDelta: 0
+  repeatedTrainingStartVisitCount: 0
+  repeatedTrainingMaxApplications: 0
+  watchingOnlyRebellionDelta: 0
+  watchingOnlyRebellionCapPerRoom: 0
+  complianceAccumulationWindowSeconds: 0
+  complianceWheelchairPushScore: 0
+  complianceElectricStickPushScore: 0
+  complianceThresholdLowRebellion: 0
+  complianceThresholdHighRebellion: 0
+  complianceRebellionBoundary: 0
+  complianceResetIdleSeconds: 0
+  complianceDurationSeconds: 0
+  complianceThresholdStressDelta: 0
+  complianceThresholdRebellionDelta: 0
+  compliancePerContactStressDelta: 0
+  compliancePerContactRebellionDelta: 0
