@@ -22,6 +22,7 @@ namespace FruitFlyParenting.Data
         public ItemStatDelta[] statDeltas = Array.Empty<ItemStatDelta>();
         public bool isExtreme;
         public float trustDelta;
+        public bool recordsDelinquency;
         [TextArea] public string[] narrativeLines = Array.Empty<string>();
         [TextArea] public string childReflectionLine;
         public void ValidateTags() => TagDefinitions.ValidateAndDistinct(tags);

@@ -13,12 +13,15 @@ namespace FruitFlyParenting.Corridor
         [SerializeField] GameBalanceConfig config;
         public CorridorRecap Recap { get; private set; }
         public string PaperAirplaneLine { get; private set; } = string.Empty;
+        public float ParentPhotoShare { get; private set; }
+        public float ShadowSeparation { get; private set; }
         public void Configure(Font textFont, Transform[] frames, GameBalanceConfig balance)
         { font = textFont; anchors = frames; config = balance; }
 
         public void Show(GameState state, string previousRoomId)
         {
             Recap = CorridorRecapModel.Build(state.EventLog, previousRoomId, config.corridorRecapCount);
+            if(previousRoomId==AdolescenceRoomController.RoomId) DrawAdolescence(state.Relationship.Trust);
             PaperAirplaneLine = previousRoomId == ChildhoodRoomController.RoomId ?
                 PaperAirplaneEvent.CorridorLine(state.ChildhoodAirplaneOutcome,Recap.HadInterruptedActivity) : string.Empty;
             if (!string.IsNullOrEmpty(PaperAirplaneLine))
@@ -64,6 +67,34 @@ namespace FruitFlyParenting.Corridor
                 CorridorUI.Image(empty.transform,"Frame",new Vector2(740,260),Vector2.zero,new Color(.08f,.13f,.18f));
                 CorridorUI.Text(empty.transform,"No Recorded Visit",font,"아직 사진으로 남은 경험은 없어요.\n함께 지나온 시간은 남아 있어요.",new Vector2(680,220),Vector2.zero,30);
             }
+        }
+        void DrawAdolescence(float trust)
+        {
+            ParentPhotoShare=.6f*Mathf.Clamp01(trust/100f);
+            ShadowSeparation=.45f+1.2f*(1-Mathf.Clamp01(trust/100f));
+            var old=transform.Find("Adolescence Wall Art"); if(old!=null) { old.gameObject.SetActive(false); Destroy(old.gameObject); }
+            var art=new GameObject("Adolescence Wall Art").transform; art.SetParent(transform,false);
+            for(int i=0;i<3;i++)
+            {
+                var board=CorridorUI.Canvas("Changing Photo "+i,art,new Vector3(5.5f+i*2.3f,1.7f,-1.96f),new Vector2(1000,600),.002f);
+                board.transform.localRotation=Quaternion.Euler(0,180,0);
+                CorridorUI.Image(board.transform,"Photo Frame",new Vector2(1000,600),Vector2.zero,new Color(.08f,.14f,.19f));
+                float parent=ParentPhotoShare*(1-i*.2f),friends=1-parent;
+                for(int person=-1;person<=1;person+=2)
+                {
+                    CorridorUI.Image(board.transform,"Parent Photo",new Vector2(150,240),new Vector2(person*190,20),new Color(.95f,.77f,.46f,parent));
+                    CorridorUI.Image(board.transform,"Friend Photo",new Vector2(150,180),new Vector2(person*95,20),new Color(.48f,.8f,.87f,friends));
+                }
+                for(int mark=0;mark<3;mark++)
+                {
+                    var stroke=CorridorUI.Image(board.transform,"Child Graffiti",new Vector2(500,12),new Vector2(0,130+mark*35),new Color(.85f,.6f,.8f,friends));
+                    stroke.transform.localRotation=Quaternion.Euler(0,0,mark%2==0 ? 12 : -12);
+                }
+                CorridorUI.Text(board.transform,"Caption",font,"함께 찍은 사진 위에\n내 글씨와 친구들의 얼굴이 늘었어요.",new Vector2(940,160),new Vector2(0,-200),30);
+            }
+            var shadows=CorridorUI.Canvas("Two Shadows",art,new Vector3(12.1f,1.4f,1.96f),new Vector2(1800,1100),.002f);
+            for(int person=-1;person<=1;person+=2)
+                CorridorUI.Image(shadows.transform,"Shadow",new Vector2(180,600),new Vector2(person*ShadowSeparation*250,0),new Color(.07f,.11f,.15f));
         }
         static void DrawSilhouette(Transform parent, string[] tags, bool faded)
         {

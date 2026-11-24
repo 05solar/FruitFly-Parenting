@@ -99,21 +99,22 @@ namespace FruitFlyParenting.Editor
             controller.Configure(config,room,fly,destination,door,view,paper,outgoing);
             return controller;
         }
-        static ItemDefinition Definition(ChildhoodCatalog.Entry entry)
+        internal static ItemDefinition Definition(RoomItemSpec entry, string stage="Childhood")
         {
-            string path=Root+"ScriptableObjects/Items/Childhood/"+entry.Id+".asset";
+            string path=Root+"ScriptableObjects/Items/"+stage+"/"+entry.Id+".asset";
             var item=AssetDatabase.LoadAssetAtPath<ItemDefinition>(path);
             if(item==null) { item=ScriptableObject.CreateInstance<ItemDefinition>(); AssetDatabase.CreateAsset(item,path); }
             item.itemId=entry.Id; item.displayName=entry.Name; item.tags=entry.Tags; item.isExtreme=entry.Extreme; item.trustDelta=entry.Trust;
+            item.recordsDelinquency=entry.Delinquency;
             item.statDeltas=entry.Stats.Select((amount,i)=>new ItemStatDelta((StatType)i,amount))
                 .Concat(entry.Rebellion==0 ? new ItemStatDelta[0] : new[]{new ItemStatDelta(StatType.Rebellion,entry.Rebellion)}).ToArray();
             item.narrativeLines=new[]{entry.FirstLine,entry.RevisitLine}; item.childReflectionLine=entry.RevisitLine;
             EditorUtility.SetDirty(item); return item;
         }
-        static void Bake(NavMeshSurface surface)
+        internal static void Bake(NavMeshSurface surface,string stage="Childhood")
         {
             surface.BuildNavMesh(); var baked=surface.navMeshData; surface.RemoveData();
-            const string path=Root+"Prefabs/Rooms/ChildhoodNavMesh.asset";
+            string path=Root+"Prefabs/Rooms/"+stage+"NavMesh.asset";
             var existing=AssetDatabase.LoadAssetAtPath<NavMeshData>(path);
             if(existing==null) AssetDatabase.CreateAsset(baked,path);
             else { EditorUtility.CopySerialized(baked,existing); Object.DestroyImmediate(baked); baked=existing; EditorUtility.SetDirty(baked); }
@@ -129,12 +130,12 @@ namespace FruitFlyParenting.Editor
             var light=new GameObject("Playground Light").AddComponent<Light>(); light.transform.SetParent(parent,false);
             light.transform.localPosition=new Vector3(18,4,11); light.type=LightType.Point; light.range=18; light.intensity=2; light.color=new Color(.8f,.9f,1);
         }
-        static void Prop(string id, Transform parent, Material color, Material paper, Material ink)
+        internal static void Prop(string id, Transform parent, Material color, Material paper, Material ink)
         {
             // Parent is the 1 x 1.8 x 1 collision envelope; children counter its Y scale.
             var stand=new GameObject("Activity").transform; stand.SetParent(parent,false); stand.localScale=new Vector3(1,1/1.8f,1); stand.localPosition=new Vector3(0,-.5f,0);
             Box("Base",stand,new Vector3(0,.2f,0),new Vector3(.95f,.4f,.95f),color,false);
-            if(id.EndsWith("soccer"))
+            if(id.EndsWith("soccer") || id.EndsWith("stadium") || id.EndsWith("training"))
             {
                 for(int side=-1;side<=1;side+=2) Box("Goal Post",stand,new Vector3(side*.4f,.9f,.3f),new Vector3(.08f,1.2f,.08f),paper,false);
                 Box("Goal Bar",stand,new Vector3(0,1.5f,.3f),new Vector3(.9f,.08f,.08f),paper,false);
@@ -205,15 +206,20 @@ namespace FruitFlyParenting.Editor
             for(int side=-1;side<=1;side+=2) Box("Leg",go,new Vector3(side*.1f,.25f,0),new Vector3(.12f,.45f,.14f),shirt,false);
             return go;
         }
-        static RoomTransitionController Exit(GameBalanceConfig config, Font font, WheelchairLocomotion chair, GameObject room,
-            FlyAgent fly, Vector3 origin, Material floor, Material wall, Material trim, Material blue)
+        internal static RoomTransitionController Exit(GameBalanceConfig config, Font font, WheelchairLocomotion chair, GameObject room,
+            FlyAgent fly, Vector3 origin, Material floor, Material wall, Material trim, Material blue,LifeStage stage=LifeStage.Childhood)
         {
-            var route=AssetDatabase.LoadAssetAtPath<RoomTransitionDefinition>(Root+"ScriptableObjects/Transitions/ChildhoodToAdolescence.asset");
-            route.previousRoomSound=Sound("ChildhoodPlay",264); route.nextRoomSound=Sound("AdolescenceAmbience",330); EditorUtility.SetDirty(route);
+            bool child=stage==LifeStage.Childhood;
+            var route=AssetDatabase.LoadAssetAtPath<RoomTransitionDefinition>(Root+"ScriptableObjects/Transitions/"+(child ? "ChildhoodToAdolescence" : "AdolescenceToYoungAdult")+".asset");
+            route.previousRoomSound=Sound(child ? "ChildhoodPlay" : "AdolescenceAmbience",child ? 264 : 330);
+            route.nextRoomSound=Sound(child ? "AdolescenceAmbience" : "YoungAdultAmbience",child ? 330 : 396); EditorUtility.SetDirty(route);
             var shell=((GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath))).GetComponent<CorridorShell>();
-            shell.name="Corridor 2"; shell.transform.position=origin+new Vector3(24,0,11); shell.gameObject.SetActive(false);
-            var next=CreateNextRoom(config,font,route,floor,wall,trim,blue); next.transform.position=origin+new Vector3(24+config.corridorLength,0,0); next.gameObject.SetActive(false);
-            var root=new GameObject("Childhood Transition"); root.SetActive(false);
+            shell.name=child ? "Corridor 2" : "Corridor 3"; shell.transform.position=origin+new Vector3(24,0,11); shell.gameObject.SetActive(false);
+            var nextOrigin=origin+new Vector3(24+config.corridorLength,0,0);
+            var teenager=child ? AdolescenceRoomSetup.Create(config,font,fly,chair,nextOrigin) : null;
+            var next=teenager!=null ? teenager.GetComponent<RoomDestination>() : CreateNextRoom(config,font,route,floor,wall,trim,blue);
+            next.transform.position=nextOrigin; next.gameObject.SetActive(false);
+            var root=new GameObject(stage+" Transition"); root.SetActive(false);
             var flow=root.AddComponent<RoomTransitionController>(); var view=root.AddComponent<TransitionView>(); view.Configure(font);
             var sound=root.AddComponent<CorridorAudioController>();
             var previous=new GameObject("Previous Room Echo").AddComponent<AudioSource>(); previous.transform.SetParent(root.transform,false);
@@ -221,6 +227,7 @@ namespace FruitFlyParenting.Editor
             foreach(var source in new[]{previous,following}) { source.loop=true; source.playOnAwake=false; source.spatialBlend=0; }
             var echo=previous.gameObject.AddComponent<AudioEchoFilter>(); echo.delay=320; echo.decayRatio=.25f; echo.dryMix=1; echo.wetMix=0;
             sound.Configure(previous,following,echo); flow.Configure(config,route,room,fly.gameObject,chair,shell,next,view,sound);
+            if(teenager!=null) teenager.ConfigureIncoming(flow);
             Boundary(root.transform,origin+new Vector3(24.2f,1,11),flow,false);
             Boundary(root.transform,origin+new Vector3(24+config.corridorLength+.7f,1,11),flow,true);
             return flow;

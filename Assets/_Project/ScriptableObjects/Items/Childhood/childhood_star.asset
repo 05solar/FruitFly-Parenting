@@ -31,6 +31,7 @@ MonoBehaviour:
     amount: -8
   isExtreme: 1
   trustDelta: -4
+  recordsDelinquency: 0
   narrativeLines:
   - "\uD32C\uB4E4\uC5D0\uAC8C \uC190\uC744 \uD754\uB4E4\uACE0 \uC9D1\uC5D0\uC11C\uB294 \uC4F0\uB7EC\uC838 \uC7A0\uB4E4\uC5B4\uC694."
   - "\uBC1D\uC740 \uC870\uBA85 \uC55E\uC5D0\uC11C \uC7A0\uC2DC \uB208\uC744 \uAC10\uC544\uC694."

@@ -33,7 +33,11 @@ namespace FruitFlyParenting.Fly
         bool complying;
         bool pendingExit;
         ItemSlot hesitationSlot;
-        public bool IsHesitating => hesitationSlot != null && hesitationSlot.IsHesitating && !beingPushed;
+        bool refusalPending;
+        float refusalEndsAt;
+        public event System.Action<ItemSlot> AutonomousApproachChosen;
+        public bool IsHesitating => ((hesitationSlot != null && hesitationSlot.IsHesitating) || (refusalPending && Time.time<refusalEndsAt)) && !beingPushed;
+        public void RefuseApproach(float seconds) { refusalPending=true; refusalEndsAt=Time.time+seconds; }
         public void BeginHesitation(ItemSlot slot) { hesitationSlot = slot; }
         public void EndHesitation(ItemSlot slot)
         {
@@ -93,6 +97,8 @@ namespace FruitFlyParenting.Fly
         void Update()
         {
             if (agent == null || movement == null || room == null || !agent.isOnNavMesh) return;
+            if (refusalPending && Time.time>=refusalEndsAt)
+            { refusalPending=false; agent.isStopped=false; PickAndMoveToNext(); }
             if (IsHesitating) { agent.isStopped = true; return; }
             if (complying)
             {
@@ -160,7 +166,9 @@ namespace FruitFlyParenting.Fly
                 var slot = FindSlot(id);
                 if (slot == null || !slot.TryGetNavigationPoint(agent.nextPosition, agent.agentTypeID, out var point)) continue;
                 points.Add(id, point);
-                candidates.Add(new ItemChoiceCandidate(id, slot.Definition?.tags, slot.Definition != null ? slot.Definition.baseAttraction : 0f));
+                float attraction=slot.Definition != null ? slot.Definition.baseAttraction : 0f;
+                if (slot.Definition != null && slot.Definition.tags.Contains(TagDefinitions.Rest)) attraction+=room.RestAttractionBonus;
+                candidates.Add(new ItemChoiceCandidate(id, slot.Definition?.tags, attraction));
             }
             if (candidates.Count == 0) { agent.ResetPath(); return; }
             float timeSinceRoomEnter = Time.time - roomEnterTime;
@@ -176,6 +184,7 @@ namespace FruitFlyParenting.Fly
             hasArrivedAtCurrentDestination = false;
             agent.isStopped = false;
             agent.SetDestination(points[nextId]);
+            AutonomousApproachChosen?.Invoke(FindSlot(nextId));
         }
 
         ItemSlot FindSlot(string id)

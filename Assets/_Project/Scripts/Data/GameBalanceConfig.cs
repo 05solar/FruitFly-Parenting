@@ -167,5 +167,14 @@ namespace FruitFlyParenting.Data
         public float hesitationSwayFrequency = 0.8f;
         public float pressureOutfitBothStressThreshold = 70f;
         public float pressureOutfitAverageStressThreshold = 75f;
+        [Header("10 Adolescence")]
+        public float adolescenceConversationTrustThreshold = 40f;
+        public float adolescenceRefusalSeconds = 2f;
+        public int adolescencePreferenceApproaches = 3;
+        public int adolescenceRepeatedBlocks = 2;
+        public float adolescenceWaitingWindowSeconds = 90f;
+        public float adolescenceQuietSeconds = 30f;
+        public float adolescenceLateRestAttraction = .5f;
+        public float adolescenceExitSceneSeconds = 12f;
     }
 }

@@ -129,3 +129,11 @@ MonoBehaviour:
   hesitationSwayFrequency: 0.8
   pressureOutfitBothStressThreshold: 70
   pressureOutfitAverageStressThreshold: 75
+  adolescenceConversationTrustThreshold: 40
+  adolescenceRefusalSeconds: 2
+  adolescencePreferenceApproaches: 3
+  adolescenceRepeatedBlocks: 2
+  adolescenceWaitingWindowSeconds: 90
+  adolescenceQuietSeconds: 30
+  adolescenceLateRestAttraction: 0.5
+  adolescenceExitSceneSeconds: 12

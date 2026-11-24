@@ -24,6 +24,7 @@ namespace FruitFlyParenting.Core
     public class GameStateSaveData
     {
         public bool adolescenceExitCaptured;
+        public bool delinquencyRecord, adolescenceCostumeCaptured, adolescenceHiddenCostume, adolescenceExitEventPlayed;
         public bool infantExitStressCaptured, childhoodExitStressCaptured;
         public float infantExitStress, childhoodExitStress;
         public PaperAirplaneOutcome childhoodAirplaneOutcome;
@@ -52,6 +53,26 @@ namespace FruitFlyParenting.Core
         public static void SetCurrent(GameState state) => Current = state;
 
         readonly GameBalanceConfig config;
+        public bool HasDelinquencyRecord { get; private set; }
+        public bool AdolescenceCostumeCaptured { get; private set; }
+        public bool AdolescenceHiddenCostume { get; private set; }
+        public bool AdolescenceExitEventPlayed { get; private set; }
+        public void RecordDelinquency(string itemId,float now)
+        {
+            if (HasDelinquencyRecord) return;
+            HasDelinquencyRecord=true; LogEvent(now,CurrentRoomId,"delinquency_record",itemId);
+        }
+        public void CaptureAdolescenceCostume(float now)
+        {
+            if (AdolescenceCostumeCaptured) return;
+            AdolescenceCostumeCaptured=true; AdolescenceHiddenCostume=IsPressureOutfitEligible;
+            LogEvent(now,CurrentRoomId,"adolescence_costume",AdolescenceHiddenCostume ? "hidden" : "uniform");
+        }
+        public bool TryBeginAdolescenceExitEvent(float now)
+        {
+            if (!AdolescenceExitCaptured || !IsFlightSmokeEventTriggered || AdolescenceExitEventPlayed) return false;
+            AdolescenceExitEventPlayed=true; LogEvent(now,CurrentRoomId,"flight_smoke_started","once"); return true;
+        }
         public bool InfantExitStressCaptured { get; private set; }
         public bool ChildhoodExitStressCaptured { get; private set; }
         public float InfantExitStress { get; private set; }
@@ -59,8 +80,8 @@ namespace FruitFlyParenting.Core
         public PaperAirplaneOutcome ChildhoodAirplaneOutcome { get; private set; }
         public float ChildhoodAirplaneTrust { get; private set; }
         public bool IsPressureOutfitEligible => InfantExitStressCaptured && ChildhoodExitStressCaptured &&
-            ((InfantExitStress >= config.pressureOutfitBothStressThreshold && ChildhoodExitStress >= config.pressureOutfitBothStressThreshold) ||
-             (InfantExitStress + ChildhoodExitStress) * .5f >= config.pressureOutfitAverageStressThreshold);
+            CostumeEvaluator.ShouldWearHiddenCostume(InfantExitStress,ChildhoodExitStress,
+                config.pressureOutfitBothStressThreshold,config.pressureOutfitAverageStressThreshold);
         public void CaptureRoomExitStress(LifeStage stage, float now)
         {
             float value = Stats.GetValue(StatType.Stress);
@@ -142,6 +163,8 @@ namespace FruitFlyParenting.Core
             var data = new GameStateSaveData
             {
                 adolescenceExitCaptured = AdolescenceExitCaptured,
+                delinquencyRecord = HasDelinquencyRecord, adolescenceCostumeCaptured = AdolescenceCostumeCaptured,
+                adolescenceHiddenCostume = AdolescenceHiddenCostume, adolescenceExitEventPlayed = AdolescenceExitEventPlayed,
                 infantExitStressCaptured = InfantExitStressCaptured, childhoodExitStressCaptured = ChildhoodExitStressCaptured,
                 infantExitStress = InfantExitStress, childhoodExitStress = ChildhoodExitStress,
                 childhoodAirplaneOutcome = ChildhoodAirplaneOutcome, childhoodAirplaneTrust = ChildhoodAirplaneTrust,
@@ -176,6 +199,8 @@ namespace FruitFlyParenting.Core
             {
                 CurrentRoomId = data.currentRoomId,
                 AdolescenceExitCaptured = data.adolescenceExitCaptured,
+                HasDelinquencyRecord = data.delinquencyRecord, AdolescenceCostumeCaptured = data.adolescenceCostumeCaptured,
+                AdolescenceHiddenCostume = data.adolescenceHiddenCostume, AdolescenceExitEventPlayed = data.adolescenceExitEventPlayed,
                 InfantExitStressCaptured = data.infantExitStressCaptured, ChildhoodExitStressCaptured = data.childhoodExitStressCaptured,
                 InfantExitStress = data.infantExitStress, ChildhoodExitStress = data.childhoodExitStress,
                 ChildhoodAirplaneOutcome = data.childhoodAirplaneOutcome, ChildhoodAirplaneTrust = data.childhoodAirplaneTrust,

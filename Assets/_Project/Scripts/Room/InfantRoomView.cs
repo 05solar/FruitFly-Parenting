@@ -39,11 +39,12 @@ namespace FruitFlyParenting.Room
             }
         }
 
-        public void Refresh(RoomTimeline clock, GameState state, int visited)
+        public void Refresh(RoomTimeline clock, GameState state, int visited, string guidanceOverride = null)
         {
             string guidance = !clock.ToolsEnabled ? $"잠시 지켜봐 주세요 · 개입까지 {Mathf.CeilToInt(clock.ToolCooldownRemaining)}초" :
                 clock.ExitOnly ? "이제 복도로 갈 시간이에요 · 왼손 스틱으로 동쪽 문까지 이동하세요" :
                 clock.DoorOpen ? "동쪽 문이 열렸어요 · 왼손 스틱으로 출구를 통과하세요" : "왼손: 이동·회전  |  오른손: 전기 봉 접촉";
+            if (guidanceOverride != null) guidance = guidanceOverride;
             var s = state.Stats;
             status.text = $"{roomTitle}  {Mathf.FloorToInt(clock.Elapsed / 60):00}:{Mathf.FloorToInt(clock.Elapsed % 60):00}  ·  경험 {visited}/{itemCount}\n{guidance}\n" +
                 $"스트레스 {s.GetValue(StatType.Stress):0} · 지능 {s.GetValue(StatType.Intelligence):0} · 건강 {s.GetValue(StatType.Health):0} · 인기 {s.GetValue(StatType.Popularity):0} · 사랑 {s.GetValue(StatType.Love):0} · 반항 {s.GetValue(StatType.Rebellion):0}";

@@ -11,6 +11,7 @@ namespace FruitFlyParenting.Room
         public const string ExitDestinationId = "__exit";
         [SerializeField] LifeStage lifeStage = LifeStage.Infant;
         public LifeStage Stage => lifeStage;
+        public float RestAttractionBonus { get; set; }
         public void ConfigureLifeStage(LifeStage value) => lifeStage = value;
         public bool ExitAvailable { get; private set; }
         public bool ExitOnly { get; private set; }

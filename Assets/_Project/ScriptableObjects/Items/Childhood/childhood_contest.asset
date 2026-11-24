@@ -31,6 +31,7 @@ MonoBehaviour:
     amount: 0
   isExtreme: 0
   trustDelta: 0
+  recordsDelinquency: 0
   narrativeLines:
   - "\uC0C1\uC7A5\uC744 \uAF2D \uC950\uC9C0\uB9CC \uB208\uC744 \uBE44\uBCBC\uC694."
   - "\uC0C1\uC7A5\uC744 \uB2E4\uC2DC \uBCF4\uACE0 \uC228\uC744 \uACE8\uB77C\uC694."

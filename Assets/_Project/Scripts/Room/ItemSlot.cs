@@ -20,6 +20,7 @@ namespace FruitFlyParenting.Room
 
         public event Action OnFirstVisit;
         public event Action OnRevisit;
+        public Func<bool> AllowEntry { get; set; }
 
         public string ItemId => itemId;
         public ItemDefinition Definition => definition;
@@ -113,6 +114,7 @@ namespace FruitFlyParenting.Room
         {
             var fly = other.GetComponentInParent<FlyAgent>();
             if (fly == null) return;
+            if (AllowEntry != null && !AllowEntry()) { dwellTracker?.OnExit(); return; }
             occupant = fly;
             dwellTracker?.OnEnter();
             if (IsHesitating) fly.BeginHesitation(this);

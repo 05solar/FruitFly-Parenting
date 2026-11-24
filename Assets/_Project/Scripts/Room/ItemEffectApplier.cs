@@ -52,6 +52,7 @@ namespace FruitFlyParenting.Room
             log.Append(";effects=").Append(apply);
             if (apply)
             {
+                if (item.recordsDelinquency) state.RecordDelinquency(item.itemId, now);
                 if (item.trustDelta != 0f)
                 {
                     float beforeTrust = state.Relationship.Trust;
