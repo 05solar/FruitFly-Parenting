@@ -176,5 +176,14 @@ namespace FruitFlyParenting.Data
         public float adolescenceQuietSeconds = 30f;
         public float adolescenceLateRestAttraction = .5f;
         public float adolescenceExitSceneSeconds = 12f;
+        [Header("11 Young adulthood")]
+        public float youngAdultResistanceTrustThreshold = 30f;
+        public float youngAdultHighTrustThreshold = 70f;
+        public float youngAdultActivityProtectionSeconds = 15f;
+        public float youngAdultReconnectTrustGain = 10f;
+        public float youngAdultTomorrowFraction = .75f;
+        public float gamblingWinSeconds = 2f;
+        public float gamblingCalendarSeconds = 3f;
+        public float gamblingLossSeconds = 1f;
     }
 }

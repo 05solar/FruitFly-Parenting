@@ -15,6 +15,7 @@ namespace FruitFlyParenting.Corridor
         public string PaperAirplaneLine { get; private set; } = string.Empty;
         public float ParentPhotoShare { get; private set; }
         public float ShadowSeparation { get; private set; }
+        public string YoungAdultLetterLine { get; private set; } = string.Empty;
         public void Configure(Font textFont, Transform[] frames, GameBalanceConfig balance)
         { font = textFont; anchors = frames; config = balance; }
 
@@ -22,6 +23,7 @@ namespace FruitFlyParenting.Corridor
         {
             Recap = CorridorRecapModel.Build(state.EventLog, previousRoomId, config.corridorRecapCount);
             if(previousRoomId==AdolescenceRoomController.RoomId) DrawAdolescence(state.Relationship.Trust);
+            if(previousRoomId==YoungAdultRoomController.RoomId) DrawYoungAdult(state);
             PaperAirplaneLine = previousRoomId == ChildhoodRoomController.RoomId ?
                 PaperAirplaneEvent.CorridorLine(state.ChildhoodAirplaneOutcome,Recap.HadInterruptedActivity) : string.Empty;
             if (!string.IsNullOrEmpty(PaperAirplaneLine))
@@ -67,6 +69,31 @@ namespace FruitFlyParenting.Corridor
                 CorridorUI.Image(empty.transform,"Frame",new Vector2(740,260),Vector2.zero,new Color(.08f,.13f,.18f));
                 CorridorUI.Text(empty.transform,"No Recorded Visit",font,"아직 사진으로 남은 경험은 없어요.\n함께 지나온 시간은 남아 있어요.",new Vector2(680,220),Vector2.zero,30);
             }
+        }
+        void DrawYoungAdult(GameState state)
+        {
+            // This stage replaces the shared child/play-block silhouette with the child opening their own door.
+            foreach(string name in new[]{"Child Silhouette Body","Child Silhouette Head","Play Blocks"})
+            { var shared=transform.Find(name); if(shared!=null) shared.gameObject.SetActive(false); }
+            YoungAdultLetterLine=state.FinalYoungAdultSnapshot?.LastLetter??state.LastYoungAdultLetter;
+            var old=transform.Find("Young Adult Memories"); if(old!=null) { old.gameObject.SetActive(false); Destroy(old.gameObject); }
+            var root=new GameObject("Young Adult Memories").transform; root.SetParent(transform,false);
+            var letter=CorridorUI.Canvas("Last Letter",root,new Vector3(7,1.7f,-1.96f),new Vector2(1800,650),.002f);
+            letter.transform.localRotation=Quaternion.Euler(0,180,0);
+            CorridorUI.Image(letter.transform,"Paper",new Vector2(1800,650),Vector2.zero,new Color(.15f,.20f,.22f));
+            CorridorUI.Text(letter.transform,"Letter",font,string.IsNullOrEmpty(YoungAdultLetterLine) ? "아직 받은 편지는 없어요.\n아이가 직접 여는 문을 기다려요." : "마지막으로 받은 편지\n"+YoungAdultLetterLine,new Vector2(1700,570),Vector2.zero,38);
+            var board=CorridorUI.Canvas("Child Opens Door",root,new Vector3(12,1.6f,1.96f),new Vector2(1400,1100),.002f);
+            CorridorUI.Image(board.transform,"Backdrop",new Vector2(1400,1100),Vector2.zero,new Color(.77f,.78f,.7f));
+            CorridorUI.Image(board.transform,"Open Doorway",new Vector2(470,780),new Vector2(285,0),new Color(.97f,.87f,.61f));
+            var door=CorridorUI.Image(board.transform,"Door",new Vector2(470,780),new Vector2(50,0),new Color(.68f,.46f,.29f));
+            door.rectTransform.pivot=new Vector2(0,.5f);
+            CorridorUI.Image(door.transform,"Handle",new Vector2(30,70),new Vector2(170,0),new Color(.95f,.78f,.4f));
+            CorridorUI.Image(board.transform,"Adult Child",new Vector2(160,410),new Vector2(-230,-80),new Color(.1f,.22f,.25f));
+            CorridorUI.Image(board.transform,"Child Head",new Vector2(160,160),new Vector2(-230,200),new Color(.1f,.22f,.25f));
+            CorridorUI.Image(board.transform,"Child Reaching Hand",new Vector2(270,55),new Vector2(-50,40),new Color(.1f,.22f,.25f));
+            var title=CorridorUI.Text(board.transform,"Own Door",font,"“이번 문은 내가 열어 볼게요.”",new Vector2(1300,150),new Vector2(0,470),38);
+            title.color=new Color(.1f,.22f,.25f);
+            board.gameObject.AddComponent<YoungAdultCorridorDoor>().Configure(door.transform);
         }
         void DrawAdolescence(float trust)
         {

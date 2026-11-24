@@ -32,6 +32,7 @@ MonoBehaviour:
   isExtreme: 0
   trustDelta: 0
   recordsDelinquency: 0
+  youngAdultFlags: 0
   narrativeLines:
   - "\uCE5C\uAD6C\uB97C \uBCF4\uACE0 \uACF5\uC744 \uD328\uC2A4\uD574\uC694."
   - "\uCE5C\uAD6C\uC5D0\uAC8C \uB2E4\uC2DC \uACF5\uC744 \uAD74\uB824\uC694."

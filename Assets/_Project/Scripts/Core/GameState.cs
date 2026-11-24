@@ -24,6 +24,9 @@ namespace FruitFlyParenting.Core
     public class GameStateSaveData
     {
         public bool adolescenceExitCaptured;
+        public YoungAdultFlags youngAdultFlags;
+        public string lastYoungAdultLetter;
+        public YoungAdultSnapshot finalYoungAdultSnapshot;
         public bool delinquencyRecord, adolescenceCostumeCaptured, adolescenceHiddenCostume, adolescenceExitEventPlayed;
         public bool infantExitStressCaptured, childhoodExitStressCaptured;
         public float infantExitStress, childhoodExitStress;
@@ -53,6 +56,38 @@ namespace FruitFlyParenting.Core
         public static void SetCurrent(GameState state) => Current = state;
 
         readonly GameBalanceConfig config;
+        YoungAdultFlags youngAdultFlags;
+        public bool HasHighRiskContract=>(youngAdultFlags & YoungAdultFlags.HighRiskContract)!=0;
+        public bool HasContactBlocked=>(youngAdultFlags & YoungAdultFlags.ContactBlocked)!=0;
+        public bool HasResigned=>(youngAdultFlags & YoungAdultFlags.Resigned)!=0;
+        public bool HasGamblingBankruptcy=>(youngAdultFlags & YoungAdultFlags.GamblingBankruptcy)!=0;
+        public string LastYoungAdultLetter { get; private set; } = string.Empty;
+        public YoungAdultSnapshot FinalYoungAdultSnapshot { get; private set; }
+        public void ApplyYoungAdultFlags(YoungAdultFlags flags,string itemId,float now)
+        {
+            var added=flags & ~youngAdultFlags; if(added==YoungAdultFlags.None) return;
+            youngAdultFlags|=added; LogEvent(now,CurrentRoomId,"youngadult_flags_set",itemId+";"+added);
+        }
+        public bool ReconnectYoungAdult(float now)
+        {
+            if(!HasContactBlocked) return false;
+            youngAdultFlags&=~YoungAdultFlags.ContactBlocked;
+            Relationship.AdjustTrust(config.youngAdultReconnectTrustGain,"youngadult_reconnect");
+            LogEvent(now,CurrentRoomId,"youngadult_reconnect","letter;T+="+config.youngAdultReconnectTrustGain); return true;
+        }
+        public bool RestartYoungAdultWork(float now)
+        {
+            if(!HasResigned) return false;
+            youngAdultFlags&=~YoungAdultFlags.Resigned; LogEvent(now,CurrentRoomId,"youngadult_new_job","workshop"); return true;
+        }
+        public void RecordYoungAdultLetter(string line,float now)
+        { LastYoungAdultLetter=line; LogEvent(now,CurrentRoomId,"youngadult_letter",line); }
+        public void CaptureFinalYoungAdultSnapshot(float now)
+        {
+            if(FinalYoungAdultSnapshot!=null) return;
+            FinalYoungAdultSnapshot=new YoungAdultSnapshot(this,now);
+            LogEvent(now,CurrentRoomId,"youngadult_final_snapshot",FinalYoungAdultSnapshot.ToLogString());
+        }
         public bool HasDelinquencyRecord { get; private set; }
         public bool AdolescenceCostumeCaptured { get; private set; }
         public bool AdolescenceHiddenCostume { get; private set; }
@@ -163,6 +198,7 @@ namespace FruitFlyParenting.Core
             var data = new GameStateSaveData
             {
                 adolescenceExitCaptured = AdolescenceExitCaptured,
+                youngAdultFlags=youngAdultFlags, lastYoungAdultLetter=LastYoungAdultLetter, finalYoungAdultSnapshot=FinalYoungAdultSnapshot?.Copy(),
                 delinquencyRecord = HasDelinquencyRecord, adolescenceCostumeCaptured = AdolescenceCostumeCaptured,
                 adolescenceHiddenCostume = AdolescenceHiddenCostume, adolescenceExitEventPlayed = AdolescenceExitEventPlayed,
                 infantExitStressCaptured = InfantExitStressCaptured, childhoodExitStressCaptured = ChildhoodExitStressCaptured,
@@ -199,6 +235,8 @@ namespace FruitFlyParenting.Core
             {
                 CurrentRoomId = data.currentRoomId,
                 AdolescenceExitCaptured = data.adolescenceExitCaptured,
+                youngAdultFlags=data.youngAdultFlags, LastYoungAdultLetter=data.lastYoungAdultLetter??string.Empty,
+                FinalYoungAdultSnapshot=data.finalYoungAdultSnapshot!=null && data.finalYoungAdultSnapshot.IsCaptured ? data.finalYoungAdultSnapshot.Copy() : null,
                 HasDelinquencyRecord = data.delinquencyRecord, AdolescenceCostumeCaptured = data.adolescenceCostumeCaptured,
                 AdolescenceHiddenCostume = data.adolescenceHiddenCostume, AdolescenceExitEventPlayed = data.adolescenceExitEventPlayed,
                 InfantExitStressCaptured = data.infantExitStressCaptured, ChildhoodExitStressCaptured = data.childhoodExitStressCaptured,

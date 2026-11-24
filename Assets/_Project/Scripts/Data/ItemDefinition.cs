@@ -23,6 +23,7 @@ namespace FruitFlyParenting.Data
         public bool isExtreme;
         public float trustDelta;
         public bool recordsDelinquency;
+        public YoungAdultFlags youngAdultFlags;
         [TextArea] public string[] narrativeLines = Array.Empty<string>();
         [TextArea] public string childReflectionLine;
         public void ValidateTags() => TagDefinitions.ValidateAndDistinct(tags);

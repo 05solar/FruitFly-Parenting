@@ -86,6 +86,7 @@ namespace FruitFlyParenting.Corridor
         void EnterCorridor()
         {
             GameState.Current.CaptureRoomExitStress(route.fromStage, Time.time);
+            if(route.fromStage==LifeStage.YoungAdult) GameState.Current.CaptureFinalYoungAdultSnapshot(Time.time);
             // 물리 좌표는 그대로다. 인접한 컨테이너만 완전한 암전에서 교체한다.
             corridor.gameObject.SetActive(true);
             corridor.SetRoute(route);
@@ -114,6 +115,8 @@ namespace FruitFlyParenting.Corridor
             var section = corridor.SectionAt(chair.transform.position);
             if (lastSection == (int)section) return;
             lastSection = (int)section;
+            if(route.fromStage==LifeStage.YoungAdult && section==CorridorSection.Silhouette)
+                corridor.GetComponentInChildren<YoungAdultCorridorDoor>()?.Open();
             GameState.Current.LogEvent(Time.time,route.corridorId,"corridor_section",section.ToString());
             string line = section == CorridorSection.Recap ? route.recapTitle + "\n벽에 남은 기억을 천천히 둘러보세요." :
                 section == CorridorSection.Narration ? route.narration +

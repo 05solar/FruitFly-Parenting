@@ -53,6 +53,7 @@ namespace FruitFlyParenting.Room
             if (apply)
             {
                 if (item.recordsDelinquency) state.RecordDelinquency(item.itemId, now);
+                state.ApplyYoungAdultFlags(item.youngAdultFlags,item.itemId,now);
                 if (item.trustDelta != 0f)
                 {
                     float beforeTrust = state.Relationship.Trust;

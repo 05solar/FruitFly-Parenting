@@ -21,11 +21,19 @@ namespace FruitFlyParenting.Fly
         public float Score { get; private set; }
         public Vector3 Direction { get; private set; }
         public float ComplyUntil => until;
+        public float SuspendedUntil { get; private set; } = float.NegativeInfinity;
+        public bool IsSuspended(float now)=>now<SuspendedUntil;
+        public void Suspend(float now,float seconds)
+        {
+            CompleteVisit(); SuspendedUntil=Mathf.Max(SuspendedUntil,now+seconds);
+            State=ComplianceState.AvoidingTool;
+        }
         public ComplianceStateMachine(GameBalanceConfig config, FlyMoodState mood)
         { this.config = config; this.mood = mood; }
 
         public void Tick(float now)
         {
+            if(IsSuspended(now)) { State=ComplianceState.AvoidingTool; return; }
             if (State == ComplianceState.Complying)
             {
                 if (now >= until) CompleteVisit();
@@ -41,6 +49,7 @@ namespace FruitFlyParenting.Fly
         public ComplianceContactResult RecordContact(PushSource source, Vector3 direction, float rebellion, float now)
         {
             Tick(now);
+            if(IsSuspended(now)) return ComplianceContactResult.Ignored;
             direction = Vector3.ProjectOnPlane(direction, Vector3.up).normalized;
             if (direction.sqrMagnitude == 0f || now - lastAccepted < config.complianceMinimumContactIntervalSeconds)
                 return ComplianceContactResult.Ignored;
@@ -76,6 +85,6 @@ namespace FruitFlyParenting.Fly
             ClearScore();
             State = ComplianceState.Free; mood.ForceEndAvoidance();
         }
-        public void EnterRoom() { CompleteVisit(); lastAccepted = float.NegativeInfinity; }
+        public void EnterRoom() { CompleteVisit(); lastAccepted = float.NegativeInfinity; SuspendedUntil=float.NegativeInfinity; }
     }
 }

@@ -14,7 +14,8 @@ namespace FruitFlyParenting.Fly
         {
             if (appearance == null || fly == null) return;
             appearance.localRotation = fly.IsHesitating ? Quaternion.Euler(0,0,
-                Mathf.Sin(Time.time * Mathf.PI * 2f * config.hesitationSwayFrequency) * config.hesitationSwayDegrees) : Quaternion.identity;
+                Mathf.Sin(Time.time * Mathf.PI * 2f * config.hesitationSwayFrequency) * config.hesitationSwayDegrees) :
+                fly.IsProtectingActivity ? Quaternion.Euler(0,15,0) : Quaternion.identity;
         }
     }
 }

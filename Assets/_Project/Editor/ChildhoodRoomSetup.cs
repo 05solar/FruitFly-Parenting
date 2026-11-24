@@ -106,6 +106,7 @@ namespace FruitFlyParenting.Editor
             if(item==null) { item=ScriptableObject.CreateInstance<ItemDefinition>(); AssetDatabase.CreateAsset(item,path); }
             item.itemId=entry.Id; item.displayName=entry.Name; item.tags=entry.Tags; item.isExtreme=entry.Extreme; item.trustDelta=entry.Trust;
             item.recordsDelinquency=entry.Delinquency;
+            item.youngAdultFlags=entry.Flags;
             item.statDeltas=entry.Stats.Select((amount,i)=>new ItemStatDelta((StatType)i,amount))
                 .Concat(entry.Rebellion==0 ? new ItemStatDelta[0] : new[]{new ItemStatDelta(StatType.Rebellion,entry.Rebellion)}).ToArray();
             item.narrativeLines=new[]{entry.FirstLine,entry.RevisitLine}; item.childReflectionLine=entry.RevisitLine;
@@ -210,14 +211,16 @@ namespace FruitFlyParenting.Editor
             FlyAgent fly, Vector3 origin, Material floor, Material wall, Material trim, Material blue,LifeStage stage=LifeStage.Childhood)
         {
             bool child=stage==LifeStage.Childhood;
-            var route=AssetDatabase.LoadAssetAtPath<RoomTransitionDefinition>(Root+"ScriptableObjects/Transitions/"+(child ? "ChildhoodToAdolescence" : "AdolescenceToYoungAdult")+".asset");
-            route.previousRoomSound=Sound(child ? "ChildhoodPlay" : "AdolescenceAmbience",child ? 264 : 330);
-            route.nextRoomSound=Sound(child ? "AdolescenceAmbience" : "YoungAdultAmbience",child ? 330 : 396); EditorUtility.SetDirty(route);
+            bool teen=stage==LifeStage.Adolescence;
+            var route=AssetDatabase.LoadAssetAtPath<RoomTransitionDefinition>(Root+"ScriptableObjects/Transitions/"+(child ? "ChildhoodToAdolescence" : teen ? "AdolescenceToYoungAdult" : "YoungAdultToMiddleAge")+".asset");
+            route.previousRoomSound=Sound(child ? "ChildhoodPlay" : teen ? "AdolescenceAmbience" : "YoungAdultAmbience",child ? 264 : teen ? 330 : 396);
+            route.nextRoomSound=Sound(child ? "AdolescenceAmbience" : teen ? "YoungAdultAmbience" : "MiddleAgeAmbience",child ? 330 : teen ? 396 : 198); EditorUtility.SetDirty(route);
             var shell=((GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath))).GetComponent<CorridorShell>();
-            shell.name=child ? "Corridor 2" : "Corridor 3"; shell.transform.position=origin+new Vector3(24,0,11); shell.gameObject.SetActive(false);
+            shell.name="Corridor "+(int)stage; shell.transform.position=origin+new Vector3(24,0,11); shell.gameObject.SetActive(false);
             var nextOrigin=origin+new Vector3(24+config.corridorLength,0,0);
             var teenager=child ? AdolescenceRoomSetup.Create(config,font,fly,chair,nextOrigin) : null;
-            var next=teenager!=null ? teenager.GetComponent<RoomDestination>() : CreateNextRoom(config,font,route,floor,wall,trim,blue);
+            var adult=teen ? YoungAdultRoomSetup.Create(config,font,fly,chair,nextOrigin) : null;
+            var next=teenager!=null ? teenager.GetComponent<RoomDestination>() : adult!=null ? adult.GetComponent<RoomDestination>() : CreateNextRoom(config,font,route,floor,wall,trim,blue);
             next.transform.position=nextOrigin; next.gameObject.SetActive(false);
             var root=new GameObject(stage+" Transition"); root.SetActive(false);
             var flow=root.AddComponent<RoomTransitionController>(); var view=root.AddComponent<TransitionView>(); view.Configure(font);
@@ -228,6 +231,7 @@ namespace FruitFlyParenting.Editor
             var echo=previous.gameObject.AddComponent<AudioEchoFilter>(); echo.delay=320; echo.decayRatio=.25f; echo.dryMix=1; echo.wetMix=0;
             sound.Configure(previous,following,echo); flow.Configure(config,route,room,fly.gameObject,chair,shell,next,view,sound);
             if(teenager!=null) teenager.ConfigureIncoming(flow);
+            if(adult!=null) adult.ConfigureIncoming(flow);
             Boundary(root.transform,origin+new Vector3(24.2f,1,11),flow,false);
             Boundary(root.transform,origin+new Vector3(24+config.corridorLength+.7f,1,11),flow,true);
             return flow;

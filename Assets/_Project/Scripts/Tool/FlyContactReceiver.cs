@@ -51,8 +51,18 @@ namespace FruitFlyParenting.Tool
         {
             if (!ContactsEnabled) return; // 05 관찰 시간에는 집계/수치/연출/밀림 모두 비활성화.
             if (!EnsureInitialized()) return;
+            float trustBefore=GameState.Current.Relationship.Trust;
             Usage.RecordContact(source, currentTime);
             var result = push.Resolve(source, contactDirection, transform.position);
+            if(fly.Stage==FruitFlyParenting.Corridor.LifeStage.YoungAdult &&
+                (trustBefore<config.youngAdultResistanceTrustThreshold || Compliance.IsSuspended(currentTime)))
+            {
+                // Costs and ToolUsed still occur, but an ineffective contact cannot add compliance/coercion/avoidance learning.
+                if(trustBefore<config.youngAdultResistanceTrustThreshold) Compliance.Suspend(currentTime,config.youngAdultActivityProtectionSeconds);
+                Coercion.Reset(); fly.PreserveCurrentActivityUntil(Compliance.SuspendedUntil);
+                GameState.Current.LogEvent(currentTime,GameState.Current.CurrentRoomId,"youngadult_tool_resisted",fly.CurrentDestinationId);
+                EventBus.RaiseToolUsed(source,result.Direction,fly.CurrentDestinationId); return;
+            }
             Coercion.Record(currentTime, source, transform.position, result.Direction);
             EventBus.RaiseToolUsed(source, result.Direction, fly.CurrentDestinationId);
             var state = GameState.Current;

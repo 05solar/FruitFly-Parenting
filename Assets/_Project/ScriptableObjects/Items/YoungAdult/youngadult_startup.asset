@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4393d9f6c2bff44f8822a75f0a6c836, type: 3}
+  m_Name: youngadult_startup
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Data.ItemDefinition
+  itemId: youngadult_startup
+  displayName: "\uBAA8\uB4E0 \uAC83\uC744 \uAC74 \uCC3D\uC5C5 \uACC4\uC57D \u2605"
+  tags:
+  - "\uC131\uACFC"
+  - "\uC18C\uBE44"
+  baseAttraction: 0
+  statDeltas:
+  - stat: 0
+    amount: 25
+  - stat: 1
+    amount: 14
+  - stat: 2
+    amount: -12
+  - stat: 3
+    amount: 20
+  - stat: 4
+    amount: -15
+  isExtreme: 1
+  trustDelta: -6
+  recordsDelinquency: 0
+  youngAdultFlags: 1
+  narrativeLines:
+  - "\uD22C\uC790 \uBC1C\uD45C\uAC00 \uB05D\uB098\uACE0 \uBE5A\uC758 \uBB34\uAC8C\uB97C \uB290\uAEF4\uC694."
+  - "\uC0C8 \uC77C\uC758 \uAC00\uB2A5\uC131\uACFC \uCC45\uC784\uC744 \uD568\uAED8 \uBC14\uB77C\uBD10\uC694."
+  childReflectionLine: "\uC0C8 \uC77C\uC758 \uAC00\uB2A5\uC131\uACFC \uCC45\uC784\uC744 \uD568\uAED8 \uBC14\uB77C\uBD10\uC694."

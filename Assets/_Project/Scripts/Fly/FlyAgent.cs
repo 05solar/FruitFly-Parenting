@@ -52,6 +52,18 @@ namespace FruitFlyParenting.Fly
         public Vector3 ComplianceDestination { get; private set; }
         public bool UsedComplianceFallback { get; private set; }
         public string CurrentDestinationId => currentDestinationId;
+        float protectActivityUntil;
+        public FruitFlyParenting.Corridor.LifeStage Stage=>room.Stage;
+        public bool IsProtectingActivity=>Time.time<protectActivityUntil;
+        public void PreserveCurrentActivityUntil(float until)
+        {
+            protectActivityUntil=Mathf.Max(protectActivityUntil,until);
+            beingPushed=false; complying=false; pushOriginSlots.Clear(); Learning?.Reset();
+            if(agent==null || !agent.isOnNavMesh) return;
+            var slot=FindSlot(currentDestinationId); agent.isStopped=false;
+            if(slot!=null && slot.TryGetNavigationPoint(agent.nextPosition,agent.agentTypeID,out var point)) agent.SetDestination(point);
+            else if(currentDestinationId==RoomController.ExitDestinationId) agent.SetDestination(room.ExitPoint);
+        }
         void OnEnable() => EventBus.RoomEntered += OnRoomEntered;
         void OnDisable() => EventBus.RoomEntered -= OnRoomEntered;
         void OnRoomEntered(string id) { roomEnterTime = Time.time; Learning?.Reset(); }
@@ -97,6 +109,8 @@ namespace FruitFlyParenting.Fly
         void Update()
         {
             if (agent == null || movement == null || room == null || !agent.isOnNavMesh) return;
+            if(IsProtectingActivity) { if(IsHesitating) agent.isStopped=true; return; }
+            if(pendingExit && room.ExitAvailable && !complying) HeadToExit();
             if (refusalPending && Time.time>=refusalEndsAt)
             { refusalPending=false; agent.isStopped=false; PickAndMoveToNext(); }
             if (IsHesitating) { agent.isStopped = true; return; }
@@ -146,7 +160,7 @@ namespace FruitFlyParenting.Fly
 
         public void PickAndMoveToNext()
         {
-            if (movement == null || !agent.isOnNavMesh || complying || beingPushed) return;
+            if (movement == null || !agent.isOnNavMesh || complying || beingPushed || IsProtectingActivity) return;
             var candidateIds = room.GetDestinationIds();
             if (candidateIds.Count == 0) return;
             var candidates = new List<ItemChoiceCandidate>();
@@ -199,6 +213,7 @@ namespace FruitFlyParenting.Fly
         public void HeadToExit()
         {
             if (agent == null || !agent.isOnNavMesh || !room.ExitAvailable) return;
+            if(IsProtectingActivity) { pendingExit=true; return; }
             if (complying) { pendingExit = true; return; }
             var filter = new NavMeshQueryFilter { agentTypeID = agent.agentTypeID, areaMask = agent.areaMask };
             if (!NavMesh.SamplePosition(room.ExitPoint, out var hit, 0.5f, filter)) return;

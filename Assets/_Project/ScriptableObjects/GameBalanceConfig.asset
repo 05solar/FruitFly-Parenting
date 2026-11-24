@@ -137,3 +137,11 @@ MonoBehaviour:
   adolescenceQuietSeconds: 30
   adolescenceLateRestAttraction: 0.5
   adolescenceExitSceneSeconds: 12
+  youngAdultResistanceTrustThreshold: 30
+  youngAdultHighTrustThreshold: 70
+  youngAdultActivityProtectionSeconds: 15
+  youngAdultReconnectTrustGain: 10
+  youngAdultTomorrowFraction: 0.75
+  gamblingWinSeconds: 2
+  gamblingCalendarSeconds: 3
+  gamblingLossSeconds: 1
