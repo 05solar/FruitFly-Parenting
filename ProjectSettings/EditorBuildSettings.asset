@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/01_Infant.unity
-    guid: 3d8c8abbaa0ead04c9c17353b8e725fc
-  - enabled: 1
     path: Assets/_Project/Scenes/00_Bootstrap.unity
     guid: 5028b5693235f5c47af62b892b804af0
+  - enabled: 1
+    path: Assets/_Project/Scenes/01_Infant.unity
+    guid: 3d8c8abbaa0ead04c9c17353b8e725fc
   - enabled: 1
     path: Assets/_Project/Scenes/03_RoomShellTest.unity
     guid: ec42df386eb226f438cfc9952f637481
@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/05_YoungAdult.unity
     guid: 6704faa4eb187124f9fc2725581f469b
+  - enabled: 1
+    path: Assets/_Project/Scenes/06_MiddleAge.unity
+    guid: 31e507ba25e61e342bd55b3eaf874521
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3356fa1a5b8a0a04eb2083c9ef79521c, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 0a7af0ca937be04499fcd35b2a6215ae, type: 2}

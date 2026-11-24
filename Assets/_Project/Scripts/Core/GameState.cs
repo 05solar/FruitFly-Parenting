@@ -16,6 +16,7 @@ namespace FruitFlyParenting.Core
         public string payload;
         public ItemExperience experience;
         public LearningExperience learning;
+        public ExperienceImpact impact;
     }
 
     // JsonUtility 직렬화 전용 DTO. GameState 자체는 System.Random 등 직렬화 불가능한 멤버를 들고 있어
@@ -156,6 +157,11 @@ namespace FruitFlyParenting.Core
 
         readonly List<EventLogEntry> eventLog = new List<EventLogEntry>();
         public IReadOnlyList<EventLogEntry> EventLog => eventLog;
+        internal int ImpactDepth;
+        public IDisposable TrackImpact(float now,string roomId,string reason,string label)
+            => new ImpactScope(this,now,roomId,reason,label);
+        internal void RecordImpact(float now,string roomId,string reason,ExperienceImpact impact)
+            => eventLog.Add(new EventLogEntry { timestamp=now,roomId=roomId,eventType="experience_impact",payload=reason,impact=impact });
 
         public GameState(GameBalanceConfig config, int runSeed)
         {

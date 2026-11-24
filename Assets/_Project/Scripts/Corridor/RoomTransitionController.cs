@@ -85,6 +85,7 @@ namespace FruitFlyParenting.Corridor
         }
         void EnterCorridor()
         {
+            GameState.Current.LogEvent(Time.time,route.fromRoomId,"room_exit_snapshot",new YoungAdultSnapshot(GameState.Current,Time.time).ToLogString());
             GameState.Current.CaptureRoomExitStress(route.fromStage, Time.time);
             if(route.fromStage==LifeStage.YoungAdult) GameState.Current.CaptureFinalYoungAdultSnapshot(Time.time);
             // 물리 좌표는 그대로다. 인접한 컨테이너만 완전한 암전에서 교체한다.

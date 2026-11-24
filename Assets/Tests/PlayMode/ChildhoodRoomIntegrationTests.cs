@@ -109,10 +109,12 @@ namespace FruitFlyParenting.Tests.PlayMode
         {
             yield return Approach("hideout"); fly.enabled=true;
             string chosen=fly.CurrentDestinationId; var state=GameState.Current.ToSaveData();
-            yield return new WaitForSeconds(.5f);
+            // A sinusoidal sway legitimately crosses zero. Observe a window rather than one arbitrary frame.
+            float until=Time.time+.5f,maxSway=0;
+            while(Time.time<until) { yield return null; maxSway=Mathf.Max(maxSway,Quaternion.Angle(Quaternion.identity,fly.transform.Find("Childhood Appearance").localRotation)); }
             Assert.IsTrue(fly.IsHesitating); Assert.IsTrue(agent.isStopped); Assert.AreEqual(chosen,fly.CurrentDestinationId);
             Assert.IsFalse(child.Room.VisitedItemIds.Contains("childhood_hideout")); CollectionAssert.AreEqual(state.statValues,GameState.Current.ToSaveData().statValues);
-            Assert.Greater(Quaternion.Angle(Quaternion.identity,fly.transform.Find("Childhood Appearance").localRotation),.05f);
+            Assert.Greater(maxSway,.05f);
             child.Timeline.Advance(90.1f-child.Timeline.Elapsed); yield return null;
             Vector3 away=(fly.transform.position-Slot("hideout").transform.position).normalized;
             fly.GetComponent<FlyContactReceiver>().ReceiveContact(PushSource.ElectricStick,-away,Time.time);

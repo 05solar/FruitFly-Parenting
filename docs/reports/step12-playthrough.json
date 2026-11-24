@@ -1,0 +1,211 @@
+{
+  "runSeed": -1354216476,
+  "mode": "Automated PlayMode; accelerated clock; real autonomous visits and wheelchair input; no HMD",
+  "roomExitSnapshots": [
+    {
+      "timestamp": 1441.0797119140625,
+      "roomId": "01_Infant",
+      "eventType": "room_exit_snapshot",
+      "payload": "S=56;I=59;H=61;P=46;L=63;R=8;T=54;Gambling=False;Contract=False;Blocked=False;Resigned=False;Delinquency=False",
+      "experience": {
+        "itemId": "",
+        "displayName": "",
+        "tags": [],
+        "narrative": "",
+        "childLine": "",
+        "actualChangeMagnitude": 0.0,
+        "autonomous": false
+      },
+      "learning": {
+        "originalItemId": "",
+        "outcomeItemId": "",
+        "outcome": "",
+        "tags": [],
+        "approachDirection": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "interventionCount": 0,
+        "stress": 0.0,
+        "utility": 0.0,
+        "preferenceDelta": 0.0,
+        "avoidanceDelta": 0.0
+      },
+      "impact": {
+        "label": "",
+        "stress": 0.0,
+        "rebellion": 0.0,
+        "trust": 0.0
+      }
+    },
+    {
+      "timestamp": 2014.97998046875,
+      "roomId": "03_Childhood",
+      "eventType": "room_exit_snapshot",
+      "payload": "S=37;I=77;H=59;P=88;L=65;R=39;T=45;Gambling=False;Contract=False;Blocked=False;Resigned=False;Delinquency=False",
+      "experience": {
+        "itemId": "",
+        "displayName": "",
+        "tags": [],
+        "narrative": "",
+        "childLine": "",
+        "actualChangeMagnitude": 0.0,
+        "autonomous": false
+      },
+      "learning": {
+        "originalItemId": "",
+        "outcomeItemId": "",
+        "outcome": "",
+        "tags": [],
+        "approachDirection": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "interventionCount": 0,
+        "stress": 0.0,
+        "utility": 0.0,
+        "preferenceDelta": 0.0,
+        "avoidanceDelta": 0.0
+      },
+      "impact": {
+        "label": "",
+        "stress": 0.0,
+        "rebellion": 0.0,
+        "trust": 0.0
+      }
+    },
+    {
+      "timestamp": 2600.77880859375,
+      "roomId": "04_Adolescence",
+      "eventType": "room_exit_snapshot",
+      "payload": "S=24;I=87;H=34;P=95;L=28;R=89;T=20;Gambling=False;Contract=False;Blocked=False;Resigned=False;Delinquency=True",
+      "experience": {
+        "itemId": "",
+        "displayName": "",
+        "tags": [],
+        "narrative": "",
+        "childLine": "",
+        "actualChangeMagnitude": 0.0,
+        "autonomous": false
+      },
+      "learning": {
+        "originalItemId": "",
+        "outcomeItemId": "",
+        "outcome": "",
+        "tags": [],
+        "approachDirection": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "interventionCount": 0,
+        "stress": 0.0,
+        "utility": 0.0,
+        "preferenceDelta": 0.0,
+        "avoidanceDelta": 0.0
+      },
+      "impact": {
+        "label": "",
+        "stress": 0.0,
+        "rebellion": 0.0,
+        "trust": 0.0
+      }
+    },
+    {
+      "timestamp": 3174.637451171875,
+      "roomId": "05_YoungAdult",
+      "eventType": "room_exit_snapshot",
+      "payload": "S=32;I=100;H=45;P=100;L=20;R=100;T=0;Gambling=False;Contract=True;Blocked=True;Resigned=False;Delinquency=True",
+      "experience": {
+        "itemId": "",
+        "displayName": "",
+        "tags": [],
+        "narrative": "",
+        "childLine": "",
+        "actualChangeMagnitude": 0.0,
+        "autonomous": false
+      },
+      "learning": {
+        "originalItemId": "",
+        "outcomeItemId": "",
+        "outcome": "",
+        "tags": [],
+        "approachDirection": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "interventionCount": 0,
+        "stress": 0.0,
+        "utility": 0.0,
+        "preferenceDelta": 0.0,
+        "avoidanceDelta": 0.0
+      },
+      "impact": {
+        "label": "",
+        "stress": 0.0,
+        "rebellion": 0.0,
+        "trust": 0.0
+      }
+    }
+  ],
+  "ending": "ending_03",
+  "finalYoungAdultSnapshot": {
+    "captured": true,
+    "stress": 32.0,
+    "intelligence": 100.0,
+    "health": 45.0,
+    "popularity": 100.0,
+    "love": 20.0,
+    "rebellion": 100.0,
+    "trust": 0.0,
+    "capturedAt": 3174.637451171875,
+    "gamblingBankruptcy": false,
+    "highRiskContract": true,
+    "contactBlocked": true,
+    "resigned": false,
+    "delinquencyRecord": true,
+    "achievementVisited": true,
+    "adolescenceFlightSmoke": true,
+    "adolescenceExitRebellion": 89.0,
+    "interventions": 0,
+    "autonomousVisits": 30,
+    "autonomousRelationshipVisits": 11,
+    "creativeVisits": 5,
+    "restMealVisits": 4,
+    "stadiumVisited": true,
+    "lastLetter": "“아직 거리가 필요해요. 내 이야기를 여기 적어 둘게요.”",
+    "visitedItemIds": [
+      "youngadult_workshop",
+      "youngadult_dinner",
+      "youngadult_startup",
+      "youngadult_stadium",
+      "youngadult_park",
+      "youngadult_letter",
+      "youngadult_studio",
+      "youngadult_independence"
+    ]
+  },
+  "decisiveExperiences": [
+    {
+      "label": "학교를 빠지고 떠난 하루 ★",
+      "stress": -22.0,
+      "rebellion": 20.0,
+      "trust": -9.0
+    },
+    {
+      "label": "부모 연락 차단과 독립 선언 ★",
+      "stress": -20.0,
+      "rebellion": 11.0,
+      "trust": -18.0
+    },
+    {
+      "label": "교칙에 맞서는 공개 공연 ★",
+      "stress": 13.0,
+      "rebellion": 18.0,
+      "trust": -7.0
+    }
+  ]
+}

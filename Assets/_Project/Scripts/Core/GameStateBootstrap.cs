@@ -12,6 +12,12 @@ namespace FruitFlyParenting.Core
         [SerializeField] int runSeed;
         [SerializeField] bool useRandomSeedIfZero = true;
         GameState ownedState;
+        public void RestartRun()
+        {
+            int old=GameState.Current?.RunSeed??0,seed;
+            do { seed=System.Guid.NewGuid().GetHashCode(); } while(seed==old);
+            ownedState=new GameState(config,seed); GameState.SetCurrent(ownedState);
+        }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void ResetStatics() => GameState.SetCurrent(null);

@@ -12,5 +12,6 @@ namespace FruitFlyParenting.Core
         public string narrative;
         public string childLine;
         public float actualChangeMagnitude;
+        public bool autonomous;
     }
 }

@@ -41,6 +41,7 @@ namespace FruitFlyParenting.Room
         public ItemVisitResult Visit(ItemDefinition item, bool firstVisitEvent, bool effectsEnabled, float now, ItemVisitContext context = default)
         {
             if (item == null || string.IsNullOrEmpty(item.itemId)) throw new ArgumentException("Item definition/id is required.");
+            using var impact=state.TrackImpact(now,roomId,item.itemId,item.displayName);
             item.ValidateTags();
             bool newId = visited.Add(item.itemId);
             bool first = firstVisitEvent && newId;
@@ -94,7 +95,8 @@ namespace FruitFlyParenting.Room
                     ApplyTraining(now, item.itemId, "repeated_training", config.repeatedTrainingStressDelta, config.repeatedTrainingRebellionDelta);
             }
             log.Append(";forced=").Append(context.IsForced).Append(";complying=").Append(context.WasComplying);
-            if (first && !context.IsForced && state.Relationship.CountRecentInterventions(now, config.autonomousVisitContactWindowSeconds) == 0)
+            bool autonomous=first && !context.IsForced && state.Relationship.CountRecentInterventions(now, config.autonomousVisitContactWindowSeconds) == 0;
+            if (autonomous)
                 state.Relationship.RecordAutonomousVisit();
             if (!first) state.Relationship.RecordItemRevisit(item.itemId);
             string[] lines = item.narrativeLines;
@@ -104,7 +106,7 @@ namespace FruitFlyParenting.Room
             state.LogEvent(now, roomId, first ? "item_first" : "item_revisit", log.ToString(), new ItemExperience
             {
                 itemId = item.itemId, displayName = item.displayName, tags = (string[])item.tags.Clone(),
-                narrative = narrative, childLine = item.childReflectionLine, actualChangeMagnitude = magnitude
+                narrative = narrative, childLine = item.childReflectionLine, actualChangeMagnitude = magnitude, autonomous=autonomous
             });
             return new ItemVisitResult(first, apply, narrative);
         }

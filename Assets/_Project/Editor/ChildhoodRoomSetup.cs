@@ -220,7 +220,8 @@ namespace FruitFlyParenting.Editor
             var nextOrigin=origin+new Vector3(24+config.corridorLength,0,0);
             var teenager=child ? AdolescenceRoomSetup.Create(config,font,fly,chair,nextOrigin) : null;
             var adult=teen ? YoungAdultRoomSetup.Create(config,font,fly,chair,nextOrigin) : null;
-            var next=teenager!=null ? teenager.GetComponent<RoomDestination>() : adult!=null ? adult.GetComponent<RoomDestination>() : CreateNextRoom(config,font,route,floor,wall,trim,blue);
+            var middle=!child && !teen ? MiddleAgeSetup.Create(config,font,chair,nextOrigin) : null;
+            var next=teenager!=null ? teenager.GetComponent<RoomDestination>() : adult!=null ? adult.GetComponent<RoomDestination>() : middle.GetComponent<RoomDestination>();
             next.transform.position=nextOrigin; next.gameObject.SetActive(false);
             var root=new GameObject(stage+" Transition"); root.SetActive(false);
             var flow=root.AddComponent<RoomTransitionController>(); var view=root.AddComponent<TransitionView>(); view.Configure(font);
@@ -232,6 +233,7 @@ namespace FruitFlyParenting.Editor
             sound.Configure(previous,following,echo); flow.Configure(config,route,room,fly.gameObject,chair,shell,next,view,sound);
             if(teenager!=null) teenager.ConfigureIncoming(flow);
             if(adult!=null) adult.ConfigureIncoming(flow);
+            if(middle!=null) middle.ConfigureIncoming(flow);
             Boundary(root.transform,origin+new Vector3(24.2f,1,11),flow,false);
             Boundary(root.transform,origin+new Vector3(24+config.corridorLength+.7f,1,11),flow,true);
             return flow;

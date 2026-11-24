@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2b2f01387110c48bd7c778f6f331ae, type: 3}
   m_Name: GameBalanceConfig
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Data.GameBalanceConfig
+  prologueSeconds: 60
+  middleAgeSeconds: 180
+  endingQuietSeconds: 15
+  endingGazeSeconds: 2
   statDefaultValue: 50
   statMin: 0
   statMax: 100

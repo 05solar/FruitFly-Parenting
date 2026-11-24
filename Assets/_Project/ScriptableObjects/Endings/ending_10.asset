@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569d97fd65ae06440809e97e1f373834, type: 3}
+  m_Name: ending_10
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Ending.EndingDefinition
+  condition: 10
+  priority: 10
+  endingId: ending_10
+  title: "\uBC18\uB300\uD3B8\uC758 \uD300"
+  childLine: "\uC624\uB298\uC740 \uC2B9\uBD80\uBCF4\uB2E4 \uC6B0\uB9AC \uC774\uC57C\uAE30\uAC00 \uC88B\uC544\uC694."
+  sceneLine: "\uD568\uAED8 \uACBD\uAE30\uB97C \uBCF4\uBA70 \uB300\uD654\uB97C \uB098\uB208\uB2E4."
+  calendarText: "\uAC19\uC774 \uBCF4\uB294 \uACBD\uAE30"
+  letterbox: 1
+  suitcase: 0
+  handle: 1
+  childPresent: 1
+  lightColor: {r: 1, g: 0.82, b: 0.58, a: 1}

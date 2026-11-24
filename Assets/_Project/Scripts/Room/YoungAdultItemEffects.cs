@@ -13,6 +13,7 @@ namespace FruitFlyParenting.Room
         { config=balance; state=game; effects=new ItemEffectApplier(config,state,YoungAdultRoomController.RoomId); }
         public ItemVisitResult Visit(ItemDefinition item,bool first,bool effectsEnabled,float now,ItemVisitContext context=default)
         {
+            using var impact=state.TrackImpact(now,YoungAdultRoomController.RoomId,item.itemId,item.displayName);
             var result=effects.Visit(item,first,effectsEnabled,now,context); string line=result.Narrative;
             // Recovery may happen on a later revisit, including when the letter/workshop was experienced before the rupture.
             if(effectsEnabled && item.itemId=="youngadult_workshop" && state.RestartYoungAdultWork(now))

@@ -7,6 +7,11 @@ namespace FruitFlyParenting.Data
     [CreateAssetMenu(fileName = "GameBalanceConfig", menuName = "FruitFlyParenting/Game Balance Config")]
     public class GameBalanceConfig : ScriptableObject
     {
+        [Header("프롤로그와 중년기")]
+        public float prologueSeconds=60;
+        public float middleAgeSeconds=180;
+        public float endingQuietSeconds=15;
+        public float endingGazeSeconds=2;
         [Header("스탯 공통 (스펙 4.1)")]
         public float statDefaultValue = 50f;
         public float statMin = 0f;

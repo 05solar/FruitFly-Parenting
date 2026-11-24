@@ -52,6 +52,8 @@ namespace FruitFlyParenting.Tool
             if (!ContactsEnabled) return; // 05 관찰 시간에는 집계/수치/연출/밀림 모두 비활성화.
             if (!EnsureInitialized()) return;
             float trustBefore=GameState.Current.Relationship.Trust;
+            Usage.Tick(currentTime);
+            using var impact=GameState.Current.TrackImpact(currentTime,GameState.Current.CurrentRoomId,"contact",source==PushSource.ElectricStick ? "전기 봉 접촉" : "휠체어 접촉");
             Usage.RecordContact(source, currentTime);
             var result = push.Resolve(source, contactDirection, transform.position);
             if(fly.Stage==FruitFlyParenting.Corridor.LifeStage.YoungAdult &&

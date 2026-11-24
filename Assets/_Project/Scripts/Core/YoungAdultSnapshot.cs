@@ -19,6 +19,12 @@ namespace FruitFlyParenting.Core
         [SerializeField] bool adolescenceFlightSmoke;
         [SerializeField] float adolescenceExitRebellion;
         [SerializeField] int interventions,autonomousVisits;
+        [SerializeField] int autonomousRelationshipVisits,creativeVisits,restMealVisits;
+        [SerializeField] bool stadiumVisited;
+        public int AutonomousRelationshipVisits=>autonomousRelationshipVisits;
+        public int CreativeVisits=>creativeVisits;
+        public int RestMealVisits=>restMealVisits;
+        public bool StadiumVisited=>stadiumVisited;
         [SerializeField] string lastLetter;
         [SerializeField] string[] visitedItemIds;
         public float Stress=>stress; public float Intelligence=>intelligence; public float Health=>health;
@@ -43,6 +49,14 @@ namespace FruitFlyParenting.Core
             var visits=state.EventLog.Where(e=>e.roomId==YoungAdultRoomController.RoomId && e.eventType=="item_first" && e.experience!=null).Select(e=>e.experience).ToArray();
             visitedItemIds=visits.Select(e=>e.itemId).Distinct().ToArray();
             achievementVisited=visits.Any(e=>e.tags!=null && e.tags.Contains(TagDefinitions.Achievement));
+            // Lifetime conditions count distinct first experiences, never repeated dwell farming.
+            var lifetime=state.EventLog.Where(e=>e.eventType=="item_first" && e.experience!=null && !string.IsNullOrEmpty(e.experience.itemId))
+                .GroupBy(e=>e.experience.itemId).Select(g=>g.First().experience).ToArray();
+            autonomousRelationshipVisits=lifetime.Count(e=>e.autonomous && e.tags!=null && e.tags.Contains("관계"));
+            creativeVisits=lifetime.Count(e=>e.tags!=null && e.tags.Contains("창작"));
+            string[] restMeals={"childhood_walk","childhood_family","youngadult_park","youngadult_dinner"};
+            restMealVisits=lifetime.Count(e=>restMeals.Contains(e.itemId));
+            stadiumVisited=lifetime.Any(e=>e.itemId=="adolescence_stadium" || e.itemId=="youngadult_stadium");
         }
         public YoungAdultSnapshot Copy()
         { var copy=(YoungAdultSnapshot)MemberwiseClone(); copy.visitedItemIds=visitedItemIds==null ? Array.Empty<string>() : (string[])visitedItemIds.Clone(); return copy; }

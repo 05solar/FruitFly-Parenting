@@ -40,6 +40,7 @@ namespace FruitFlyParenting.Tool
             if (config.neglectRewardIntervalSeconds <= 0f) return;
             int intervals = (int)Math.Floor((currentTime - rewardCursor) / config.neglectRewardIntervalSeconds);
             if (intervals <= 0) return;
+            using var impact=state.TrackImpact(currentTime,state.CurrentRoomId,"watching_only","곁에서 기다린 시간");
             rewardCursor += intervals * config.neglectRewardIntervalSeconds;
             float gain = Math.Min(intervals * config.neglectRewardTrustGain,
                 Math.Max(0f, config.neglectRewardTrustCapPerRoom - rewardedThisRoom));
@@ -60,6 +61,7 @@ namespace FruitFlyParenting.Tool
         public void RecordContact(PushSource source, float currentTime)
         {
             Tick(currentTime); // 정확히 60초를 기다린 뒤 접촉한 경우 이미 얻은 보상을 보존한다.
+            using var impact=state.TrackImpact(currentTime,state.CurrentRoomId,"contact",source==PushSource.ElectricStick ? "전기 봉 접촉" : "휠체어 접촉");
             var relationship = state.Relationship;
             float? previous = relationship.LastInterventionTime;
             if (previous.HasValue && currentTime - previous.Value < config.rapidRepeatThresholdSeconds)
