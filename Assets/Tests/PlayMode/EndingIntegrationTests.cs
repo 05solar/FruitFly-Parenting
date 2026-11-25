@@ -93,7 +93,7 @@ namespace FruitFlyParenting.Tests.PlayMode
         [UnityTest] public IEnumerator GazeOpensGallery_SelectionsReuseActualRecaps_AndRestartClearsRun()
         {
             yield return LoadEnding(2); var middle=Object.FindAnyObjectByType<MiddleAgeRoomController>(); yield return Until(()=>middle.CardVisible,16);
-            var camera=Camera.main; var button=middle.transform.Find("Ending Card/회고 갤러리");
+            var camera=Camera.main; var button=middle.transform.Find("Ending Card").GetComponentsInChildren<GazeAction>().Single(g=>g.name=="회고 갤러리").transform;
             var ray=new Ray(camera.transform.position,button.position-camera.transform.position);
             Assert.IsFalse(Physics.RaycastAll(ray,Vector3.Distance(camera.transform.position,button.position)).Any(h=>h.collider.name=="Small Table"),"The table must not hide the gallery button.");
             camera.transform.LookAt(button);
@@ -106,7 +106,7 @@ namespace FruitFlyParenting.Tests.PlayMode
             }
             middle.Presentation.SelectRoom(1); yield return Capture("Logs/ending-gallery.png",new Vector3(12,2.1f,8),new Vector3(12,2.1f,12.1f));
             int oldSeed=GameState.Current.RunSeed;
-            middle.transform.Find("Life Gallery/다시 시작").GetComponent<GazeAction>().Activate();
+            middle.transform.Find("Life Gallery").GetComponentsInChildren<GazeAction>().Single(g=>g.name=="다시 시작").Activate();
             yield return Until(()=>SceneManager.GetActiveScene().name=="00_Bootstrap"); yield return null;
             Assert.AreNotEqual(oldSeed,GameState.Current.RunSeed); Assert.IsNull(GameState.Current.FinalYoungAdultSnapshot);
             Assert.AreEqual(0,GameState.Current.Relationship.TotalInterventionCount); Assert.AreEqual(0,GameState.Current.Relationship.AutonomousVisitCount);

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR || !UNITY_ANDROID
 using System.Globalization;
 using System.Text;
 using FruitFlyParenting.Core;
@@ -15,7 +16,7 @@ namespace FruitFlyParenting.Fly
         {
             get
             {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || (DEVELOPMENT_BUILD && !UNITY_ANDROID)
                 return true;
 #else
                 return false;
@@ -32,6 +33,7 @@ namespace FruitFlyParenting.Fly
         public void Configure(FlyAgent target, GameBalanceConfig balance) { fly = target; config = balance; }
         void Update()
         {
+#if UNITY_EDITOR || (DEVELOPMENT_BUILD && !UNITY_ANDROID)
             if (!IsAvailable || fly == null) return;
             if (Keyboard.current != null && Keyboard.current.f8Key.wasPressedThisFrame) SetVisible(!Visible);
             if (Visible && Time.unscaledTime >= refreshAt)
@@ -39,9 +41,11 @@ namespace FruitFlyParenting.Fly
                 refreshAt = Time.unscaledTime + config.debugHudRefreshSeconds;
                 label.text = Describe(fly.CurrentDestinationId, fly.LastChoice, GameState.Current?.RunSeed ?? 0);
             }
+#endif
         }
         public void SetVisible(bool visible)
         {
+#if UNITY_EDITOR || (DEVELOPMENT_BUILD && !UNITY_ANDROID)
             if (!IsAvailable) return;
             if (visible && canvas == null)
             {
@@ -62,6 +66,7 @@ namespace FruitFlyParenting.Fly
                 label.alignment = TextAnchor.UpperLeft; label.supportRichText = false;
             }
             if (canvas != null) { canvas.gameObject.SetActive(visible); refreshAt = 0; }
+#endif
         }
         public static string Describe(string destination, ItemChoiceDecision decision, int seed)
         {
@@ -82,3 +87,4 @@ namespace FruitFlyParenting.Fly
         void OnDestroy() { if (canvas != null) Destroy(canvas.gameObject); }
     }
 }
+#endif

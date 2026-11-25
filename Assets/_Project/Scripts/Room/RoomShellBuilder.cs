@@ -18,7 +18,9 @@ namespace FruitFlyParenting.Room
         {
             GameObject root = new GameObject("RoomShell");
             root.AddComponent<RoomController>();
+#if UNITY_EDITOR
             root.AddComponent<RoomCoordinateGizmos>();
+#endif
 
             CreateBox(
                 "Floor", root.transform,

@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uACBD\uAE30\uAC00 \uB05D\uB098\uACE0 \uCE5C\uAD6C\uC640 \uC545\uC218\uD574\uC694."
-  - "\uC774\uAE30\uB4E0 \uC9C0\uB4E0 \uB2E4\uC74C \uACBD\uAE30\uB97C \uC900\uBE44\uD574\uC694."
-  childReflectionLine: "\uC774\uAE30\uB4E0 \uC9C0\uB4E0 \uB2E4\uC74C \uACBD\uAE30\uB97C \uC900\uBE44\uD574\uC694."
+  - "수고했어. 아까 패스 좋더라."
+  - "다음 경기엔 실수 안 해야지."
+  childReflectionLine: "다음 경기엔 실수 안 해야지."

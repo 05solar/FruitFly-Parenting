@@ -61,7 +61,7 @@ namespace FruitFlyParenting.Room
             if(incoming!=null) { incoming.Sound.enabled=false; outgoing.Sound.TakeOverPrevious(incoming.Sound.Next); }
             outgoing.CheckpointPath=CheckpointPath; outgoing.TransitionStarted+=Leaving; outgoing.CorridorEntered+=EnteredCorridor;
             outgoing.gameObject.SetActive(true); view.Initialize(Camera.main,room,"자기 방");
-            view.ShowNarrative("가구도 하루의 순서도, 이제 내가 골라 두었어요.");
+            view.ShowDialogue("이제 좀 내 방 같네.");
             gambling.Completed+=GamblingCompleted; EventBus.ToolUsed+=UsedTool; fly.gameObject.SetActive(true);
             if(startImmediately) { EventBus.RaiseRoomEntered(RoomId); Save("room_enter"); }
             Refresh();
@@ -70,14 +70,14 @@ namespace FruitFlyParenting.Room
         void Refresh()
         {
             bool ready=Timeline.DoorOpen && !gambling.IsPlaying;
-            exitDoor.SetActive(!Timeline.DoorOpen || gambling.IsPlaying); outgoing.SourceExitOpen=ready; contact.ContactsEnabled=Timeline.ToolsEnabled && !gambling.IsPlaying;
+            exitDoor.SetActive(!Timeline.DoorOpen || gambling.IsPlaying); outgoing.SourceExitOpen=ready; contact.ContactsEnabled=!gambling.IsPlaying;
             room.ConfigureExit(ready,Timeline.ExitOnly,room.transform.TransformPoint(new Vector3(23,0,12.1f)),config.roomExitChoiceWeight);
             if(Timeline.DoorOpen && !wasOpen) { wasOpen=true; GameState.Current.LogEvent(Time.time,RoomId,"door_open","elapsed="+Timeline.Elapsed); }
             if(ready && (!exitDirected || (Timeline.ExitOnly && !exitOnlyDirected)))
             { fly.HeadToExit(); exitDirected=true; exitOnlyDirected=Timeline.ExitOnly; }
             if(!tomorrowSpoken && Timeline.Elapsed>=Mathf.Max(config.roomEarliestExitSeconds,config.roomDoorOpenSeconds)*config.youngAdultTomorrowFraction && !gambling.IsPlaying)
-            { tomorrowSpoken=true; Say("youngadult_tomorrow","“내일은 내가 해 볼게. 지켜봐 줄래?”"); }
-            view.Refresh(Timeline,GameState.Current,room.VisitedItemIds.Count,gambling.IsPlaying ? "흘러간 시간과 남은 선택을 잠시 지켜봐 주세요." : null);
+            { tomorrowSpoken=true; Say("youngadult_tomorrow","내일은 내가 알아서 해 볼게."); }
+            view.Refresh(Timeline,GameState.Current,room.VisitedItemIds.Count,gambling.IsPlaying ? "장면 진행 중" : null);
         }
         void Visit(ItemSlot slot,bool first)
         {
@@ -99,16 +99,16 @@ namespace FruitFlyParenting.Room
         void Apply(ItemSlot slot,bool first,bool effectsEnabled,ItemVisitContext context)
         {
             var result=effects.Visit(slot.Definition,first,effectsEnabled,Time.time,context);
-            view.ShowNarrative(result.Narrative); EventBus.RaiseItemVisited(slot.ItemId,result.FirstVisit);
+            view.ShowDialogue(result.Narrative); EventBus.RaiseItemVisited(slot.ItemId,result.FirstVisit);
             Save(result.FirstVisit ? "item_first:"+slot.ItemId : "item_revisit:"+slot.ItemId);
         }
         void UsedTool(PushSource source,Vector3 direction,string target)
         {
             if(!HasEntered || leaving) return;
-            if(fly.IsProtectingActivity) Say("youngadult_boundary","“지금 하던 일은 내가 마칠게.”");
-            else if(GameState.Current.Relationship.Trust>=config.youngAdultHighTrustThreshold) Say("youngadult_advice","“말해 줘서 고마워. 다음 길은 내가 골라 볼게.”");
+            if(fly.IsProtectingActivity) Say("youngadult_boundary","잠깐, 이것만 마저 할게.");
+            else if(GameState.Current.Relationship.Trust>=config.youngAdultHighTrustThreshold) Say("youngadult_advice","알겠어. 한번 생각해 볼게.");
         }
-        void Say(string type,string line) { view.ShowNarrative(line); GameState.Current.LogEvent(Time.time,RoomId,type,line); }
+        void Say(string type,string line) { view.ShowDialogue(line); GameState.Current.LogEvent(Time.time,RoomId,type,line); }
         void Leaving() { leaving=true; contact.ContactsEnabled=false; }
         void EnteredCorridor()=>view.HideHud();
         void Save(string checkpoint) { GameState.Current.LogEvent(Time.time,RoomId,"checkpoint",checkpoint); saves.SaveCheckpoint(GameState.Current,checkpoint,CheckpointPath); }

@@ -1,0 +1,19 @@
+Downloaded 2026-11-25.
+
+Wheelchair v1, LOD1 (8,848 triangles), tevy
+Source: https://tevy.dev/models/wheelchair
+Original: https://tevy.dev/models/wheelchair/v1/lod1.glb
+License: CC0 1.0 Universal, https://creativecommons.org/publicdomain/zero/1.0/
+Derived OBJ preserves model geometry and normals. Original compressed GLB retained.
+Original textures replaced with shared URP surface colors. Electric drive housing,
+left joystick console and accent details are project additions.
+
+Baton, Pichuliru, 2022-03-08 (302 triangles)
+Source: https://poly.pizza/m/8KQCnj6CCM
+Original: https://static.poly.pizza/8906055d-e5ca-4c60-a3c3-f414fc6a8f93.glb
+License: Public Domain (CC0), https://creativecommons.org/publicdomain/zero/1.0/
+Derived OBJ preserves the original model; rescaled in the prefab. Metal electrodes,
+grip bands, emissive coils and animated electric arcs are project additions.
+
+Offline conversion: tools/decode_equipment_glb.mjs and tools/convert_equipment_obj.py.
+The player uses imported OBJ meshes and prefabs without GLB decoding or networking.

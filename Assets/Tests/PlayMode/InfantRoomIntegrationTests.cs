@@ -106,10 +106,10 @@ namespace FruitFlyParenting.Tests.PlayMode
                     float repeated = delta.stat == StatType.Stress && (n == 2 || n == 4 || n == 6) ? 3f : 0f;
                     Assert.AreEqual(Mathf.Clamp(Mathf.Clamp(before[(int)delta.stat]+delta.amount,0,100)+repeated,0,100),GameState.Current.Stats.GetValue(delta.stat),.001f,slot.ItemId);
                 }
-                string narrative = flow.View.NarrativeText;
+                string narrative = flow.View.DialogueText;
                 var after = Enumerable.Range(0,5).Select(i=>GameState.Current.Stats.GetValue((StatType)i)).ToArray();
                 yield return LeaveItem(); yield return EnterItem(slot);
-                Assert.AreNotEqual(narrative,flow.View.NarrativeText);
+                Assert.AreNotEqual(narrative,flow.View.DialogueText);
                 for (int i=0;i<5;i++) Assert.AreEqual(after[i],GameState.Current.Stats.GetValue((StatType)i));
                 Assert.AreEqual(1,GameState.Current.Relationship.GetItemRevisitCount(slot.ItemId));
             }
@@ -126,7 +126,7 @@ namespace FruitFlyParenting.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator ObservationCooldown_BlocksBothSources_ThenEnablesNormalElectricContact()
+        public IEnumerator RoomEntryImmediatelyAllowsWheelchairAndElectricContact()
         {
             HoldFly();
             // 정지 요청이 NavMesh/Transform에 반영된 다음 접촉 전 기준 위치를 기록한다.
@@ -134,24 +134,17 @@ namespace FruitFlyParenting.Tests.PlayMode
             yield return new WaitForFixedUpdate();
             yield return null;
             var contact = fly.GetComponent<FlyContactReceiver>();
-            Vector3 at = fly.transform.position;
-            float stress = GameState.Current.Stats.GetValue(StatType.Stress);
+            Assert.IsTrue(contact.ContactsEnabled);
+            Assert.Less(flow.Timeline.Elapsed,5f);
             contact.ReceiveContact(PushSource.Wheelchair,Vector3.left,Time.time);
-            contact.ReceiveContact(PushSource.ElectricStick,Vector3.left,Time.time);
-            yield return new WaitForSeconds(.1f);
-            // NavMesh 바닥 높이 보정의 부동소수점 오차는 허용하되 1mm 이상 이동은 실패한다.
-            Assert.Less(Vector3.Distance(at,fly.transform.position),.001f,
-                $"Protected observation must prevent physical pushing: {at:F6} -> {fly.transform.position:F6}");
-            Assert.IsFalse(fly.IsBeingPushed);
-            Assert.AreEqual(0,GameState.Current.Relationship.TotalInterventionCount);
-            Assert.AreEqual(stress,GameState.Current.Stats.GetValue(StatType.Stress));
-            Assert.AreEqual(0,fly.GetComponent<FlyShockFeedback>().ShockCount);
-            StringAssert.Contains("잠시 지켜봐",flow.View.StatusText);
-            flow.Timeline.Advance(90.1f-flow.Timeline.Elapsed);
-            yield return null;
-            contact.ReceiveContact(PushSource.ElectricStick,Vector3.left,Time.time);
             Assert.IsTrue(fly.IsBeingPushed);
             Assert.AreEqual(1,GameState.Current.Relationship.TotalInterventionCount);
+            Assert.AreEqual(0,fly.GetComponent<FlyShockFeedback>().ShockCount);
+            StringAssert.DoesNotContain("도구 사용까지",flow.View.StatusText);
+            float stress = GameState.Current.Stats.GetValue(StatType.Stress);
+            contact.ReceiveContact(PushSource.ElectricStick,Vector3.left,Time.time);
+            Assert.IsTrue(fly.IsBeingPushed);
+            Assert.AreEqual(2,GameState.Current.Relationship.TotalInterventionCount);
             Assert.AreEqual(stress+2.4f,GameState.Current.Stats.GetValue(StatType.Stress),.001f);
             Assert.AreEqual(1,fly.GetComponent<FlyShockFeedback>().ShockCount);
         }

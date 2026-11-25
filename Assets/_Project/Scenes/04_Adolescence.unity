@@ -2134,6 +2134,7 @@ GameObject:
   - component: {fileID: 119878334}
   - component: {fileID: 119878336}
   - component: {fileID: 119878335}
+  - component: {fileID: 119878338}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_letter
   m_TagString: Untagged
@@ -2195,6 +2196,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &119878338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119878333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &126327030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4342,6 +4357,7 @@ GameObject:
   - component: {fileID: 347721075}
   - component: {fileID: 347721077}
   - component: {fileID: 347721076}
+  - component: {fileID: 347721079}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_startup
   m_TagString: Untagged
@@ -4403,6 +4419,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &347721079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347721074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &357348070
 GameObject:
   m_ObjectHideFlags: 0
@@ -5459,6 +5489,7 @@ GameObject:
   - component: {fileID: 477385535}
   - component: {fileID: 477385537}
   - component: {fileID: 477385536}
+  - component: {fileID: 477385539}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_park
   m_TagString: Untagged
@@ -5520,6 +5551,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &477385539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477385534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &479367292
 GameObject:
   m_ObjectHideFlags: 0
@@ -5583,7 +5628,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 44
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
@@ -5889,7 +5934,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 44
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
@@ -6276,6 +6321,7 @@ GameObject:
   - component: {fileID: 553498228}
   - component: {fileID: 553498230}
   - component: {fileID: 553498229}
+  - component: {fileID: 553498232}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_dayoff
   m_TagString: Untagged
@@ -6337,6 +6383,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &553498232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553498227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &559247973
 GameObject:
   m_ObjectHideFlags: 0
@@ -8412,6 +8472,7 @@ GameObject:
   - component: {fileID: 732359793}
   - component: {fileID: 732359795}
   - component: {fileID: 732359794}
+  - component: {fileID: 732359797}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_independence
   m_TagString: Untagged
@@ -8473,6 +8534,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &732359797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732359792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &735538655
 GameObject:
   m_ObjectHideFlags: 0
@@ -9032,6 +9107,7 @@ GameObject:
   - component: {fileID: 810075479}
   - component: {fileID: 810075481}
   - component: {fileID: 810075480}
+  - component: {fileID: 810075483}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_theft
   m_TagString: Untagged
@@ -9093,6 +9169,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &810075483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810075478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &814013299
 GameObject:
   m_ObjectHideFlags: 0
@@ -9830,7 +9920,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 42
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
@@ -10217,6 +10307,7 @@ GameObject:
   - component: {fileID: 878774648}
   - component: {fileID: 878774650}
   - component: {fileID: 878774649}
+  - component: {fileID: 878774652}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_selection
   m_TagString: Untagged
@@ -10278,6 +10369,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &878774652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878774647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &880049391
 GameObject:
   m_ObjectHideFlags: 0
@@ -11092,6 +11197,7 @@ GameObject:
   - component: {fileID: 918206143}
   - component: {fileID: 918206145}
   - component: {fileID: 918206144}
+  - component: {fileID: 918206147}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_counsel
   m_TagString: Untagged
@@ -11153,6 +11259,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &918206147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918206142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &943582436
 GameObject:
   m_ObjectHideFlags: 0
@@ -12037,6 +12157,7 @@ GameObject:
   - component: {fileID: 1006158102}
   - component: {fileID: 1006158104}
   - component: {fileID: 1006158103}
+  - component: {fileID: 1006158106}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_performance
   m_TagString: Untagged
@@ -12098,6 +12219,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1006158106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006158101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1006942132
 GameObject:
   m_ObjectHideFlags: 0
@@ -13861,6 +13996,7 @@ GameObject:
   - component: {fileID: 1175681343}
   - component: {fileID: 1175681345}
   - component: {fileID: 1175681344}
+  - component: {fileID: 1175681347}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_club
   m_TagString: Untagged
@@ -13922,6 +14058,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1175681347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175681342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1187967292
 GameObject:
   m_ObjectHideFlags: 0
@@ -14429,6 +14579,7 @@ GameObject:
   - component: {fileID: 1201507868}
   - component: {fileID: 1201507870}
   - component: {fileID: 1201507869}
+  - component: {fileID: 1201507872}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_parents
   m_TagString: Untagged
@@ -14490,6 +14641,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1201507872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201507867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1202831409
 GameObject:
   m_ObjectHideFlags: 0
@@ -15497,6 +15662,7 @@ GameObject:
   - component: {fileID: 1290896611}
   - component: {fileID: 1290896613}
   - component: {fileID: 1290896612}
+  - component: {fileID: 1290896615}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_stadium
   m_TagString: Untagged
@@ -15558,6 +15724,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1290896615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290896610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1291532195
 GameObject:
   m_ObjectHideFlags: 0
@@ -15603,6 +15783,7 @@ GameObject:
   - component: {fileID: 1296864809}
   - component: {fileID: 1296864811}
   - component: {fileID: 1296864810}
+  - component: {fileID: 1296864813}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_studio
   m_TagString: Untagged
@@ -15664,6 +15845,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1296864813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296864808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1300225955
 GameObject:
   m_ObjectHideFlags: 0
@@ -16127,6 +16322,7 @@ GameObject:
   - component: {fileID: 1319658484}
   - component: {fileID: 1319658486}
   - component: {fileID: 1319658485}
+  - component: {fileID: 1319658488}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_nightgame
   m_TagString: Untagged
@@ -16188,6 +16384,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1319658488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319658483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1323576768
 GameObject:
   m_ObjectHideFlags: 0
@@ -19011,6 +19221,7 @@ GameObject:
   - component: {fileID: 1508378088}
   - component: {fileID: 1508378090}
   - component: {fileID: 1508378089}
+  - component: {fileID: 1508378092}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_exam
   m_TagString: Untagged
@@ -19072,6 +19283,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1508378092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508378087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1517186203
 GameObject:
   m_ObjectHideFlags: 0
@@ -20099,6 +20324,7 @@ GameObject:
   - component: {fileID: 1566146436}
   - component: {fileID: 1566146438}
   - component: {fileID: 1566146437}
+  - component: {fileID: 1566146440}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_gambling
   m_TagString: Untagged
@@ -20160,6 +20386,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1566146440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566146435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1581459501
 GameObject:
   m_ObjectHideFlags: 0
@@ -20302,22 +20542,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4673291544176240731, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1263098051199260384, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1591303883}
   m_SourcePrefab: {fileID: 100100000, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
 --- !u!114 &1591303881 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3543841654970027407, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
   m_PrefabInstance: {fileID: 1591303880}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1591303882}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91b0b2804061be84197b65ac27b4e6ad, type: 3}
   m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Wheelchair.WheelchairLocomotion
+--- !u!1 &1591303882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1263098051199260384, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
+  m_PrefabInstance: {fileID: 1591303880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1591303883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591303882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cebcf797449ee18459b6ac53838cc1cd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ComfortController
+  font: {fileID: 12800000, guid: 31b7d24da49884047b21c847862bf897, type: 3}
+  overlayMaterial: {fileID: 2100000, guid: ec188b4ac71d94e4eb65d338b7bcd87e, type: 2}
+  preferencesKey: FruitFlyParenting.Comfort.v1
 --- !u!1 &1617427278
 GameObject:
   m_ObjectHideFlags: 0
@@ -20329,6 +20593,7 @@ GameObject:
   - component: {fileID: 1617427279}
   - component: {fileID: 1617427281}
   - component: {fileID: 1617427280}
+  - component: {fileID: 1617427283}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_training
   m_TagString: Untagged
@@ -20390,6 +20655,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1617427283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617427278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1621569337
 GameObject:
   m_ObjectHideFlags: 0
@@ -20581,6 +20860,7 @@ GameObject:
   - component: {fileID: 1628216344}
   - component: {fileID: 1628216346}
   - component: {fileID: 1628216345}
+  - component: {fileID: 1628216348}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_quit
   m_TagString: Untagged
@@ -20642,6 +20922,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1628216348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628216343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1632212863
 GameObject:
   m_ObjectHideFlags: 0
@@ -20653,6 +20947,7 @@ GameObject:
   - component: {fileID: 1632212864}
   - component: {fileID: 1632212866}
   - component: {fileID: 1632212865}
+  - component: {fileID: 1632212868}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_interview
   m_TagString: Untagged
@@ -20714,6 +21009,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1632212868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632212863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1634703694
 GameObject:
   m_ObjectHideFlags: 0
@@ -20815,6 +21124,7 @@ GameObject:
   - component: {fileID: 1635147523}
   - component: {fileID: 1635147525}
   - component: {fileID: 1635147524}
+  - component: {fileID: 1635147527}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_stars
   m_TagString: Untagged
@@ -20876,6 +21186,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1635147527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635147522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1635983140
 GameObject:
   m_ObjectHideFlags: 0
@@ -22217,6 +22541,7 @@ GameObject:
   - component: {fileID: 1722723024}
   - component: {fileID: 1722723026}
   - component: {fileID: 1722723025}
+  - component: {fileID: 1722723028}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_workshop
   m_TagString: Untagged
@@ -22278,6 +22603,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1722723028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722723023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1741681131
 GameObject:
   m_ObjectHideFlags: 0
@@ -22970,6 +23309,7 @@ GameObject:
   - component: {fileID: 1799728391}
   - component: {fileID: 1799728393}
   - component: {fileID: 1799728392}
+  - component: {fileID: 1799728395}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_job
   m_TagString: Untagged
@@ -23031,6 +23371,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1799728395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799728390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1801490797
 GameObject:
   m_ObjectHideFlags: 0
@@ -25394,6 +25748,7 @@ GameObject:
   - component: {fileID: 1962663112}
   - component: {fileID: 1962663114}
   - component: {fileID: 1962663113}
+  - component: {fileID: 1962663116}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_stadium
   m_TagString: Untagged
@@ -25455,6 +25810,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1962663116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962663111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1965385252
 GameObject:
   m_ObjectHideFlags: 0
@@ -25556,6 +25925,7 @@ GameObject:
   - component: {fileID: 1971565902}
   - component: {fileID: 1971565904}
   - component: {fileID: 1971565903}
+  - component: {fileID: 1971565906}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_dinner
   m_TagString: Untagged
@@ -25617,6 +25987,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1971565906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971565901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1973862883
 GameObject:
   m_ObjectHideFlags: 0
@@ -26078,6 +26462,7 @@ GameObject:
   - component: {fileID: 2018460940}
   - component: {fileID: 2018460942}
   - component: {fileID: 2018460941}
+  - component: {fileID: 2018460944}
   m_Layer: 0
   m_Name: ItemSlot_youngadult_investment
   m_TagString: Untagged
@@ -26139,6 +26524,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2018460944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018460939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &2021842766
 GameObject:
   m_ObjectHideFlags: 0
@@ -27906,6 +28305,7 @@ GameObject:
   - component: {fileID: 2063749432}
   - component: {fileID: 2063749434}
   - component: {fileID: 2063749433}
+  - component: {fileID: 2063749436}
   m_Layer: 0
   m_Name: ItemSlot_adolescence_camp
   m_TagString: Untagged
@@ -27967,6 +28367,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2063749436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063749431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &2066073380
 GameObject:
   m_ObjectHideFlags: 0

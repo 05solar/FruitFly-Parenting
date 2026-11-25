@@ -51,6 +51,7 @@ namespace FruitFlyParenting.Room
         void Update()
         {
             if(!IsPlaying) return;
+            var previousPhase=Phase;
             elapsed+=Time.deltaTime;
             float t=Mathf.Clamp01(elapsed/Mathf.Clamp(config.adolescenceExitSceneSeconds,10,15));
             var middle=room.TransformPoint(new Vector3(12,3.3f,11));
@@ -78,6 +79,8 @@ namespace FruitFlyParenting.Room
                 Phase=AdolescenceExitPhase.Extinguishing; smoke.SetActive(false); cigarette.SetActive(false);
                 fly.transform.position=Vector3.Lerp(window,exit,(t-5f/6)*6);
             }
+            if(Phase!=previousPhase)
+                InfantRoomView.SpeakFor(fly,Phase==AdolescenceExitPhase.AtWindow ? "콜록… 목 아파." : "됐어. 이제 갈래.");
             if(t<1) return;
             agent.enabled=true;
             if(!agent.Warp(exit)) Debug.LogError("Adolescence exit landing has no NavMesh.",this);

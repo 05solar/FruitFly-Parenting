@@ -23,14 +23,14 @@ namespace FruitFlyParenting.Room
             approaches.TryGetValue(item.itemId,out int count); approaches[item.itemId]=++count;
             if(count<config.adolescencePreferenceApproaches) return null;
             PreferredItemId=item.itemId; preferredTags=(string[])item.tags.Clone();
-            return "“저쪽에 가 보고 싶어. "+item.displayName.Replace(" ★","")+" 쪽으로.”";
+            return "나 저기 가 볼래.";
         }
         public string Block(string[] tags,float rebellion)
         {
             if(PreferredItemId==null || tags==null || !tags.Intersect(preferredTags).Any() || answeredBlocks) return null;
             if(++BlockCount<config.adolescenceRepeatedBlocks) return null;
             answeredBlocks=true;
-            return rebellion>=config.highRebellionDialogueThreshold ? "“이번엔 내가 골라 볼게.”" : "“그냥 시키는 대로 할게.”";
+            return rebellion>=config.highRebellionDialogueThreshold ? "왜 자꾸 막아? 내가 고를래." : "알았어. 시키는 대로 할게.";
         }
         public bool RefuseConversation(float trust)
         {
@@ -46,9 +46,9 @@ namespace FruitFlyParenting.Room
             float start=Math.Max(lastTool,DoorTime-config.adolescenceWaitingWindowSeconds);
             // A frame can cross the door deadline. Credit only time up to that deadline.
             if(Math.Min(elapsed,DoorTime)-start>=config.adolescenceQuietSeconds)
-            { Waited=true; return "“기다려 줘서 고마워. 이번 선택은 내가 말해 볼게.”"; }
+            { Waited=true; return "기다려 줘서 고마워. 나 이제 말할게."; }
             if(announcedWindow || elapsed>DoorTime) return null;
-            announcedWindow=true; return "잠깐 도구를 내려놓고 30초 동안 아이의 말을 기다려 주세요.";
+            announcedWindow=true; return "잠깐만. 무슨 말부터 할지 생각 좀 할게.";
         }
     }
 }

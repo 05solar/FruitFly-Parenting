@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uB0B4\uAC00 \uACE0\uB978 \uCC45\uC744 \uCC9C\uCC9C\uD788 \uC77D\uC5B4\uC694."
-  - "\uC88B\uC544\uD558\uB294 \uD398\uC774\uC9C0\uB97C \uB2E4\uC2DC \uD3B4\uC694."
-  childReflectionLine: "\uC88B\uC544\uD558\uB294 \uD398\uC774\uC9C0\uB97C \uB2E4\uC2DC \uD3B4\uC694."
+  - "이 책 재밌겠다!"
+  - "여기 봐! 이 장면 진짜 웃겨."
+  childReflectionLine: "여기 봐! 이 장면 진짜 웃겨."

@@ -1,0 +1,6 @@
+{
+    "name": "FruitFlyParenting.Quest",
+    "references": ["FruitFlyParenting.Game", "Oculus.VR"],
+    "includePlatforms": ["Android"],
+    "autoReferenced": true
+}

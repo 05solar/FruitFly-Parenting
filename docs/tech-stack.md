@@ -7,6 +7,7 @@
 - **엔진:** Unity (LTS 최신 버전, 예: Unity 6 LTS 계열). URP(Universal Render Pipeline) 사용 — Quest 스탠드얼론 최적화를 염두에 둔 선택.
 - **VR SDK:** OpenXR Plugin + XR Interaction Toolkit (XRI). SteamVR 전용 플러그인은 쓰지 않는다 (OpenXR 하나로 PCVR과 Quest를 모두 커버).
 - **1단계 타깃:** PCVR (OpenXR, SteamVR/Quest Link로 헤드셋 연결). 그래픽 품질과 반복 테스트 속도를 우선한다.
+- **PC 입력 확장(2026-11-25 사용자 요청):** 같은 Windows 플레이어에서 헤드셋 없이 방향키/WASD·마우스로도 플레이한다. `DesktopControls`가 기존 휠체어 Continuous Move/Turn에 입력을 전달한다. 오른쪽 드래그는 카메라 시점만 변경하며 차체를 돌리지 않는다. 왼쪽 버튼은 기존 물리 접촉 봉을 내밀고, UI 버튼 위에서는 도구를 사용하지 않는다. PC UI는 클릭으로 선택한다. 실행 중인 XR display 또는 XR 입력 기기가 있으면 PC 입력을 중지하고 기존 tracking driver와 도구 상태를 복원한다. Android에는 PC 컴포넌트를 자동 부착하지 않는다. VR의 고정 손 역할과 이동 규칙은 유지한다.
 - **2단계 타깃:** Meta Quest 스탠드얼론 (Android 빌드, OpenXR Meta 기능 그룹). 폴리곤/드로우콜/쉐이더 예산을 줄이는 최적화 패스를 별도 단계(15번 프롬프트)에서 수행한다.
 - **입력:** Unity Input System + XRI 기본 액션 맵. 왼손 스틱 = 전기 휠체어 이동(전진·후진·회전) 전용, 오른손 = 항상 전기가 흐르는 사랑의 매 고정 장착(손 바꾸기 없음, 역할 고정). 휠체어 이동은 XRI의 Continuous Move/Turn Locomotion Provider를 쓰고, 텔레포트/순간이동 Provider는 사용하지 않는다 (8장 VR 기준).
 
@@ -201,7 +202,7 @@ TextMeshPro Essential Resources를 다시 임포트하려면 `ProjectSetup.Impor
 
 `InfantRoomSetup.Build`는 기존 03 방과 04 리그를 사용해 `Assets/_Project/Scenes/01_Infant.unity`를 만들고 Build Settings의 첫 씬으로 등록한다. Unity 메뉴는 `Fruit Fly Parenting > Setup 05 Infant Room`이다. 03 테스트 씬과 04 프리팹은 별도로 유지한다. `ProjectSetup.Repair`도 영유아 씬이 이미 있으면 마지막에 05 셋업을 실행한다. 생성 도구는 해당 씬과 명세 기반 물품 에셋을 다시 작성하므로 수동으로 편집한 아트/수치가 있으면 실행 전에 검토한다.
 
-영유아 씬을 열고 Play하면 즉시 시작한다. 초반 90초에는 휠체어 이동은 가능하고 범퍼·봉 개입은 비활성이다. 머리 앞 안내에 남은 시간이 표시된다. 8분에 동쪽 문이 열리며 초파리가 문 옆으로 먼저 이동한다. 플레이어가 왼손 스틱으로 동쪽 경계 x=24를 넘으면 실제 시간 0.75초에 걸쳐 화면이 어두워진다. 05 당시에는 복도 placeholder였고, 현재는 아래 06의 실제 복도로 연결된다. 시간 경과만으로 플레이어를 이동시키거나 다음 단계로 넘기지 않는다.
+영유아 씬을 열고 Play하면 즉시 시작한다. 05 당시의 초반 90초 범퍼·봉 제한과 남은 시간 표시는 2026-11-25 사용자 요청으로 제거했다. 현재는 모든 성장 방에서 도구를 바로 사용할 수 있다. 8분에 동쪽 문이 열리며 초파리가 문 옆으로 먼저 이동한다. 플레이어가 왼손 스틱으로 동쪽 경계 x=24를 넘으면 실제 시간 0.75초에 걸쳐 화면이 어두워진다. 05 당시에는 복도 placeholder였고, 현재는 아래 06의 실제 복도로 연결된다. 시간 경과만으로 플레이어를 이동시키거나 다음 단계로 넘기지 않는다.
 
 보육실은 따뜻한 빛, 천장 모빌, 쿠션과 물품별 단순 도형, 포대기 색과 쪽쪽이로 표시한다. 기존 폭 1m 가구 충돌 프록시와 저장된 NavMesh를 유지한다. 동·서측 물품은 03에서 확정한 `(21,14)`, `(3,14)`를 사용한다. 초파리의 출구 대기점은 `(23,12.1)`이며 휠체어가 통과하는 문 중앙 `(24,11)`을 비워 둔다.
 
@@ -213,7 +214,7 @@ TextMeshPro Essential Resources를 다시 임포트하려면 `ProjectSetup.Impor
 |---|---|
 | `ItemDefinition` | 물품 ID, 이름, 태그, S/I/H/P/L 변화량, ★ 여부, 최초/재방문 대사 |
 | `ItemEffectApplier` | 방당 최초 한 번 효과 적용, 중복 이벤트 방어, 스탯별 합계 ±12 제한, 재방문 대사·로그 |
-| `RoomTimeline` | 주입된 게임 시간으로 90초/7분/8분/10분 경계 계산 |
+| `RoomTimeline` | 주입된 게임 시간으로 7분/8분/10분 경계 계산 |
 | `InfantRoomController` | 방문 이벤트 연결, 도구 잠금, 문·조명·목표 변경, 체크포인트. 06에서 페이드를 공통 전환 컨트롤러로 분리 |
 | `InfantRoomView` | 한국어 안내·스탯·대사·물품 이름. 06에서 공통 페이드를 `TransitionView`로 분리 |
 | `RoomExitTrigger` | 실제 휠체어 루트의 출구 통과를 공통 방/복도 전환 컨트롤러에 전달 |
@@ -244,7 +245,7 @@ TextMeshPro Essential Resources를 다시 임포트하려면 `ProjectSetup.Impor
 
 | 필드 | 기본값 |
 |---|---|
-| `toolCooldownOnRoomEnterSeconds` | 90초 |
+| 방 입장 도구 대기 | 제거: 입장 직후 사용 가능 |
 | `roomEarliestExitSeconds` | 420초 |
 | `roomDoorOpenSeconds` | 480초 |
 | `roomEffectsStopSeconds` | 600초 |
@@ -872,3 +873,83 @@ T=30부터는 기존 접촉·순응 규칙을 사용한다. T≥70의 순응 임
 ![실제 변화 경험과 시선 선택 버튼을 표시한 엔딩 카드](images/ending-card-magic.png)
 
 ![여섯 방을 선택해 실제 기록을 돌아보는 갤러리](images/ending-gallery.png)
+
+## 16. 13 커넥톰 독립 시각화
+
+### 범위와 데이터
+
+본편과 독립된 `Experimental_ConnectomeViewer.unity`를 추가했다. 시각화 구현 전에 [데이터 명세](connectome-data-spec.md)를 작성했고, FAFB v783의 Codex 공개 정적 `classification.csv.gz`/`connections.csv.gz` 두 파일을 SHA-256으로 고정했다. 데이터와 주석은 CC BY-NC 4.0이며 비상업 실험에 사용한다. 논문 도판·뉴런 메시·해부학적 좌표는 복제하지 않는다. 기존 Noto Sans CJK KR 글꼴은 OFL 1.1로 재사용한다.
+
+Python 표준 라이브러리 전처리는 ORN→ALPN→KC→MBON→하행 뉴런의 실제 연결 경로를 선별한다. 연결당 영역별 시냅스 수를 합산하고, 최대 병목 경로 상위 6개를 합친다. 동점 후보는 마지막 병목까지 고려해 ID 사전순으로 고정한다. 최종 **17개 뉴런/16개 연결**과 단계별 기억 모티브 **5개 노드/4개 연결**의 JSON 두 개는 합계 **14,119 bytes**다. 모든 원래 ID, 선택 경로, 영역별 시냅스 수와 출처 해시를 보존한다. [원본·산출물 해시 및 경로](reports/step13-data.json)를 함께 기록했다.
+
+### 사용법과 표시 경계
+
+`scripts/Build-Connectome.ps1 -Test`는 `Builds/ConnectomeProject`에 별도 Unity 프로젝트를 만들고 테스트한 뒤 Windows 실행 파일을 생성한다. 패키지는 Input System/URP/UI/Test Framework와 필요한 Unity 모듈만 사용하며 본편 Game 어셈블리와 XR/vendor 패키지는 복사하지 않는다. 빌드 결과는 `Builds/ConnectomeProject/Builds/Step13/ConnectomeExperiment/ConnectomeExperiment.exe`다. 출처·변환 설명이 있는 `CONNECTOME-NOTICE.txt`, 글꼴의 `FONT-OFL.txt`도 동봉한다. `-PrepareOnly`는 독립 프로젝트/씬만 생성한다. 원본 Unity 메뉴 `Fruit Fly Parenting/Experimental/13 Build Windows Viewer (isolated)`에서도 빌드할 수 있다.
+
+기본 화면은 1440×900 데스크톱이다. M/버튼으로 두 모드를 전환하고, Space로 창작된 빛의 움직임을 정지/재생한다. R은 시점 초기화, 우클릭 드래그/좌우 화살표는 회전, 휠은 확대다. 방향 화살표와 `log(1 + 시냅스 수)`에 비례한 선 굵기는 실제 선택 관계를 표시한다. 노드 위치·색·빛의 이동은 창작이며, 흥분/억제·신경활동·선택 확률을 모델링하지 않는다. 하행 뉴런을 근육 운동뉴런으로 표시하지 않는다.
+
+출처, 실제 데이터/창작의 구분, 정확한 고지 문구를 항상 화면 하단의 독립 overlay에 표시한다. 모드 전환·회전·일시정지는 이 overlay를 변경하지 않는다. 기억 모티브는 전체 뇌의 집계가 아니라 선택 경로의 축약이며, 본편 `CorridorShell`과 아직 통합하지 않는다. `IFlyDecisionPolicy` 변경이나 회로 기반 정책 구현도 하지 않는다.
+
+### 본편 분리와 검증
+
+독립 `FruitFlyParenting.Connectome.asmdef`는 Game/Fly 어셈블리를 참조하지 않고 `UNITY_EDITOR || CONNECTOME_EXPERIMENT` 조건에서만 컴파일된다. 본편 `EditorBuildSettings` 목록은 그대로이며, 실험 JSON은 씬의 직접 참조로만 로드한다. Resources/StreamingAssets/Addressables에는 넣지 않는다. 약 51MB의 압축 원본은 Unity Assets 밖의 Git 제외 경로 `Logs/ConnectomeRaw`에만 있다.
+
+- Python **9/9**: 실제 경로 보장, 영역 합산 후 임계값, 동점·후단 병목, 입력 오류, 고정 해시, 모티브 합계 보존. 전처리 재실행의 두 출력은 byte-identical이다.
+- 독립 프로젝트 EditMode **5/5**: 실제 그래프/경로/가중치/예산/출처 검사, 손상 데이터 거부, 어셈블리 분리. 사용자 설정을 복사한 전체 프로젝트에서도 같은 EditMode **5/5**가 통과했다.
+- 독립 프로젝트 PlayMode **1/1**: 실제 버튼으로 모드 전환, 빛 일시정지, 반복 전환 시 그래프 중복 제거, 출처/고지의 화면 내부 배치, GPU 픽셀 읽기에서 글자·그래프와 정상 셰이더 확인. 캡처에서 overlay를 잠시 같은 카메라에 연결해 RenderTexture로 읽고 즉시 원래 overlay로 복구한다.
+- **본편 Windows 빌드 성공**: 12단계 커밋 `89700a5`의 설정에 13단계 파일을 더한 일회용 worktree에서 확인했다. BuildReport의 실험 자산 **0개**, 플레이어의 `FruitFlyParenting.Connectome.dll` **미포함**이다. 결과물은 131,279,291 bytes로 기록됐다. 실험 제외 확인이며 새 XR 설정의 호환성 검증을 대신하지 않는다.
+- **독립 실험 Windows 빌드 성공**: 두 JSON·씬·셰이더가 포함되고 본편 씬은 없다. 별도 프로세스를 8초 실행해 네이티브 종료나 런타임 오류 없이 유지됨을 확인했다. [빌드 근거와 환경 제한](reports/step13-builds.json)을 참고한다.
+
+현재 사용자 작업 폴더에 추가된 Meta XR 209 설정은 별도 문제가 있다. 전체 프로젝트 PlayMode는 MRUK 네이티브 초기화에서 종료됐고, 전체 프로젝트 빌드는 `Meta XR Hand Tracking Data Source requires the Hand Tracking Subsystem feature to be enabled` 검증 오류로 차단됐다. 이 단계에서는 해당 설정을 수정하지 않았으며, 작업 시작 시 존재한 사용자 파일 26개의 해시가 그대로 유지됨을 확인했다. 따라서 검증용 실험 빌드를 최소 패키지 프로젝트로 분리했고, 본편 포함 자산 검사는 12단계 설정 복사본에서 수행했다. HMD 성능·본편 VR 통합은 이번 데스크톱 실험의 검증 범위가 아니다.
+
+![FlyWire v783 실제 경로의 17개 뉴런과 16개 연결](images/connectome-neurons.png)
+
+![선택된 경로만 다섯 단계로 합산한 기억 모티브](images/connectome-memory-motif.png)
+
+## 17. 14 VR 편안함·접근성 감사
+
+본편 7개 씬의 리그 7개와 물품 슬롯 133개(씬 복제 포함)를 전수 검사하고 보강했다. [스펙 8장 체크리스트, 발견 사항, 기본값과 예외](vr-comfort-audit.md)를 별도 문서로 기록한다.
+
+스틱 중립에서 남던 이동·회전 관성을 제거했다. 왼손 스틱/오른손 전기 봉 역할을 유지하며, **F9 또는 왼손 Y**로 일시정지 설정을 연다. 휠체어의 설정 버튼을 2초 바라보는 방법도 제공한다. 열린 메뉴는 공간에 고정되어 시선으로 선택할 수 있다. 회전 기본 30°/초(10~45), 비네팅 기본 on, 높이 보정 기본 0m(±0.35m)를 회차 저장과 별개인 PlayerPrefs에 저장한다. 수동 높이는 5cm 단위, 자동 높이는 HMD 추적이 있을 때 1.20m 눈높이를 목표로 한다. 조정은 0.5초 이상 암전에서 수직으로만 수행한다.
+
+수치 변화는 실제 clamp된 차이를 ▲/▼·부호·색으로 표시하며 중앙을 피한다. 감전·망설임·흡연/소화에는 자막을 추가했다. 모든 슬롯의 접근 그림자·소리, 첫 방문 뒤 조명 감소를 적용하고, 시기별 오디오를 자체 합성한 서로 다른 루프로 교체했다. 기존 방/복도 전환·회상·체크포인트 로직은 유지한다.
+
+전체 EditMode **250/250**, PlayMode **67/67** 통과 후 마지막 UI/암전/자막 변경을 대상 PlayMode **6/6**으로 확인했다. 두 프로세스 간 설정 저장/로드와 Windows 빌드를 검증했다. [검증 근거](reports/step14-validation.json)와 [오디오 파형·해시](reports/step14-audio.json)를 보관한다.
+
+검증은 12단계 패키지/프로젝트 설정 기준의 별도 worktree에서 수행했다. 현재 사용자 Meta XR 209 설정의 MRUK 초기화/Hand Tracking Subsystem 문제와 실제 HMD 양안·가독성·청취 검증은 남아 있으며, 사용자 XR 설정을 이 작업으로 덮어쓰지 않았다. 미사용 XRI 샘플의 Teleport/SnapTurn 코드와 13단계 데스크톱 뷰어는 본편 이동 경로가 아니라는 점도 감사 문서에 명시한다.
+
+## 18. 15 Quest 스탠드얼론 최적화
+
+보유 기종이 미확인이고 ADB 연결 기기가 없어 **Quest 2 / 72Hz**를 임시 최저 기준으로 정한다. Quest 3/3S도 같은 품질로 시작하고 90Hz는 실제 측정 후 결정한다. 다음은 성능 보장이 아닌 프로젝트 예산이다.
+
+| 지표 | 목표 |
+| --- | --- |
+| 프레임 | 72Hz = 13.89ms, 정상 구간 CPU/GPU p95 각각 ≤11.5ms |
+| 삼각형 | 방별 ≤100,000 / 로드된 씬 전체 ≤250,000 |
+| 드로우콜 | 실제 렌더링 프레임당 ≤200, 기기 측정 필요 |
+| 텍스처 메모리 | 콘텐츠 ≤128MiB, XR eye buffer/컴포지터 별도 |
+| 앱 메모리 | ≤1.5GiB, 기기 측정 필요 |
+
+`QuestBuildSetup.Configure`는 Android에 OpenXR + Meta Quest Support/Meta XR + Touch/Touch Plus를 지정한다. 손 추적·Space Warp·모의 런타임은 본편에서 사용하지 않아 Android에서 끈다. **Linear / Vulkan / IL2CPP / ARM64 / min API 29 / target API 34**를 사용한다. Standalone OpenXR 설정과 설치된 Meta XR 209 패키지는 유지한다.
+
+Android 전용 `Quest 72Hz` Quality Level의 `URP-Quest`는 MSAA 4x, render scale 1, HDR/후처리 off, 주 그림자 12m/1024/cascade 1, 추가광 1개/오브젝트와 추가광 그림자 off, SRP Batcher를 사용한다. Android 빌드 사본의 고정 구조물만 정적 배칭한다. 주기 0.1초 접근 피드백, 2삼각형 바닥 표시, 첫 방문 밝기 변화와 소리를 유지하며 물품별 동적 램프는 Quest에서 끈다. 프롤로그/엔딩 서사 조명은 유지한다. 선택 확률·순응·이동·방 크기·가구/NavMesh는 변경하지 않는다.
+
+Android 텍스처 정책은 ASTC 6×6/1024, 오디오는 Vorbis/CompressedInMemory이며 짧은 접근음은 ADPCM/DecompressOnLoad다. 현재 색 재질 중심이라 Art의 압축 대상 이미지 텍스처는 0개다. 런타임 글꼴/비네팅의 실제 메모리는 실기기 측정 대상이다.
+
+`scripts/Build-Quest.ps1 [-Development] [-Test]`는 독립 복사본에서 빌드한다. 한글 경로가 있는 Windows에서는 임시 드라이브 연결과 별도 ASCII TEMP/Gradle cache를 사용하고 종료 시 환경을 복원한다. Release의 HUD/Gizmo·성능 캡처 타입 제외와 실험 커넥톰 제외는 APK/BuildReport로 검사한다. 기기 설치·실제 F8 입력·프레임타임·열 안정성 검증은 남아 있다. [방별 전후 비교·검증·프로파일링 절차](quest-performance.md)를 참고한다.
+
+## 19. 16 자동 시뮬레이션과 시나리오 검증
+
+`Scripts/Debug/SimulationRunner`는 실제 데이터 에셋과 순수 모델을 사용한다. `IPlayerPolicy`의 네 정책 계열은 접촉 소스·방향만 선택하고, `ContactModel`은 실제 `FlyContactReceiver`와 공유한다. 렌더링·씬·XR·NavMesh 없이 거리 기반 이동 시간을 근사한다. 실제 기하·입력 검증은 저장된 다섯 방의 300초 PlayMode fuzz와 기존 통합 테스트가 담당한다. 중년기는 원래 NavMesh 초파리가 없으므로 실제 휠체어 접근·착석 회전을 검사한다.
+
+`scripts/Run-Simulation.ps1` 또는 에디터 `Run 16 Headless Simulation`으로 실행한다. `SimulationReports/`는 Git 제외이며 CSV·전체 이벤트 JSONL·SHA256·엔딩별 재현 사례·집계를 저장한다. `tools/verify_simulation_reports.py`는 원본 로그와 CSV/집계, 실제 경험 상위 3개를 독립 대조한다. 이전 재현 파일은 시드 탐색 힌트일 뿐이며 결과 상태를 복원해 도달을 주장하지 않는다.
+
+16단계에서 명세 4.1의 신뢰 도달 경로를 보완했다. `autonomousParentTrustGain=8`과 `autonomousParentTrustItems`는 첫 자율 가족 식탁·대화·편지에만 적용한다. 강제 방문·최근 개입·재방문·효과 종료 시 보상하지 않으며 clamp 후 실제 증가량을 기록한다. [실행법·전체 체크리스트·엔딩 빈도·검증 한계](simulation-validation.md)를 참고한다.
+
+## 20. 17 수동 플레이테스트 지원
+
+`InfantRoomView`가 성장 네 방에서 아이 이름표와 카메라 기준 방향·거리를 표시한다. 카메라·아이 이동·접촉·선택 확률은 바꾸지 않는다. 일반 물품 중 비행 기록이 없고 최초 Stress 변화가 −5 이하인 활동은 ‘마음 쉬기’로 표시한다. 프롤로그·성장 방·중년기 이동 안내는 현재 PC/XR 입력 모드를 반영한다.
+
+`PlaytestRecorder`는 `-playtest` 실행에서만 활성화하며, 새 실행마다 세이브 경로를 분리한다. GameState 이벤트 JSONL, 시드·빌드 GUID·설정 사본, 실제 경과/포커스 시간, F6 순간 표시, F7 화면을 남긴다. 다시 시작하면 새 기록 폴더를 만든다. 엔딩 선택과 엔딩 카드 표시를 구분하고 자동 실행과 미검토 플레이 기록 모두 수동 완료로 간주하지 않는다.
+
+`DesktopBuildSetup.BuildPlaytest`는 별도 `Builds/PlaytestPC`에 빌드한다. `scripts/Start-Playtest.ps1`의 스타일은 기록용 메타데이터이며 자동 정책이 아니다. [세션 실행·검토 방법](playtest-guide.md)과 [검증 결과 및 남은 수동 완료 조건](playtest-validation.md)을 참고한다.

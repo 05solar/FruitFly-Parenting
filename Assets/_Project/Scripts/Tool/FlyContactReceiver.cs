@@ -11,10 +11,10 @@ namespace FruitFlyParenting.Tool
     {
         [SerializeField] GameBalanceConfig config;
         FlyAgent fly;
-        PushResolver push;
-        public ToolUsageTracker Usage { get; private set; }
-        public ComplianceStateMachine Compliance { get; private set; }
-        public CoercionDetector Coercion { get; private set; }
+        ContactModel model;
+        public ToolUsageTracker Usage => model?.Usage;
+        public ComplianceStateMachine Compliance => model?.Compliance;
+        public CoercionDetector Coercion => model?.Coercion;
         public bool ContactsEnabled { get; set; } = true;
         public void Configure(GameBalanceConfig balance) => config = balance;
         void OnEnable() => EventBus.RoomEntered += EnterRoom;
@@ -25,11 +25,8 @@ namespace FruitFlyParenting.Tool
             if (Usage != null) return true;
             if (config == null || GameState.Current == null) return false;
             fly = GetComponent<FlyAgent>();
-            push = new PushResolver(config);
-            Usage = new ToolUsageTracker(config, GameState.Current, Time.time);
-            Compliance = new ComplianceStateMachine(config, Usage.Mood);
-            Coercion = new CoercionDetector(config);
-            Usage.EnterRoom(gameObject.scene.name, Time.time);
+            model = new ContactModel(config, GameState.Current, Time.time);
+            model.EnterRoom(gameObject.scene.name, Time.time);
             return true;
         }
         void Update()
@@ -49,45 +46,18 @@ namespace FruitFlyParenting.Tool
 
         public void ReceiveContact(PushSource source, Vector3 contactDirection, float currentTime)
         {
-            if (!ContactsEnabled) return; // 05 관찰 시간에는 집계/수치/연출/밀림 모두 비활성화.
+            if (!ContactsEnabled) return; // Scene transitions and scripted sequences temporarily suspend contact.
             if (!EnsureInitialized()) return;
-            float trustBefore=GameState.Current.Relationship.Trust;
-            Usage.Tick(currentTime);
-            using var impact=GameState.Current.TrackImpact(currentTime,GameState.Current.CurrentRoomId,"contact",source==PushSource.ElectricStick ? "전기 봉 접촉" : "휠체어 접촉");
-            Usage.RecordContact(source, currentTime);
-            var result = push.Resolve(source, contactDirection, transform.position);
-            if(fly.Stage==FruitFlyParenting.Corridor.LifeStage.YoungAdult &&
-                (trustBefore<config.youngAdultResistanceTrustThreshold || Compliance.IsSuspended(currentTime)))
-            {
-                // Costs and ToolUsed still occur, but an ineffective contact cannot add compliance/coercion/avoidance learning.
-                if(trustBefore<config.youngAdultResistanceTrustThreshold) Compliance.Suspend(currentTime,config.youngAdultActivityProtectionSeconds);
-                Coercion.Reset(); fly.PreserveCurrentActivityUntil(Compliance.SuspendedUntil);
-                GameState.Current.LogEvent(currentTime,GameState.Current.CurrentRoomId,"youngadult_tool_resisted",fly.CurrentDestinationId);
-                EventBus.RaiseToolUsed(source,result.Direction,fly.CurrentDestinationId); return;
-            }
-            Coercion.Record(currentTime, source, transform.position, result.Direction);
-            EventBus.RaiseToolUsed(source, result.Direction, fly.CurrentDestinationId);
-            var state = GameState.Current;
-            var response = Compliance.RecordContact(source, result.Direction, state.Stats.GetValue(StatType.Rebellion), currentTime);
-            if (response == ComplianceContactResult.Entered || response == ComplianceContactResult.Continued)
-            {
-                bool entry = response == ComplianceContactResult.Entered;
-                string reason = entry ? "compliance_enter" : "compliance_contact";
-                state.Stats.ApplyDelta(StatType.Stress, entry ? config.complianceThresholdStressDelta : config.compliancePerContactStressDelta, reason);
-                state.Stats.ApplyDelta(StatType.Rebellion, entry ? config.complianceThresholdRebellionDelta : config.compliancePerContactRebellionDelta, reason);
-                state.LogEvent(currentTime, state.CurrentRoomId, reason, source.ToString());
-                fly.RecordLearningContact(source, currentTime);
-                fly.GuideCompliance(Compliance.Direction);
-            }
-            if (Compliance.State == ComplianceState.Complying) return;
+            var outcome = model.Receive(source, contactDirection, transform.position, fly.Stage, fly.CurrentDestinationId, currentTime);
+            if (source == PushSource.ElectricStick) EventBus.RaiseElectricShockVisual(transform.position);
+            EventBus.RaiseToolUsed(source, outcome.Push.Direction, fly.CurrentDestinationId);
+            if (outcome.Motion == ContactMotion.PreserveActivity)
+            { fly.PreserveCurrentActivityUntil(Compliance.SuspendedUntil); return; }
+            if (outcome.Motion == ContactMotion.Comply)
+            { fly.RecordLearningContact(source, currentTime); fly.GuideCompliance(Compliance.Direction); return; }
             if (fly.IsComplying) fly.ReleaseCompliance();
-            // 회피는 이동 저항이다. 접촉 집계/전기 +2/감전 표시는 계속 발생한다.
-            if (Usage.Mood.IsAvoiding(currentTime)) fly.ResumeAutonomy();
-            else
-            {
-                fly.RecordLearningContact(source, currentTime);
-                fly.ApplyPush(result);
-            }
+            if (outcome.Motion == ContactMotion.Avoid) fly.ResumeAutonomy();
+            else { fly.RecordLearningContact(source, currentTime); fly.ApplyPush(outcome.Push); }
         }
 
         public void ForceEndAvoidance() => Usage?.Mood.ForceEndAvoidance();
@@ -95,17 +65,9 @@ namespace FruitFlyParenting.Tool
         public ItemVisitContext PrepareItemVisit(ItemSlot slot, bool first, float now)
         {
             if (!EnsureInitialized()) return default;
-            Compliance.Tick(now);
-            var coercion = first && CoercionDetector.IsTrainingItem(slot.Definition, config)
-                ? Coercion.Evaluate(now, slot.transform.position) : CoercionKind.None;
-            var context = new ItemVisitContext(Compliance.State == ComplianceState.Complying, coercion);
-            if (context.IsForced)
-            {
-                var state = GameState.Current;
-                state.LogEvent(now, state.CurrentRoomId, "forced_visit", slot.ItemId + ";first=" + first + ";complying=" + context.WasComplying);
-            }
-            return context;
+            return model.PrepareVisit(slot.Definition, slot.transform.position, first, now);
         }
+
         public void CompleteItemVisit(ItemVisitContext context)
         {
             if (!context.WasComplying) return;

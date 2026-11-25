@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "dataset": "FlyWire FAFB v783",
+  "license": "CC BY-NC 4.0",
+  "attribution": "Derived from FlyWire FAFB v783 connectivity and classification data. Dorkenwald, S. et al., Neuronal wiring diagram of an adult brain, Nature 634, 124-138 (2024), https://doi.org/10.1038/s41586-024-07558-y. Schlegel, P. et al., Whole-brain annotation and multi-connectome cell typing of Drosophila, Nature 634, 139-152 (2024), https://doi.org/10.1038/s41586-024-07686-5. Licensed under CC BY-NC 4.0, https://creativecommons.org/licenses/by-nc/4.0/. Changes: deterministic pathway selection, regional summation, class aggregation, logarithmic visual scaling and authored layout. No endorsement by the authors is implied.",
+  "sources": [
+    {
+      "name": "classification.csv.gz",
+      "url": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/classification.csv.gz",
+      "sha256": "e946b552f4056dfc977707be0674609832c3f64332a22d69dc0d9615e7aae663"
+    },
+    {
+      "name": "connections.csv.gz",
+      "url": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/connections.csv.gz",
+      "sha256": "d49dd692e59e153aa3c83f5257bfc0eff51247b86d7bb183386c6d1622c70fc9"
+    }
+  ],
+  "mode": "motif",
+  "nodes": [
+    {
+      "id": "0",
+      "label": "ORN",
+      "stage": 0,
+      "side": "aggregate",
+      "members": [
+        "720575940603911340",
+        "720575940604645478",
+        "720575940610189358"
+      ]
+    },
+    {
+      "id": "1",
+      "label": "ALPN",
+      "stage": 1,
+      "side": "aggregate",
+      "members": [
+        "720575940622287142",
+        "720575940632698797",
+        "720575940637594334"
+      ]
+    },
+    {
+      "id": "2",
+      "label": "KC",
+      "stage": 2,
+      "side": "aggregate",
+      "members": [
+        "720575940612362663",
+        "720575940613776543",
+        "720575940623369668"
+      ]
+    },
+    {
+      "id": "3",
+      "label": "MBON",
+      "stage": 3,
+      "side": "aggregate",
+      "members": [
+        "720575940607155890",
+        "720575940636992368"
+      ]
+    },
+    {
+      "id": "4",
+      "label": "Descending",
+      "stage": 4,
+      "side": "aggregate",
+      "members": [
+        "720575940604737708",
+        "720575940620918789",
+        "720575940621399174",
+        "720575940630085583",
+        "720575940630135084",
+        "720575940637607646"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "0",
+      "target": "1",
+      "synapses": 72,
+      "regions": [
+        {
+          "name": "AL_R",
+          "synapses": 72
+        }
+      ],
+      "visualWeight": 0.842299
+    },
+    {
+      "source": "1",
+      "target": "2",
+      "synapses": 60,
+      "regions": [
+        {
+          "name": "MB_CA_R",
+          "synapses": 60
+        }
+      ],
+      "visualWeight": 0.807043
+    },
+    {
+      "source": "2",
+      "target": "3",
+      "synapses": 71,
+      "regions": [
+        {
+          "name": "CRE_R",
+          "synapses": 12
+        },
+        {
+          "name": "MB_ML_R",
+          "synapses": 27
+        },
+        {
+          "name": "MB_VL_R",
+          "synapses": 31
+        },
+        {
+          "name": "SMP_R",
+          "synapses": 1
+        }
+      ],
+      "visualWeight": 0.839591
+    },
+    {
+      "source": "3",
+      "target": "4",
+      "synapses": 162,
+      "regions": [
+        {
+          "name": "AL_R",
+          "synapses": 13
+        },
+        {
+          "name": "CRE_R",
+          "synapses": 1
+        },
+        {
+          "name": "LAL_L",
+          "synapses": 49
+        },
+        {
+          "name": "LAL_R",
+          "synapses": 67
+        },
+        {
+          "name": "VES_L",
+          "synapses": 5
+        },
+        {
+          "name": "VES_R",
+          "synapses": 27
+        }
+      ],
+      "visualWeight": 1.0
+    }
+  ],
+  "paths": []
+}

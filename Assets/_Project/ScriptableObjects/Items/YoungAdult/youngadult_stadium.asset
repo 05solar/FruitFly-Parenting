@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uD300\uC5D0\uC11C \uB0B4 \uC790\uB9AC\uB97C \uC5BB\uC73C\uB824 \uC560\uC368\uC694."
-  - "\uB3D9\uB8CC\uC640 \uB2E4\uC74C \uACBD\uAE30\uB97C \uC900\uBE44\uD574\uC694."
-  childReflectionLine: "\uB3D9\uB8CC\uC640 \uB2E4\uC74C \uACBD\uAE30\uB97C \uC900\uBE44\uD574\uC694."
+  - "오늘은 꼭 내 실력 보여 줄 거야."
+  - "다음 경기, 같이 맞춰 보자."
+  childReflectionLine: "다음 경기, 같이 맞춰 보자."

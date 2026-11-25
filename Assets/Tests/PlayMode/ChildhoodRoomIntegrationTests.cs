@@ -68,13 +68,13 @@ namespace FruitFlyParenting.Tests.PlayMode
                 bool repeated=(e.Stats[1]>=5 || e.Stats[2]>=5) && ++training>=3 && training<=5;
                 yield return Visit(e.Id.Substring("childhood_".Length));
                 for(int i=0;i<5;i++) Assert.AreEqual(Mathf.Clamp(before.statValues[i]+e.Stats[i]+(i==0 && repeated ? 3 : 0),0,100),GameState.Current.Stats.GetValue((StatType)i),e.Id+" stat "+i);
-                expectedR+=e.Rebellion+(repeated ? 4 : 0); expectedTrust+=e.Trust;
+                expectedR+=e.Rebellion+(repeated ? 4 : 0); expectedTrust+=e.Trust+(e.Id=="childhood_family" ? 8f : 0);
                 Assert.AreEqual(expectedR,GameState.Current.Stats.GetValue(StatType.Rebellion),e.Id);
                 Assert.AreEqual(expectedTrust,GameState.Current.Relationship.Trust,e.Id);
             }
             yield return Visit("hideout"); yield return Visit("nightgame");
             Assert.AreEqual(12,child.Room.VisitedItemIds.Count); Assert.AreEqual(39,GameState.Current.Stats.GetValue(StatType.Rebellion));
-            Assert.AreEqual(33,GameState.Current.Relationship.Trust); Assert.IsFalse(GameState.Current.IsFlightSmokeEventTriggered);
+            Assert.AreEqual(33+8f,GameState.Current.Relationship.Trust); Assert.IsFalse(GameState.Current.IsFlightSmokeEventTriggered);
             Assert.AreEqual(3,GameState.Current.EventLog.Count(e=>e.eventType=="repeated_training"));
             File.WriteAllText("Logs/childhood-all-visits.json",JsonUtility.ToJson(GameState.Current.ToSaveData(),true));
         }

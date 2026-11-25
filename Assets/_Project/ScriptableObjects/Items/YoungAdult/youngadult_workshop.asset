@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uAC00\uAE4C\uC6B4 \uACF3\uC5D0\uC11C \uC77C\uACFC \uC0AC\uB78C\uC744 \uB3CC\uBD10\uC694."
-  - "\uC775\uC219\uD55C \uC0AC\uB78C\uB4E4\uACFC \uD558\uB8E8\uB97C \uC2DC\uC791\uD574\uC694."
-  childReflectionLine: "\uC775\uC219\uD55C \uC0AC\uB78C\uB4E4\uACFC \uD558\uB8E8\uB97C \uC2DC\uC791\uD574\uC694."
+  - "어서 오세요. 늘 드시던 걸로요?"
+  - "오늘도 잘 부탁해요."
+  childReflectionLine: "오늘도 잘 부탁해요."

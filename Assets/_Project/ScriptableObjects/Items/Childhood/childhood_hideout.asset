@@ -36,6 +36,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uC219\uC81C\uB97C \uCC22\uACE0 \uB0B4\uAC00 \uC815\uD55C \uB180\uC774 \uADDC\uCE59\uC5D0 \uC6C3\uC5B4\uC694."
-  - "\uC6B0\uB9AC\uB9CC \uC544\uB294 \uB180\uC774\uB97C \uB2E4\uC2DC \uB5A0\uC62C\uB824\uC694."
-  childReflectionLine: "\uC6B0\uB9AC\uB9CC \uC544\uB294 \uB180\uC774\uB97C \uB2E4\uC2DC \uB5A0\uC62C\uB824\uC694."
+  - "숙제 안 해! 여기서 놀 거야!"
+  - "여기는 우리만 아는 비밀이야."
+  childReflectionLine: "여기는 우리만 아는 비밀이야."

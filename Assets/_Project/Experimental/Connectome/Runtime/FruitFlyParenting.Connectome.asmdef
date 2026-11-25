@@ -1,0 +1,7 @@
+{
+  "name": "FruitFlyParenting.Connectome",
+  "rootNamespace": "FruitFlyParenting.Connectome",
+  "references": ["UnityEngine.UI", "Unity.InputSystem"],
+  "autoReferenced": false,
+  "defineConstraints": ["UNITY_EDITOR || CONNECTOME_EXPERIMENT"]
+}

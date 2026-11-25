@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uC2E4\uD328\uD55C \uC885\uC774\uBE44\uD589\uAE30\uB97C \uB2E4\uC2DC \uC811\uC5B4\uC694."
-  - "\uC774\uBC88\uC5D0\uB294 \uB2E4\uB978 \uB0A0\uAC1C\uB97C \uC811\uC5B4 \uBD10\uC694."
-  childReflectionLine: "\uC774\uBC88\uC5D0\uB294 \uB2E4\uB978 \uB0A0\uAC1C\uB97C \uC811\uC5B4 \uBD10\uC694."
+  - "어? 안 날아가네. 다시 접어야지."
+  - "이번엔 날개를 크게 해 볼까?"
+  childReflectionLine: "이번엔 날개를 크게 해 볼까?"

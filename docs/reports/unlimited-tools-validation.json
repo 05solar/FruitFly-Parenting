@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-25",
+  "changes": [
+    "Removed initial 90-second tool restriction in all four growth rooms",
+    "Removed cooldown configuration and HUD countdown",
+    "Simulation policies may intervene immediately; removed guaranteed two-autonomous-visits invariant for active intervention"
+  ],
+  "tests": {
+    "playMode": {
+      "passed": 20,
+      "failed": 0,
+      "evidence": "Logs/Step14Project/Logs/unlimited-tools-tests.xml"
+    },
+    "editMode": {
+      "passed": 21,
+      "failed": 0,
+      "evidence": "Logs/Step14Project/Logs/unlimited-tools-model-final-tests.xml"
+    }
+  },
+  "build": {
+    "guid": "ba115d92e94a42e4bf7c27378d596535",
+    "inputSetSha256": "e8042b16cb01341efbe51fa830433ba7326ec481329b1ff86892a5fba3712da3",
+    "artifactHashesVerified": true,
+    "path": "Builds/FlatHUD/FruitFlyParenting.exe"
+  },
+  "fullEndingDistributionRerun": false,
+  "headsetManualCheck": "not performed",
+  "humanPlaytestAcceptance": "pending"
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-25",
+  "changes": {
+    "itemCount": 47,
+    "firstAndRevisitLines": 94,
+    "speechBackgroundAlpha": 0.28,
+    "speechLocation": "world-space above actual child head",
+    "expirySeconds": [
+      3.5,
+      6
+    ],
+    "screenNarrationRemoved": true,
+    "topRightLocatorRemoved": true,
+    "statsShowOnlyCurrentValue": true
+  },
+  "dialogueTable": "docs/reports/spoken-dialogue-lines.csv",
+  "tests": {
+    "affectedEditModeModels": {
+      "passed": 110,
+      "failed": 0
+    },
+    "playMode": {
+      "passed": 19,
+      "failed": 0,
+      "evidence": [
+        "Logs/Step14Project/Logs/spoken-dialogue-final-tests.xml",
+        "Logs/Step14Project/Logs/spoken-dialogue-hud-final-tests.xml"
+      ]
+    },
+    "fullEditMode": {
+      "passed": 258,
+      "failed": 2,
+      "failures": [
+        "FruitFlyParenting.Tests.EditMode.QuestConfigurationTests.AndroidHasSeparateQualityAndControllerOnlyOpenXR",
+        "FruitFlyParenting.Tests.EditMode.QuestConfigurationTests.AudioOverridesKeepShortCueResponsiveAndLoopsCompressed"
+      ],
+      "reason": "PC validation project has different Android graphics and audio import defaults than Quest-specific assertions. User Quest settings were not changed."
+    }
+  },
+  "build": {
+    "guid": "71ecfbae5456420099c90ee50443a861",
+    "inputSetSha256": "9ef22e9e4428c65e3c9b79bd3aa204654e0d71bb9e15930226f5b9f1dcfa4ba9",
+    "artifactHashesVerified": true,
+    "path": "Builds/FlatHUD/FruitFlyParenting.exe"
+  },
+  "visualEvidence": {
+    "testSceneBubble": "Logs/Step14Project/Logs/spoken-dialogue-world.png",
+    "windowsPlayer": "Logs/spoken-dialogue-player.png"
+  },
+  "headsetManualCheck": "not performed",
+  "humanPlaytestAcceptance": "pending",
+  "runtimeRoomEntered": "01_Infant"
+}

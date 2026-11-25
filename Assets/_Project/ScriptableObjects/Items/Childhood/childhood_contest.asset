@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uC0C1\uC7A5\uC744 \uAF2D \uC950\uC9C0\uB9CC \uB208\uC744 \uBE44\uBCBC\uC694."
-  - "\uC0C1\uC7A5\uC744 \uB2E4\uC2DC \uBCF4\uACE0 \uC228\uC744 \uACE8\uB77C\uC694."
-  childReflectionLine: "\uC0C1\uC7A5\uC744 \uB2E4\uC2DC \uBCF4\uACE0 \uC228\uC744 \uACE8\uB77C\uC694."
+  - "나 상 받았어! 이제 놀아도 돼?"
+  - "다음에도 잘해야 되는데…"
+  childReflectionLine: "다음에도 잘해야 되는데…"

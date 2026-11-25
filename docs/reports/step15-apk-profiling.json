@@ -1,0 +1,26 @@
+{
+  "apk": "FruitFlyParenting-profiling.apk",
+  "bytes": 123530433,
+  "sha256": "f6b31e94245e7ae769be76ad3ec0bc22ac0823f9bc410f0b9aa492ad7521f1c4",
+  "development": true,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "checks": {
+    "arm64_only": true,
+    "il2cpp": true,
+    "runtime_present": true,
+    "profiling_matches_build_type": true,
+    "debuggable_matches_build_type": true,
+    "quest_head_tracking": true,
+    "package_id": true,
+    "min_api_29": true,
+    "target_api_34": true,
+    "DebugHud_excluded": true,
+    "RoomCoordinateGizmos_excluded": true,
+    "FruitFlyParenting.Connectome_excluded": true,
+    "ConnectomeViewer_excluded": true
+  },
+  "passed": true,
+  "device_installation": "not tested: no connected HMD"
+}

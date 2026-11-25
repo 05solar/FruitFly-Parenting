@@ -48,11 +48,18 @@ namespace FruitFlyParenting.Room
             visits.TryGetValue(item.itemId, out int count);
             visits[item.itemId] = count + 1;
             bool apply = first && effectsEnabled;
+            bool autonomous = first && !context.IsForced && state.Relationship.CountRecentInterventions(now, config.autonomousVisitContactWindowSeconds) == 0;
             float magnitude = 0f;
             var log = new StringBuilder(item.itemId).Append(";tags=").Append(string.Join(",", item.tags));
             log.Append(";effects=").Append(apply);
             if (apply)
             {
+                if (autonomous && Array.IndexOf(config.autonomousParentTrustItems, item.itemId) >= 0)
+                {
+                    float beforeTrust = state.Relationship.Trust;
+                    state.Relationship.AdjustTrust(config.autonomousParentTrustGain, "autonomous_parent_visit:" + item.itemId);
+                    state.LogEvent(now, roomId, "autonomous_parent_trust", item.itemId + ";gain=" + (state.Relationship.Trust - beforeTrust).ToString(CultureInfo.InvariantCulture));
+                }
                 if (item.recordsDelinquency) state.RecordDelinquency(item.itemId, now);
                 state.ApplyYoungAdultFlags(item.youngAdultFlags,item.itemId,now);
                 if (item.trustDelta != 0f)
@@ -95,7 +102,6 @@ namespace FruitFlyParenting.Room
                     ApplyTraining(now, item.itemId, "repeated_training", config.repeatedTrainingStressDelta, config.repeatedTrainingRebellionDelta);
             }
             log.Append(";forced=").Append(context.IsForced).Append(";complying=").Append(context.WasComplying);
-            bool autonomous=first && !context.IsForced && state.Relationship.CountRecentInterventions(now, config.autonomousVisitContactWindowSeconds) == 0;
             if (autonomous)
                 state.Relationship.RecordAutonomousVisit();
             if (!first) state.Relationship.RecordItemRevisit(item.itemId);

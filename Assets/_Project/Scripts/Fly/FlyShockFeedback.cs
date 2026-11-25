@@ -22,6 +22,7 @@ namespace FruitFlyParenting.Fly
         {
             if ((position - transform.position).sqrMagnitude > 0.001f || config == null || spark == null) return;
             ShockCount++;
+            if(!Room.InfantRoomView.SpeakFor(GetComponent<FlyAgent>(),"아야!")) Comfort.ComfortController.Announce("전기 봉 접촉");
             visibleUntil = Time.time + config.shockVisualDurationSeconds;
             spark.SetActive(true);
         }

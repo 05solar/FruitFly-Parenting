@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 8
   narrativeLines:
-  - "\uC791\uC740 \uB2F9\uCCA8 \uB4A4 \uC2DC\uAC04\uC774 \uD758\uB7EC \uC0DD\uD65C\uBE44\uC640 \uC9D1\uC744 \uC783\uC5C8\uC5B4\uC694."
-  - "\uADF8\uB54C\uC758 \uC190\uC2E4\uC740 \uB0A8\uC544 \uC788\uC5B4\uC694. \uB2E4\uC74C \uC120\uD0DD\uC744 \uC0DD\uAC01\uD574\uC694."
-  childReflectionLine: "\uADF8\uB54C\uC758 \uC190\uC2E4\uC740 \uB0A8\uC544 \uC788\uC5B4\uC694. \uB2E4\uC74C \uC120\uD0DD\uC744 \uC0DD\uAC01\uD574\uC694."
+  - "생활비도 집도… 다 잃었어."
+  - "다시 하진 않을 거야. 도움부터 구하자."
+  childReflectionLine: "다시 하진 않을 거야. 도움부터 구하자."

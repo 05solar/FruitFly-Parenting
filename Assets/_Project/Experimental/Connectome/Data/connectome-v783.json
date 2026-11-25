@@ -1,0 +1,486 @@
+{
+  "schemaVersion": 1,
+  "dataset": "FlyWire FAFB v783",
+  "license": "CC BY-NC 4.0",
+  "attribution": "Derived from FlyWire FAFB v783 connectivity and classification data. Dorkenwald, S. et al., Neuronal wiring diagram of an adult brain, Nature 634, 124-138 (2024), https://doi.org/10.1038/s41586-024-07558-y. Schlegel, P. et al., Whole-brain annotation and multi-connectome cell typing of Drosophila, Nature 634, 139-152 (2024), https://doi.org/10.1038/s41586-024-07686-5. Licensed under CC BY-NC 4.0, https://creativecommons.org/licenses/by-nc/4.0/. Changes: deterministic pathway selection, regional summation, class aggregation, logarithmic visual scaling and authored layout. No endorsement by the authors is implied.",
+  "sources": [
+    {
+      "name": "classification.csv.gz",
+      "url": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/classification.csv.gz",
+      "sha256": "e946b552f4056dfc977707be0674609832c3f64332a22d69dc0d9615e7aae663"
+    },
+    {
+      "name": "connections.csv.gz",
+      "url": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/connections.csv.gz",
+      "sha256": "d49dd692e59e153aa3c83f5257bfc0eff51247b86d7bb183386c6d1622c70fc9"
+    }
+  ],
+  "mode": "neurons",
+  "nodes": [
+    {
+      "id": "720575940603911340",
+      "label": "ORN",
+      "stage": 0,
+      "side": "left",
+      "members": [
+        "720575940603911340"
+      ]
+    },
+    {
+      "id": "720575940604645478",
+      "label": "ORN",
+      "stage": 0,
+      "side": "left",
+      "members": [
+        "720575940604645478"
+      ]
+    },
+    {
+      "id": "720575940610189358",
+      "label": "ORN",
+      "stage": 0,
+      "side": "right",
+      "members": [
+        "720575940610189358"
+      ]
+    },
+    {
+      "id": "720575940622287142",
+      "label": "ALPN",
+      "stage": 1,
+      "side": "right",
+      "members": [
+        "720575940622287142"
+      ]
+    },
+    {
+      "id": "720575940632698797",
+      "label": "ALPN",
+      "stage": 1,
+      "side": "right",
+      "members": [
+        "720575940632698797"
+      ]
+    },
+    {
+      "id": "720575940637594334",
+      "label": "ALPN",
+      "stage": 1,
+      "side": "right",
+      "members": [
+        "720575940637594334"
+      ]
+    },
+    {
+      "id": "720575940612362663",
+      "label": "KC",
+      "stage": 2,
+      "side": "right",
+      "members": [
+        "720575940612362663"
+      ]
+    },
+    {
+      "id": "720575940613776543",
+      "label": "KC",
+      "stage": 2,
+      "side": "right",
+      "members": [
+        "720575940613776543"
+      ]
+    },
+    {
+      "id": "720575940623369668",
+      "label": "KC",
+      "stage": 2,
+      "side": "right",
+      "members": [
+        "720575940623369668"
+      ]
+    },
+    {
+      "id": "720575940607155890",
+      "label": "MBON",
+      "stage": 3,
+      "side": "right",
+      "members": [
+        "720575940607155890"
+      ]
+    },
+    {
+      "id": "720575940636992368",
+      "label": "MBON",
+      "stage": 3,
+      "side": "right",
+      "members": [
+        "720575940636992368"
+      ]
+    },
+    {
+      "id": "720575940604737708",
+      "label": "Descending",
+      "stage": 4,
+      "side": "right",
+      "members": [
+        "720575940604737708"
+      ]
+    },
+    {
+      "id": "720575940620918789",
+      "label": "Descending",
+      "stage": 4,
+      "side": "left",
+      "members": [
+        "720575940620918789"
+      ]
+    },
+    {
+      "id": "720575940621399174",
+      "label": "Descending",
+      "stage": 4,
+      "side": "left",
+      "members": [
+        "720575940621399174"
+      ]
+    },
+    {
+      "id": "720575940630085583",
+      "label": "Descending",
+      "stage": 4,
+      "side": "right",
+      "members": [
+        "720575940630085583"
+      ]
+    },
+    {
+      "id": "720575940630135084",
+      "label": "Descending",
+      "stage": 4,
+      "side": "right",
+      "members": [
+        "720575940630135084"
+      ]
+    },
+    {
+      "id": "720575940637607646",
+      "label": "Descending",
+      "stage": 4,
+      "side": "right",
+      "members": [
+        "720575940637607646"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "720575940603911340",
+      "target": "720575940622287142",
+      "synapses": 20,
+      "regions": [
+        {
+          "name": "AL_R",
+          "synapses": 20
+        }
+      ],
+      "visualWeight": 0.709603
+    },
+    {
+      "source": "720575940604645478",
+      "target": "720575940637594334",
+      "synapses": 27,
+      "regions": [
+        {
+          "name": "AL_R",
+          "synapses": 27
+        }
+      ],
+      "visualWeight": 0.776654
+    },
+    {
+      "source": "720575940607155890",
+      "target": "720575940620918789",
+      "synapses": 41,
+      "regions": [
+        {
+          "name": "LAL_L",
+          "synapses": 37
+        },
+        {
+          "name": "VES_L",
+          "synapses": 4
+        }
+      ],
+      "visualWeight": 0.871158
+    },
+    {
+      "source": "720575940607155890",
+      "target": "720575940621399174",
+      "synapses": 12,
+      "regions": [
+        {
+          "name": "LAL_L",
+          "synapses": 12
+        }
+      ],
+      "visualWeight": 0.597826
+    },
+    {
+      "source": "720575940610189358",
+      "target": "720575940632698797",
+      "synapses": 25,
+      "regions": [
+        {
+          "name": "AL_R",
+          "synapses": 25
+        }
+      ],
+      "visualWeight": 0.759382
+    },
+    {
+      "source": "720575940612362663",
+      "target": "720575940636992368",
+      "synapses": 19,
+      "regions": [
+        {
+          "name": "CRE_R",
+          "synapses": 1
+        },
+        {
+          "name": "MB_ML_R",
+          "synapses": 1
+        },
+        {
+          "name": "MB_VL_R",
+          "synapses": 16
+        },
+        {
+          "name": "SMP_R",
+          "synapses": 1
+        }
+      ],
+      "visualWeight": 0.698231
+    },
+    {
+      "source": "720575940613776543",
+      "target": "720575940607155890",
+      "synapses": 14,
+      "regions": [
+        {
+          "name": "CRE_R",
+          "synapses": 1
+        },
+        {
+          "name": "MB_ML_R",
+          "synapses": 13
+        }
+      ],
+      "visualWeight": 0.63118
+    },
+    {
+      "source": "720575940613776543",
+      "target": "720575940636992368",
+      "synapses": 17,
+      "regions": [
+        {
+          "name": "MB_ML_R",
+          "synapses": 2
+        },
+        {
+          "name": "MB_VL_R",
+          "synapses": 15
+        }
+      ],
+      "visualWeight": 0.673674
+    },
+    {
+      "source": "720575940622287142",
+      "target": "720575940613776543",
+      "synapses": 16,
+      "regions": [
+        {
+          "name": "MB_CA_R",
+          "synapses": 16
+        }
+      ],
+      "visualWeight": 0.660352
+    },
+    {
+      "source": "720575940623369668",
+      "target": "720575940607155890",
+      "synapses": 21,
+      "regions": [
+        {
+          "name": "CRE_R",
+          "synapses": 10
+        },
+        {
+          "name": "MB_ML_R",
+          "synapses": 11
+        }
+      ],
+      "visualWeight": 0.720446
+    },
+    {
+      "source": "720575940632698797",
+      "target": "720575940623369668",
+      "synapses": 27,
+      "regions": [
+        {
+          "name": "MB_CA_R",
+          "synapses": 27
+        }
+      ],
+      "visualWeight": 0.776654
+    },
+    {
+      "source": "720575940636992368",
+      "target": "720575940604737708",
+      "synapses": 13,
+      "regions": [
+        {
+          "name": "CRE_R",
+          "synapses": 1
+        },
+        {
+          "name": "LAL_R",
+          "synapses": 9
+        },
+        {
+          "name": "VES_R",
+          "synapses": 3
+        }
+      ],
+      "visualWeight": 0.615099
+    },
+    {
+      "source": "720575940636992368",
+      "target": "720575940630085583",
+      "synapses": 72,
+      "regions": [
+        {
+          "name": "AL_R",
+          "synapses": 10
+        },
+        {
+          "name": "LAL_R",
+          "synapses": 53
+        },
+        {
+          "name": "VES_R",
+          "synapses": 9
+        }
+      ],
+      "visualWeight": 1.0
+    },
+    {
+      "source": "720575940636992368",
+      "target": "720575940630135084",
+      "synapses": 12,
+      "regions": [
+        {
+          "name": "VES_L",
+          "synapses": 1
+        },
+        {
+          "name": "VES_R",
+          "synapses": 11
+        }
+      ],
+      "visualWeight": 0.597826
+    },
+    {
+      "source": "720575940636992368",
+      "target": "720575940637607646",
+      "synapses": 12,
+      "regions": [
+        {
+          "name": "AL_R",
+          "synapses": 3
+        },
+        {
+          "name": "LAL_R",
+          "synapses": 5
+        },
+        {
+          "name": "VES_R",
+          "synapses": 4
+        }
+      ],
+      "visualWeight": 0.597826
+    },
+    {
+      "source": "720575940637594334",
+      "target": "720575940612362663",
+      "synapses": 17,
+      "regions": [
+        {
+          "name": "MB_CA_R",
+          "synapses": 17
+        }
+      ],
+      "visualWeight": 0.673674
+    }
+  ],
+  "paths": [
+    {
+      "bottleneck": 21,
+      "ids": [
+        "720575940610189358",
+        "720575940632698797",
+        "720575940623369668",
+        "720575940607155890",
+        "720575940620918789"
+      ]
+    },
+    {
+      "bottleneck": 17,
+      "ids": [
+        "720575940604645478",
+        "720575940637594334",
+        "720575940612362663",
+        "720575940636992368",
+        "720575940630085583"
+      ]
+    },
+    {
+      "bottleneck": 13,
+      "ids": [
+        "720575940603911340",
+        "720575940622287142",
+        "720575940613776543",
+        "720575940636992368",
+        "720575940604737708"
+      ]
+    },
+    {
+      "bottleneck": 12,
+      "ids": [
+        "720575940603911340",
+        "720575940622287142",
+        "720575940613776543",
+        "720575940607155890",
+        "720575940621399174"
+      ]
+    },
+    {
+      "bottleneck": 12,
+      "ids": [
+        "720575940603911340",
+        "720575940622287142",
+        "720575940613776543",
+        "720575940636992368",
+        "720575940630135084"
+      ]
+    },
+    {
+      "bottleneck": 12,
+      "ids": [
+        "720575940603911340",
+        "720575940622287142",
+        "720575940613776543",
+        "720575940636992368",
+        "720575940637607646"
+      ]
+    }
+  ]
+}

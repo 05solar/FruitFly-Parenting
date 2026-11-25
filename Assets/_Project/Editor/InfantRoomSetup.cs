@@ -35,18 +35,17 @@ namespace FruitFlyParenting.Editor
             room.RefreshItemSlots();
             var definitions = new[]
             {
-                Item("infant_book", "알파벳 그림책", new[]{"공부"}, new[]{3f,8f,0f,0f,2f}, "그림을 뒤집어 읽고 보호자를 찾아요.", "아까 보았던 그림을 다시 가리켜요."),
-                Item("infant_blocks", "감각 블록", new[]{"놀이","창작"}, new[]{0f,5f,2f,0f,3f}, "탑을 무너뜨리고 다시 쌓아요.", "이번에는 다른 모양의 탑을 만들어요."),
-                Item("infant_learning", "조기학습 화면", new[]{"성과","공부"}, new[]{9f,11f,-2f,0f,-2f}, "화면 빛을 따라가며 눈을 비벼요.", "익숙한 화면 앞에서 잠깐 고개를 갸웃해요."),
-                Item("infant_hug", "푹신한 포옹 의자", new[]{"휴식","관계"}, new[]{-7f,0f,3f,0f,8f}, "손을 내밀고 포근히 잠들어요.", "익숙한 온기 곁에서 다시 쉬어요."),
-                Item("infant_ball", "친구 곁 공놀이", new[]{"관계","운동"}, new[]{-2f,1f,5f,5f,2f}, "처음으로 다른 아이와 공을 나눠요.", "친구 쪽으로 다시 공을 굴려요."),
-                Item("infant_snack", "달콤한 간식 상자", new[]{"소비","휴식"}, new[]{-3f,0f,-3f,1f,1f}, "바로 웃지만 금세 배가 아파요.", "상자를 만지다가 다른 곳을 바라봐요."),
-                Item("infant_bed", "작은 침대", new[]{"휴식"}, new[]{-6f,0f,5f,0f,3f}, "잠깐 쉬고 새로운 지점을 탐색해요.", "작은 침대에 기대어 숨을 골라요."),
-                Item("infant_crawl", "혼자 기어가기 길", new[]{"운동"}, new[]{2f,2f,8f,0f,2f}, "길 끝에서 뒤돌아보며 웃어요.", "조금 더 익숙하게 길을 따라가요."),
-                Item("infant_tablet", "유튜브 태블릿", new[]{"소비","놀이"}, new[]{8f,-6f,-7f,-4f,-5f}, "자동재생 영상을 보다가, 화면을 떠나며 보채요.", "익숙한 영상 소리에 다시 시선을 빼앗겨요.")
+                Item("infant_book", "알파벳 그림책", new[]{"공부"}, new[]{3f,8f,0f,0f,2f}, "이거 뭐야?", "또 볼래!"),
+                Item("infant_blocks", "감각 블록", new[]{"놀이","창작"}, new[]{0f,5f,2f,0f,3f}, "우와! 무너졌다!", "내가 쌓을래!"),
+                Item("infant_learning", "조기학습 화면", new[]{"성과","공부"}, new[]{9f,11f,-2f,0f,-2f}, "눈 아파…", "이거 또 나와?"),
+                Item("infant_hug", "푹신한 포옹 의자", new[]{"휴식","관계"}, new[]{-7f,0f,3f,0f,8f}, "안아 줘…", "더 안아 줘."),
+                Item("infant_ball", "친구 곁 공놀이", new[]{"관계","운동"}, new[]{-2f,1f,5f,5f,2f}, "공! 받아!", "나도 줘!"),
+                Item("infant_snack", "달콤한 간식 상자", new[]{"소비","휴식"}, new[]{-3f,0f,-3f,1f,1f}, "냠냠! 맛있어!", "으응… 배 아파."),
+                Item("infant_bed", "작은 침대", new[]{"휴식"}, new[]{-6f,0f,5f,0f,3f}, "졸려…", "조금만 더 잘래."),
+                Item("infant_crawl", "혼자 기어가기 길", new[]{"운동"}, new[]{2f,2f,8f,0f,2f}, "나 여기!", "혼자 갈래!"),
+                Item("infant_tablet", "유튜브 태블릿", new[]{"소비","놀이"}, new[]{8f,-6f,-7f,-4f,-5f}, "또 틀어 줘!", "싫어! 더 볼래!")
             };
-            string[] reflections = { "그림을 또 보고 싶어요.","내가 쌓았어요!","눈이 조금 피곤해요.","조금만 더 안아 주세요.",
-                "친구에게 굴려 줄래요.","달콤했는데 배가 아파요.","푹 쉬었어요.","나 혼자 여기까지 왔어요.","영상이 자꾸 생각나요." };
+            string[] reflections = { "또 볼래!","내가 쌓을래!","이거 또 나와?","더 안아 줘.","나도 줘!","으응… 배 아파.","조금만 더 잘래.","혼자 갈래!","싫어! 더 볼래!" };
             for (int i=0;i<definitions.Length;i++) { definitions[i].childReflectionLine = reflections[i]; EditorUtility.SetDirty(definitions[i]); }
             var colors = new[] { new Color(.82f,.48f,.3f), new Color(.4f,.72f,.64f), new Color(.38f,.5f,.75f),
                 new Color(.82f,.57f,.62f), new Color(.62f,.76f,.36f), new Color(.92f,.68f,.25f),

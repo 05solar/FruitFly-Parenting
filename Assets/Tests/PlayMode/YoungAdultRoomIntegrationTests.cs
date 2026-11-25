@@ -77,13 +77,13 @@ namespace FruitFlyParenting.Tests.PlayMode
                     if(i==0 && repeated) expected=Mathf.Clamp(expected+3,0,100);
                     Assert.AreEqual(expected,GameState.Current.Stats.GetValue((StatType)i),entry.Id+" stat "+i);
                 }
-                expectedR+=entry.Rebellion+(repeated ? 4 : 0); expectedTrust+=entry.Trust;
+                expectedR+=entry.Rebellion+(repeated ? 4 : 0); expectedTrust+=entry.Trust+(entry.Id=="youngadult_letter" ? 8f : 0);
                 Assert.AreEqual(expectedR,GameState.Current.Stats.GetValue(StatType.Rebellion)); Assert.AreEqual(expectedTrust,GameState.Current.Relationship.Trust);
             }
             var state=GameState.Current; var all=state.ToSaveData();
             yield return Visit("gambling"); CollectionAssert.AreEqual(all.statValues,state.ToSaveData().statValues);
             yield return Visit("park"); Assert.IsTrue(state.HasGamblingBankruptcy);
-            Assert.AreEqual(13,adult.Room.VisitedItemIds.Count); Assert.AreEqual(46,state.Stats.GetValue(StatType.Rebellion)); Assert.AreEqual(1,state.Relationship.Trust);
+            Assert.AreEqual(13,adult.Room.VisitedItemIds.Count); Assert.AreEqual(46,state.Stats.GetValue(StatType.Rebellion)); Assert.AreEqual(9,state.Relationship.Trust);
             Assert.AreEqual((YoungAdultFlags)15,state.ToSaveData().youngAdultFlags);
             Assert.AreEqual(1,state.EventLog.Count(e=>e.eventType=="gambling_montage_completed"));
             var saved=JsonUtility.FromJson<GameStateSaveData>(File.ReadAllText(checkpoint)); Assert.IsFalse(saved.finalYoungAdultSnapshot!=null && saved.finalYoungAdultSnapshot.IsCaptured);
@@ -148,12 +148,12 @@ namespace FruitFlyParenting.Tests.PlayMode
         {
             var state=GameState.Current; yield return Visit("letter"); yield return Visit("workshop"); yield return Visit("independence"); yield return Visit("quit");
             var before=state.ToSaveData(); state.Relationship.RecordIntervention(Time.time);
-            yield return Visit("letter"); Assert.IsTrue(state.HasContactBlocked); Assert.AreEqual(24,state.Relationship.Trust);
-            yield return new WaitForSeconds(10.1f); yield return Visit("letter"); Assert.IsFalse(state.HasContactBlocked); Assert.AreEqual(34,state.Relationship.Trust);
+            yield return Visit("letter"); Assert.IsTrue(state.HasContactBlocked); Assert.AreEqual(24+8f,state.Relationship.Trust);
+            yield return new WaitForSeconds(10.1f); yield return Visit("letter"); Assert.IsFalse(state.HasContactBlocked); Assert.AreEqual(34+8f,state.Relationship.Trust);
             yield return Visit("workshop"); Assert.IsFalse(state.HasResigned);
             yield return Visit("letter"); yield return Visit("workshop"); CollectionAssert.AreEqual(before.statValues,state.ToSaveData().statValues);
-            Assert.AreEqual(34,state.Relationship.Trust); Assert.AreEqual(1,state.EventLog.Count(e=>e.eventType=="youngadult_reconnect")); Assert.AreEqual(1,state.EventLog.Count(e=>e.eventType=="youngadult_new_job"));
-            var saved=JsonUtility.FromJson<GameStateSaveData>(File.ReadAllText(checkpoint)); Assert.AreEqual(YoungAdultFlags.None,saved.youngAdultFlags); Assert.AreEqual(34,saved.trust);
+            Assert.AreEqual(34+8f,state.Relationship.Trust); Assert.AreEqual(1,state.EventLog.Count(e=>e.eventType=="youngadult_reconnect")); Assert.AreEqual(1,state.EventLog.Count(e=>e.eventType=="youngadult_new_job"));
+            var saved=JsonUtility.FromJson<GameStateSaveData>(File.ReadAllText(checkpoint)); Assert.AreEqual(YoungAdultFlags.None,saved.youngAdultFlags); Assert.AreEqual(34+8f,saved.trust);
         }
         [UnityTest] public IEnumerator SavedNavMesh_IsOneConnectedFloor_AllThirteenSlotsReachable()
         {

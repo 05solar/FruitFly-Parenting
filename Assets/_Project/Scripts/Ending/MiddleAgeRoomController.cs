@@ -68,7 +68,7 @@ namespace FruitFlyParenting.Ending
             candle.SetActive(Result.condition==EndingCondition.EmptyBirthday); news.SetActive(Result.condition==EndingCondition.FamousOutside); documents.SetActive(Result.condition==EndingCondition.Debt);
             presentation=gameObject.AddComponent<EndingPresentation>(); presentation.Initialize(font,config.endingGazeSeconds,Restart);
             if(Result.condition==EndingCondition.Debt) CreateDebtChoice();
-            guidance.ShowSubtitle("되돌아온 문\n왼손 스틱으로 가운데 거실의 빈자리까지 다가가세요.");
+            guidance.ShowSubtitle($"되돌아온 문\n{DesktopControls.MovementLabel}로 가운데 거실의 빈자리까지 다가가세요.");
         }
         void Update()
         {
@@ -111,8 +111,8 @@ namespace FruitFlyParenting.Ending
             string[] lines={"함께 계획을 세워 보자","대신 갚아 줄 수는 없어"};
             for(int i=0;i<2;i++)
             {
-                int choice=i; var panel=CorridorUI.Image(canvas.transform,"Response "+i,new Vector2(750,130),new Vector2(i==0 ? -400 : 400,0),new Color(.12f,.22f,.25f));
-                CorridorUI.Text(panel.transform,"Line",font,lines[i],new Vector2(720,120),Vector2.zero,34);
+                int choice=i; var panel=UI.JournalUI.Panel(canvas.transform,"Response "+i,new Vector2(750,130),new Vector2(i==0 ? -400 : 400,0),UI.JournalUI.Sage,24);
+                CorridorUI.Text(panel.transform,"Line",font,lines[i],new Vector2(720,120),Vector2.zero,34).color=Color.white;
                 panel.gameObject.AddComponent<GazeAction>().Configure(()=>
                 {
                     ChildLine=choice==0 ? "내 책임부터 정리할게요. 함께 계획을 생각해 줘서 고마워요." : "내가 감당할 방법을 찾아볼게요. 이야기를 들어줘서 고마워요.";

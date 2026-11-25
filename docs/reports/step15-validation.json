@@ -1,0 +1,162 @@
+{
+  "step": 15,
+  "date": "2026-11-24",
+  "unity": "6000.6.2f1",
+  "status": "implementation and desktop build verification completed; hardware acceptance pending",
+  "target": {
+    "model": "Quest 2 (provisional; ownership unconfirmed)",
+    "hz": 72,
+    "frameBudgetMs": 13.88888888888889,
+    "trianglesPerRoom": 100000,
+    "trianglesPerLoadedScene": 250000,
+    "drawCallsPerFrameGoal": 200,
+    "textureBudgetMiB": 128,
+    "appMemoryBudgetMiB": 1536,
+    "headsetsConnected": 0
+  },
+  "editModeMeta209AndroidSettings": {
+    "result": "Passed",
+    "total": "253",
+    "passed": "253",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "1.2474454",
+    "log": "Logs/Step15Project/Logs/step15-final-editmode.xml"
+  },
+  "playModeRegressionStep12PackageBaseline": {
+    "result": "Passed",
+    "total": "69",
+    "passed": "69",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "411.9075169",
+    "log": "Logs/Step14Project/Logs/playmode-results.xml"
+  },
+  "questQualityFiveRoomMonoGpuTest": {
+    "result": "Passed",
+    "total": "1",
+    "passed": "1",
+    "failed": "0",
+    "skipped": "0",
+    "duration": "2.444343",
+    "log": "Logs/Step14Project/Logs/step15-visual.xml"
+  },
+  "pythonCaptureTests": {
+    "passed": 2,
+    "failed": 0,
+    "command": "python -m unittest discover -s tools/quest -p test_*.py"
+  },
+  "apkRelease": {
+    "apk": "FruitFlyParenting.apk",
+    "bytes": 78655798,
+    "sha256": "76ac39c816080cd0d2a97e794efceaa8d6454be1e871d159284f2375d57bb082",
+    "development": false,
+    "abis": [
+      "arm64-v8a"
+    ],
+    "checks": {
+      "arm64_only": true,
+      "il2cpp": true,
+      "runtime_present": true,
+      "profiling_matches_build_type": true,
+      "debuggable_matches_build_type": true,
+      "quest_head_tracking": true,
+      "package_id": true,
+      "min_api_29": true,
+      "target_api_34": true,
+      "DebugHud_excluded": true,
+      "RoomCoordinateGizmos_excluded": true,
+      "FruitFlyParenting.Connectome_excluded": true,
+      "ConnectomeViewer_excluded": true
+    },
+    "passed": true,
+    "device_installation": "not tested: no connected HMD"
+  },
+  "apkProfiling": {
+    "apk": "FruitFlyParenting-profiling.apk",
+    "bytes": 123530433,
+    "sha256": "f6b31e94245e7ae769be76ad3ec0bc22ac0823f9bc410f0b9aa492ad7521f1c4",
+    "development": true,
+    "abis": [
+      "arm64-v8a"
+    ],
+    "checks": {
+      "arm64_only": true,
+      "il2cpp": true,
+      "runtime_present": true,
+      "profiling_matches_build_type": true,
+      "debuggable_matches_build_type": true,
+      "quest_head_tracking": true,
+      "package_id": true,
+      "min_api_29": true,
+      "target_api_34": true,
+      "DebugHud_excluded": true,
+      "RoomCoordinateGizmos_excluded": true,
+      "FruitFlyParenting.Connectome_excluded": true,
+      "ConnectomeViewer_excluded": true
+    },
+    "passed": true,
+    "device_installation": "not tested: no connected HMD"
+  },
+  "signatures": {
+    "releaseV2Verified": true,
+    "profilingV2Verified": true,
+    "tool": "Android SDK build-tools 36.0.0 apksigner verify --verbose"
+  },
+  "releaseBuildReport": {
+    "result": "Succeeded",
+    "bytes": 1280657546,
+    "development": false,
+    "comfortShaderIncluded": true,
+    "experimentalAssets": 0
+  },
+  "profilingBuildReport": {
+    "result": "Succeeded",
+    "bytes": 1397709612,
+    "development": true,
+    "comfortShaderIncluded": true,
+    "experimentalAssets": 0
+  },
+  "buildReportSizeNote": "BuildReport totalSize includes build outputs beyond APK; use apkRelease/apkProfiling bytes for package size.",
+  "preservation": {
+    "preexistingUncommittedFiles": 131,
+    "byteIdentical": 123,
+    "intentionalChanges": [
+      "Assets/_Project/Audio/ItemApproach.wav.meta",
+      "Assets/_Project/Scripts/Comfort/ItemApproachFeedback.cs",
+      "Assets/Tests/PlayMode/ComfortIntegrationTests.cs",
+      "Assets/XR/Settings/OpenXR Package Settings.asset",
+      "docs/tech-stack.md",
+      "ProjectSettings/ProjectSettings.asset",
+      "ProjectSettings/QualitySettings.asset",
+      "README.md"
+    ],
+    "originalUserFiles": 26,
+    "byteIdenticalUserFiles": 23,
+    "androidSettingsFilesChanged": [
+      "Assets/XR/Settings/OpenXR Package Settings.asset",
+      "ProjectSettings/ProjectSettings.asset",
+      "ProjectSettings/QualitySettings.asset"
+    ],
+    "standaloneOpenXRBlocksPreserved": true,
+    "pcQualityValuesPreserved": true,
+    "authoredScenesUnchanged": 8
+  },
+  "pending": [
+    "Confirm owned headset model",
+    "Install and run APK on device",
+    "Real XR stereo, seated controls and F8 verification",
+    "Per-room CPU/GPU frame time, draw calls and memory",
+    "Sustained 72 Hz after thermal warm-up",
+    "Standalone Meta MRUK configuration remains outside this Android pass"
+  ],
+  "geometryEvidence": "docs/reports/step15-geometry.json",
+  "geometryCaveat": "Authored meshes including inactive content; materialSlots are not GPU draw calls. Dynamic feedback quad is 2 triangles per slot.",
+  "screenshots": [
+    "docs/images/quest-01_Infant.png",
+    "docs/images/quest-03_Childhood.png",
+    "docs/images/quest-04_Adolescence.png",
+    "docs/images/quest-05_YoungAdult.png",
+    "docs/images/quest-06_MiddleAge.png"
+  ]
+}

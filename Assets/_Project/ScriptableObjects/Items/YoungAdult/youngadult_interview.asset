@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uD070 \uAE30\uD68C \uC55E\uC5D0\uC11C \uAE34 \uC228\uC744 \uACE8\uB77C\uC694."
-  - "\uB0B4\uAC00 \uD558\uACE0 \uC2F6\uC740 \uC77C\uC744 \uB2E4\uC2DC \uC0DD\uAC01\uD574\uC694."
-  childReflectionLine: "\uB0B4\uAC00 \uD558\uACE0 \uC2F6\uC740 \uC77C\uC744 \uB2E4\uC2DC \uC0DD\uAC01\uD574\uC694."
+  - "떨리네. 준비한 만큼만 말하자."
+  - "붙으면 여기서 계속 일하게 되려나."
+  childReflectionLine: "붙으면 여기서 계속 일하게 되려나."

@@ -87,12 +87,10 @@ namespace FruitFlyParenting.Tests.EditMode
             effects.Visit(item,true,true,2);
             Assert.AreEqual(0,state.Relationship.AutonomousVisitCount);
         }
-        [Test] public void Timeline_EnforcesNinetySeconds_EightMinuteDoor_TenMinuteEffectStop()
+        [Test] public void Timeline_EnforcesEightMinuteDoorAndTenMinuteEffectStop()
         {
             var clock = new RoomTimeline(config);
-            clock.Advance(89.99f); Assert.IsFalse(clock.ToolsEnabled);
-            clock.Advance(.02f); Assert.IsTrue(clock.ToolsEnabled);
-            clock.Advance(329.98f); Assert.IsFalse(clock.DoorOpen); // 419.99
+            clock.Advance(419.99f); Assert.IsFalse(clock.DoorOpen);
             clock.Advance(60f); Assert.IsFalse(clock.DoorOpen); // 479.99
             clock.Advance(.02f); Assert.IsTrue(clock.DoorOpen); Assert.IsTrue(clock.EffectsEnabled);
             clock.Advance(119.98f); Assert.IsTrue(clock.EffectsEnabled);

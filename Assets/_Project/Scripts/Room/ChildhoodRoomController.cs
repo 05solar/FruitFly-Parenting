@@ -69,7 +69,7 @@ namespace FruitFlyParenting.Room
             outgoing.CorridorEntered += EnteredCorridor;
             outgoing.gameObject.SetActive(true);
             view.Initialize(Camera.main,room,"놀이터와 첫 약속");
-            view.ShowNarrative("교실과 놀이터 사이에서, 오늘의 놀이를 골라요.");
+            view.ShowDialogue("뭐부터 하고 놀까?");
             fly.gameObject.SetActive(true);
             if (startImmediately) { EventBus.RaiseRoomEntered(RoomId); Save("room_enter"); }
             Refresh();
@@ -81,7 +81,7 @@ namespace FruitFlyParenting.Room
         }
         void Refresh()
         {
-            contact.ContactsEnabled = Timeline.ToolsEnabled;
+            contact.ContactsEnabled = true;
             exitDoor.SetActive(!Timeline.DoorOpen); outgoing.SourceExitOpen = Timeline.DoorOpen;
             room.ConfigureExit(Timeline.DoorOpen,Timeline.ExitOnly,room.transform.TransformPoint(new Vector3(23,0,12.1f)),config.roomExitChoiceWeight);
             if ((Timeline.DoorOpen && !wasOpen) || (Timeline.ExitOnly && !wasExitOnly)) fly.HeadToExit();
@@ -91,7 +91,7 @@ namespace FruitFlyParenting.Room
             {
                 GameState.Current.RecordPaperAirplane(Airplane.Outcome,Time.time);
                 airplaneView.Play(Airplane.Outcome);
-                view.ShowNarrative(PaperAirplaneEvent.SceneLine(Airplane.Outcome));
+                view.ShowDialogue(PaperAirplaneEvent.SceneLine(Airplane.Outcome));
                 Save("paper_airplane");
             }
             view.Refresh(Timeline,GameState.Current,room.VisitedItemIds.Count);
@@ -100,7 +100,7 @@ namespace FruitFlyParenting.Room
         {
             if (leaving) return;
             var result = effects.Visit(slot.Definition,first,Timeline.EffectsEnabled,Time.time,slot.LastVisitContext);
-            view.ShowNarrative(result.Narrative); EventBus.RaiseItemVisited(slot.ItemId,result.FirstVisit);
+            view.ShowDialogue(result.Narrative); EventBus.RaiseItemVisited(slot.ItemId,result.FirstVisit);
             if (result.FirstVisit) Save("item_first:"+slot.ItemId);
         }
         void Leaving() { leaving = true; contact.ContactsEnabled = false; }

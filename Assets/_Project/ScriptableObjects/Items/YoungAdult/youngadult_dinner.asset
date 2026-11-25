@@ -33,6 +33,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uB204\uAD70\uAC00\uC640 \uD568\uAED8 \uBBF8\uB798\uB97C \uC774\uC57C\uAE30\uD574\uC694."
-  - "\uB2E4\uC74C \uC800\uB141\uC758 \uC57D\uC18D\uC744 \uB098\uB220\uC694."
-  childReflectionLine: "\uB2E4\uC74C \uC800\uB141\uC758 \uC57D\uC18D\uC744 \uB098\uB220\uC694."
+  - "밥부터 먹자. 오늘 어땠어?"
+  - "다음 주에도 여기서 만날까?"
+  childReflectionLine: "다음 주에도 여기서 만날까?"

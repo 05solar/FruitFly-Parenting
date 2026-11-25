@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uB0B4 \uB9D0\uB85C \uD3B8\uC9C0\uB97C \uC4F0\uAE30 \uC2DC\uC791\uD574\uC694."
-  - "\uB2E4\uC74C \uC774\uC57C\uAE30\uB97C \uD3B8\uC9C0\uC5D0 \uB367\uBD99\uC5EC\uC694."
-  childReflectionLine: "\uB2E4\uC74C \uC774\uC57C\uAE30\uB97C \uD3B8\uC9C0\uC5D0 \uB367\uBD99\uC5EC\uC694."
+  - "전화로는 못 하겠어서 편지 써요."
+  - "밥은 잘 챙겨 먹고 있어요."
+  childReflectionLine: "밥은 잘 챙겨 먹고 있어요."

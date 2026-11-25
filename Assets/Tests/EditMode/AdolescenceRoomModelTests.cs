@@ -37,7 +37,7 @@ namespace FruitFlyParenting.Tests.EditMode
             Assert.IsTrue(effects.Visit(item,true,true,0).EffectsApplied);
             effects.Visit(item,false,true,1); effects.Visit(item,true,true,2);
             float[] expected={s,i,h,p,l}; for(int n=0;n<5;n++) Assert.AreEqual(50+expected[n],state.Stats.GetValue((StatType)n));
-            Assert.AreEqual(50+t,state.Relationship.Trust); Assert.AreEqual(r,state.Stats.GetValue(StatType.Rebellion));
+            Assert.AreEqual(50+t+(id=="parents" ? config.autonomousParentTrustGain : 0),state.Relationship.Trust); Assert.AreEqual(r,state.Stats.GetValue(StatType.Rebellion));
             Assert.AreEqual(delinquency,state.HasDelinquencyRecord); Assert.IsFalse(state.IsFlightSmokeEventTriggered);
             Assert.AreEqual(delinquency ? 1 : 0,state.EventLog.Count(e=>e.eventType=="delinquency_record"));
         }
@@ -90,7 +90,7 @@ namespace FruitFlyParenting.Tests.EditMode
             var story=new AdolescenceNarrative(config); Assert.AreEqual(expected,story.RefuseConversation(trust));
             if(expected) Assert.IsFalse(story.RefuseConversation(0));
         }
-        [TestCase(34.99f,"그냥 시키는 대로 할게")] [TestCase(35,"이번엔 내가 골라 볼게")]
+        [TestCase(34.99f,"시키는 대로 할게")] [TestCase(35,"내가 고를래")]
         public void ThirdAutonomousChoice_ThenTwoRelatedConfirmedBlocks_SelectsDialogue(float rebellion,string line)
         {
             var story=new AdolescenceNarrative(config);

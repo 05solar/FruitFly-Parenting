@@ -1,4 +1,4 @@
-#if UNITY_EDITOR || PREFERENCE_VERIFICATION
+#if UNITY_EDITOR || (PREFERENCE_VERIFICATION && !UNITY_ANDROID)
 using System;
 using System.Collections;
 using System.IO;

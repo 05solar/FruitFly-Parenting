@@ -36,6 +36,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uCE5C\uAD6C\uB4E4\uACFC \uBC24\uC0C8 \uC6C3\uC9C0\uB9CC \uB2E4\uC74C \uB0A0 \uC57D\uC18D\uC744 \uB193\uCCD0\uC694."
-  - "\uC990\uAC70\uC6E0\uB358 \uBC24\uACFC \uB193\uCE5C \uC57D\uC18D\uC744 \uD568\uAED8 \uB5A0\uC62C\uB824\uC694."
-  childReflectionLine: "\uC990\uAC70\uC6E0\uB358 \uBC24\uACFC \uB193\uCE5C \uC57D\uC18D\uC744 \uD568\uAED8 \uB5A0\uC62C\uB824\uC694."
+  - "한 판만 더! 아직 안 졸려!"
+  - "아, 약속 있었는데… 늦었다!"
+  childReflectionLine: "아, 약속 있었는데… 늦었다!"

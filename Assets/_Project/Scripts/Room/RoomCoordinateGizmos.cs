@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 
 namespace FruitFlyParenting.Room
@@ -29,3 +30,4 @@ namespace FruitFlyParenting.Room
         }
     }
 }
+#endif

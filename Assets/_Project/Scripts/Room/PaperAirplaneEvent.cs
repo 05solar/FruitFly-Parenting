@@ -21,17 +21,17 @@ namespace FruitFlyParenting.Room
         }
         public static string SceneLine(PaperAirplaneOutcome outcome) => outcome switch
         {
-            PaperAirplaneOutcome.ApologizeAndRepair => "친구의 종이비행기가 찢어졌어요.\n“미안해. 우리 같이 고쳐 보자.”",
-            PaperAirplaneOutcome.PostponeApology => "찢어진 종이비행기 앞에서 고개를 돌려요.\n“지금은 혼자 있고 싶어. 사과는 조금 뒤에…”",
-            PaperAirplaneOutcome.TalkTomorrow => "종이비행기를 조심히 내려놓아요.\n“내일 친구와 다시 이야기해 볼래.”",
-            _ => "친구가 접어 준 종이비행기"
+            PaperAirplaneOutcome.ApologizeAndRepair => "앗, 찢어졌다! 미안해. 같이 고치자.",
+            PaperAirplaneOutcome.PostponeApology => "일부러 그런 거 아니야… 지금은 말 안 할래.",
+            PaperAirplaneOutcome.TalkTomorrow => "어떡하지… 내일 가서 미안하다고 해야겠다.",
+            _ => "이거 친구가 접어 줬어!"
         };
         public static string CorridorLine(PaperAirplaneOutcome outcome, bool interrupted) =>
             (outcome switch {
-                PaperAirplaneOutcome.ApologizeAndRepair => "접힌 자리에 테이프가 남았어요. 함께 고친 약속은 기억할래요.",
-                PaperAirplaneOutcome.PostponeApology => "찢어진 날개를 아직 붙이지 못했어요. 미뤄 둔 말을 기억해요.",
-                PaperAirplaneOutcome.TalkTomorrow => "종이비행기를 내일의 대화 곁에 두었어요.",
-                _ => "종이비행기에 아직 적지 못한 이야기가 있어요."
-            }) + (interrupted ? "\n“그때 하던 놀이를 멈춰야 했어요. 다음에는 끝까지 해 보고 싶어요.”" : "\n“내가 끝까지 해 볼 시간을 주었어요.”");
+                PaperAirplaneOutcome.ApologizeAndRepair => "테이프 붙였더니 또 날아가!",
+                PaperAirplaneOutcome.PostponeApology => "아직 미안하다고 못 했어…",
+                PaperAirplaneOutcome.TalkTomorrow => "내일은 꼭 친구한테 말할 거야.",
+                _ => "친구랑 또 비행기 날리고 싶어."
+            }) + (interrupted ? "\n아까는 더 놀고 싶었는데." : "\n끝까지 해 봐서 좋았어!");
     }
 }

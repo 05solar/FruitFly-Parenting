@@ -44,3 +44,13 @@ unity_*.log
 
 # Simulation reports (16번 프롬프트 산출물, 커밋 대상 아님)
 /SimulationReports/
+
+# Python tooling caches
+__pycache__/
+*.py[cod]
+[Ss]imulationReports/
+/PlaytestReports/
+
+# Machine-local Meta debugger connection credentials
+/Assets/Resources/DevAgentSettings.asset
+/Assets/Resources/DevAgentSettings.asset.meta

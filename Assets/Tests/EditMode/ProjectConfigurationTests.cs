@@ -23,7 +23,14 @@ namespace FruitFlyParenting.Tests.EditMode
             Assert.IsNotNull(pipeline.rendererDataList[0]);
             Assert.IsNotNull(pipeline.scriptableRenderer);
             for (int i = 0; i < QualitySettings.names.Length; i++)
-                Assert.AreEqual(pipeline, QualitySettings.GetRenderPipelineAssetAt(i));
+            {
+                var expected = QualitySettings.names[i] == "Quest 72Hz"
+                    ? AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/_Project/Settings/URP-Quest.asset") : pipeline;
+                Assert.IsNotNull(expected);
+                Assert.AreEqual(expected, QualitySettings.GetRenderPipelineAssetAt(i));
+                Assert.IsNotNull(expected.rendererDataList[0]);
+                Assert.IsNotNull(expected.scriptableRenderer);
+            }
         }
 
         [Test]

@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-25",
+  "change": "Downloaded wheelchair and baton with visible left-hand joystick console",
+  "sources": [
+    {
+      "name": "Wheelchair v1 LOD1",
+      "author": "tevy",
+      "url": "https://tevy.dev/models/wheelchair",
+      "license": "CC0",
+      "triangles": 8848
+    },
+    {
+      "name": "Baton",
+      "author": "Pichuliru",
+      "url": "https://poly.pizza/m/8KQCnj6CCM",
+      "license": "CC0",
+      "triangles": 302
+    }
+  ],
+  "playMode": {
+    "result": "Passed",
+    "total": "15",
+    "passed": "15",
+    "failed": "0"
+  },
+  "finalVisualAdjustmentRetest": {
+    "result": "Passed",
+    "total": "2",
+    "passed": "2",
+    "failed": "0"
+  },
+  "checks": [
+    "Left joystick inside seated forward camera view",
+    "Joystick tilts with input and returns to neutral",
+    "Baton visible on right when idle",
+    "Idle baton contact remains disabled",
+    "No extra colliders on equipment visuals",
+    "Existing character radius preserved",
+    "Installation idempotent",
+    "Existing desktop/VR switching and physical contact tests passed"
+  ],
+  "headsetHardwareTest": "Not performed",
+  "build": "Succeeded: Windows PC/PCVR OpenXR baseline",
+  "screenshots": [
+    "docs/images/player-equipment-exterior.png",
+    "docs/images/player-equipment-seated.png",
+    "docs/images/player-equipment-player.png"
+  ],
+  "sourceSynchronization": {
+    "checked": 36,
+    "differences": []
+  },
+  "runtimePreview": {
+    "processId": 56576,
+    "leftJoystickVisible": true,
+    "electricBatonVisible": true,
+    "roomEntered": true,
+    "firstItemVisitRecorded": true
+  }
+}

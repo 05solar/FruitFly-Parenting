@@ -1,0 +1,6 @@
+{
+  "name": "FruitFlyParenting.Connectome.Editor",
+  "references": ["FruitFlyParenting.Connectome", "Unity.RenderPipelines.Universal.Runtime"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": false
+}

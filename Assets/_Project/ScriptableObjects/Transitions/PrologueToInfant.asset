@@ -23,4 +23,4 @@ MonoBehaviour:
   nextRoomLine: "\uC0C8\uB85C\uC6B4 \uB180\uC774\uB97C \uD568\uAED8 \uCC3E\uC544\uBCFC\uAE4C\uC694."
   themeColor: {r: 0.4, g: 0.65, b: 0.7, a: 1}
   previousRoomSound: {fileID: 8300000, guid: 12f3934cbfbba78438059a01a2f5bc8f, type: 3}
-  nextRoomSound: {fileID: 8300000, guid: f9c00b8920d9f284d89ad8bb5f979cf4, type: 3}
+  nextRoomSound: {fileID: 8300000, guid: 12f3934cbfbba78438059a01a2f5bc8f, type: 3}

@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-25",
+  "change": "growth journal UI readability redesign",
+  "editMode": {
+    "result": "Passed",
+    "total": "259",
+    "passed": "259",
+    "failed": "0"
+  },
+  "playMode": {
+    "uniqueTests": 31,
+    "passed": 31,
+    "testCases": {
+      "FruitFlyParenting.Tests.PlayMode.ComfortIntegrationTests.ChangesUseActualDeltasAndShockHasTextAwayFromCentre": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.ComfortIntegrationTests.EverySlotCuesBeforeEntryAndVisitedLampDimsWithoutReplay": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.ComfortIntegrationTests.HesitationAnimationAlsoHasAnAccessibleCaption": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.ComfortIntegrationTests.MovingVignetteNeutralStopAndTurnPreferenceWorkThroughActualProviders": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.ComfortIntegrationTests.OpaqueFadeCoversObjectsCloserThanTheCurtain": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.ComfortIntegrationTests.WorldAnchoredGazeMenuPausesAndHeightChangesOnlyUnderBlackCurtain": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.ClicksSettingsWithoutActivatingTheTool": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.KeyboardMovesTurnsStopsAndRespectsWallsAndPause": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.MouseToolMakesOnePhysicalContactPerPress": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.RightDragLooksWithoutSteeringAndEscapeReleasesMouse": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.ToolIsContactBasedAndVrDevicesTakePriorityOverKeyboard": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.DebtResponseChangesOnlyDialogue_AndQuietPeriodClosesOptionalChoices": {
+        "result": "Passed",
+        "evidence": "ui-journal-final.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.FullRun_PrologueThroughFourRoomsAndCorridors_ToEndingCardAndGallery": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.GazeOpensGallery_SelectionsReuseActualRecaps_AndRestartClearsRun": {
+        "result": "Passed",
+        "evidence": "ui-journal-card-final.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.ThreeDistinctPresentations_KeepFinalState_AndLastFifteenSecondsQuiet": {
+        "result": "Passed",
+        "evidence": "ui-journal-card-final.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.ClosedDoor_BlocksWheelchairDrivingThroughBoundary": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.DoorAndEffectDeadlines_ChangeActualScene_AndExitBecomesOnlyGoal": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.FullPlaythrough_ObserveThenDrive_FadesInRealTime_AndSavesCorridor": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.NineSavedItems_ApplyExactEffectsOnce_AndCheckpointEveryFirstVisit": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.ObservationCooldown_BlocksBothSources_ThenEnablesNormalElectricContact": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.TabletRoutes_AreConnected_AndTraversableWithoutFurniturePenetration": {
+        "result": "Passed",
+        "evidence": "ui-journal-PlayMode.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.InfantLocatorFollowsRealChildAndHidesForCorridor": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.JournalHudKeepsCardsReadableAndSwitchesBetweenDesktopAndVr": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.LocatorDirectionCoversRearHemisphere(0,1,\"앞쪽\")": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.LocatorDirectionCoversRearHemisphere(1,0,\"오른쪽\")": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.LocatorDirectionCoversRearHemisphere(-1,0,\"왼쪽\")": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.LocatorDirectionCoversRearHemisphere(0,-1,\"뒤쪽\")": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.LocatorDirectionCoversRearHemisphere(1,-1,\"오른쪽 뒤\")": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.LocatorDirectionCoversRearHemisphere(-1,-1,\"왼쪽 뒤\")": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.RecorderIsolatesSavesAndDoesNotTreatEndingSelectionAsCompletion": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      },
+      "FruitFlyParenting.Tests.PlayMode.PlaytestSupportTests.RestartCreatesSeparateEvidenceAndPauseDoesNotInflateActiveTime": {
+        "result": "Passed",
+        "evidence": "ui-journal-glyphs.xml"
+      }
+    }
+  },
+  "build": {
+    "generatedUtc": "2026-11-25T05:33:35.660921+00:00",
+    "sourceCommit": "89700a50b47ad9b5ea5ebcae90640faabbb66b77",
+    "sourceHasUncommittedChanges": true,
+    "unityVersion": "6000.6.2f1",
+    "target": "StandaloneWindows64",
+    "settingsBaseline": "isolated OpenXR/XRI PC project; user Meta XR settings retained in repository",
+    "inputFileCount": 1172,
+    "inputSetSha256": "50370537b988ecc181424ea62854df4f38c4cad446973b230a84514da70b4a87",
+    "artifactHashes": {
+      "FruitFlyParenting.exe": "af88b840e599661ac63fc10ae27ac77dd97cd46b44df8a7ce60eb0dcfacfc99e",
+      "FruitFlyParenting_Data/globalgamemanagers": "617bc4074eb1b9b277b7ca9ab314bb60d8283d0d91bad0c825982cdbb5d94bd1",
+      "FruitFlyParenting_Data/Managed/FruitFlyParenting.Game.dll": "4fe09627b9d431f85dbe4d1511c07104206081f2d122890dc27140c39350f0fa"
+    },
+    "humanAcceptance": "pending"
+  },
+  "buildGuid": "d18162804dd4473bb76d09641d3b3c66",
+  "runtimeScriptsMatchBuildProject": true,
+  "pcScreensVerified": [
+    {
+      "width": 1280,
+      "height": 720,
+      "capture": "Logs/ui-journal-infant-1280.png"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "capture": "Logs/ui-journal-infant-1024.png"
+    }
+  ],
+  "runtimeSmoke": "prologue and infant room; live stat changes; isolated save; UI preview left open",
+  "vrVerified": "automated world-space rendering, gaze interaction, pause and mode-switch regressions",
+  "vrHardwareReadability": "not measured",
+  "balanceChanges": [],
+  "artwork": "original runtime vector panels and icons; existing Noto Sans CJK KR (OFL)"
+}

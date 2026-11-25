@@ -36,6 +36,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 2
   narrativeLines:
-  - "\uC5F0\uB77D\uC744 \uB04A\uACE0 \uB0B4 \uC0DD\uD65C\uC744 \uC2DC\uC791\uD574\uC694."
-  - "\uC5F0\uB77D\uD560\uC9C0 \uB9D0\uC9C0\uB294 \uB2E4\uC2DC \uB0B4\uAC00 \uC0DD\uAC01\uD574 \uBCFC\uB798\uC694."
-  childReflectionLine: "\uC5F0\uB77D\uD560\uC9C0 \uB9D0\uC9C0\uB294 \uB2E4\uC2DC \uB0B4\uAC00 \uC0DD\uAC01\uD574 \uBCFC\uB798\uC694."
+  - "당분간 연락하지 마. 혼자 있고 싶어."
+  - "연락할 준비는 아직 안 됐어."
+  childReflectionLine: "연락할 준비는 아직 안 됐어."

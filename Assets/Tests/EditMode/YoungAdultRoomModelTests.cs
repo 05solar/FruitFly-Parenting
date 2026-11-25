@@ -39,7 +39,7 @@ namespace FruitFlyParenting.Tests.EditMode
             Assert.IsTrue(effects.Visit(item,true,true,0).EffectsApplied);
             Assert.IsFalse(effects.Visit(item,false,true,1).EffectsApplied); Assert.IsFalse(effects.Visit(item,true,true,2).EffectsApplied);
             float[] expected={s,i,h,p,l}; for(int n=0;n<5;n++) Assert.AreEqual(50+expected[n],state.Stats.GetValue((StatType)n));
-            Assert.AreEqual(50+t,state.Relationship.Trust); Assert.AreEqual(r,state.Stats.GetValue(StatType.Rebellion));
+            Assert.AreEqual(50+t+(id=="letter" ? config.autonomousParentTrustGain : 0),state.Relationship.Trust); Assert.AreEqual(r,state.Stats.GetValue(StatType.Rebellion));
             Assert.AreEqual(flags,state.ToSaveData().youngAdultFlags); Assert.IsFalse(state.HasDelinquencyRecord);
         }
         [Test] public void BothContracts_SetOneStickyFlag_RecoveryDoesNotClearBankruptcyOrContract()
@@ -56,9 +56,9 @@ namespace FruitFlyParenting.Tests.EditMode
             effects.Visit(Item("letter"),false,true,2,new ItemVisitContext(true,CoercionKind.None)); Assert.IsTrue(state.HasContactBlocked);
             state.Relationship.RecordIntervention(3);
             effects.Visit(Item("letter"),false,true,4); Assert.IsTrue(state.HasContactBlocked);
-            effects.Visit(Item("letter"),false,true,14); Assert.IsFalse(state.HasContactBlocked); Assert.AreEqual(42,state.Relationship.Trust);
+            effects.Visit(Item("letter"),false,true,14); Assert.IsFalse(state.HasContactBlocked); Assert.AreEqual(42+config.autonomousParentTrustGain,state.Relationship.Trust);
             effects.Visit(Item("letter"),false,true,15); effects.Visit(Item("independence"),false,true,16);
-            Assert.IsFalse(state.HasContactBlocked); Assert.AreEqual(42,state.Relationship.Trust);
+            Assert.IsFalse(state.HasContactBlocked); Assert.AreEqual(42+config.autonomousParentTrustGain,state.Relationship.Trust);
             CollectionAssert.AreEqual(before.statValues,state.ToSaveData().statValues);
             Assert.AreEqual(1,state.EventLog.Count(e=>e.eventType=="youngadult_reconnect"));
         }
@@ -79,7 +79,7 @@ namespace FruitFlyParenting.Tests.EditMode
             effects.Visit(Item("letter"),true,false,603); effects.Visit(Item("workshop"),true,false,604);
             Assert.IsTrue(state.HasContactBlocked); Assert.IsTrue(state.HasResigned); Assert.AreEqual(50,state.Relationship.Trust);
         }
-        [TestCase(29.99f,"거리가 필요")] [TestCase(30,"조금씩 다시")] [TestCase(69.99f,"조금씩 다시")] [TestCase(70,"내일은 내가")]
+        [TestCase(29.99f,"혼자 있고 싶어")] [TestCase(30,"시간 되면 한번 보자")] [TestCase(69.99f,"시간 되면 한번 보자")] [TestCase(70,"내일 내가")]
         public void LetterUsesThreeTrustBands(float trust,string text)=>StringAssert.Contains(text,YoungAdultItemEffects.LetterLine(trust,config));
         [Test] public void Resistance_ClearsScoreAndPausesForFifteenSeconds_LastContactExtendsIt()
         {

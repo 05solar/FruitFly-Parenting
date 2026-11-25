@@ -1,0 +1,50 @@
+[
+  {
+    "file": "InfantLullaby.wav",
+    "samples": 176400,
+    "rate": 22050,
+    "peak": 0.28,
+    "rms": 0.121243,
+    "sha256": "038c26ce0f74f3e78e6d9ec0e30f92108990d92f3c53c76b7719954455001420"
+  },
+  {
+    "file": "ChildhoodPlay.wav",
+    "samples": 176400,
+    "rate": 22050,
+    "peak": 0.327686,
+    "rms": 0.039306,
+    "sha256": "556eabffab395d108b69deb45039a4a4487d7c497aa2c23c527b1e0b41a58029"
+  },
+  {
+    "file": "AdolescenceAmbience.wav",
+    "samples": 176400,
+    "rate": 22050,
+    "peak": 0.445574,
+    "rms": 0.084816,
+    "sha256": "b30e7140929a28de23cd59ea79ef9e3384b2506526edcee7c5e85fd3ad69d878"
+  },
+  {
+    "file": "YoungAdultAmbience.wav",
+    "samples": 176400,
+    "rate": 22050,
+    "peak": 0.303858,
+    "rms": 0.050436,
+    "sha256": "567b20f0af2dcc5c169434cd384f86001b90e059d6b3917cf71856ff821c2c2e"
+  },
+  {
+    "file": "MiddleAgeAmbience.wav",
+    "samples": 176400,
+    "rate": 22050,
+    "peak": 0.211092,
+    "rms": 0.063554,
+    "sha256": "7b4a7a378b1fa66da7cbed0d003cc00856a4b73844e6b177859693f065c4bbb4"
+  },
+  {
+    "file": "ItemApproach.wav",
+    "samples": 6615,
+    "rate": 22050,
+    "peak": 0.179928,
+    "rms": 0.076728,
+    "sha256": "0216bd4bd7734f4f30c6be12e7156df4edd99b19c548534f322e2f58b212f3d4"
+  }
+]

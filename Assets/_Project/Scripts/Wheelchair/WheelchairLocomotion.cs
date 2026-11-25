@@ -20,6 +20,18 @@ namespace FruitFlyParenting.Wheelchair
         Vector3 lastPhysicsPosition;
         public Vector3 ActualVelocity { get; private set; }
         public InputActionReference LeftStick => leftStick;
+        public bool ComfortInputBlocked { get; set; }
+        public float ComfortTurnSpeed { get; set; } = 30f;
+        public float CommandedTurnSpeed => motion?.TurnSpeed ?? 0;
+        DesktopControls desktop;
+
+        void Awake()
+        {
+            if (GetComponent<PlayerEquipmentArt>() == null) gameObject.AddComponent<PlayerEquipmentArt>();
+#if UNITY_EDITOR || UNITY_STANDALONE
+            desktop = GetComponent<DesktopControls>() ?? gameObject.AddComponent<DesktopControls>();
+#endif
+        }
 
         public void Configure(GameBalanceConfig balance, InputActionReference input, ContinuousMoveProvider moveProvider, ContinuousTurnProvider turnProvider)
         {
@@ -33,6 +45,7 @@ namespace FruitFlyParenting.Wheelchair
             lastPhysicsPosition = transform.position;
             move.moveSpeed = config.wheelchairMaxSpeed;
             move.enableStrafe = false;
+            move.useGravity = false; // Grounded chair: no gravity-driven motion with a neutral stick.
             move.forwardSource = transform; // 머리나 오른손 방향에 따라 휠체어가 움직이지 않는다.
             move.inAirControlModifier = 1f;
             turn.turnSpeed = config.wheelchairTurnSpeed;
@@ -46,9 +59,16 @@ namespace FruitFlyParenting.Wheelchair
         void Update()
         {
             if (motion == null) return;
-            motion.Step(leftStick != null ? leftStick.action.ReadValue<Vector2>() : Vector2.zero, Time.deltaTime);
+            // Keyboard travel is faster; keep the same acceleration profile and collision provider.
+            bool desktopMode = desktop != null && desktop.IsDesktopMode;
+            move.moveSpeed = config.wheelchairMaxSpeed * (desktopMode ? 4f : 1f);
+            float turnLimit = Mathf.Clamp(ComfortTurnSpeed, 10f, 45f);
+            turn.turnSpeed = turnLimit;
+            Vector2 input = desktopMode ? desktop.MoveInput :
+                (leftStick != null ? leftStick.action.ReadValue<Vector2>() : Vector2.zero);
+            motion.Step(!ComfortInputBlocked ? input : Vector2.zero, Time.deltaTime, turnLimit);
             move.leftHandMoveInput.manualValue = new Vector2(0f, config.wheelchairMaxSpeed > 0f ? motion.Speed / config.wheelchairMaxSpeed : 0f);
-            turn.leftHandTurnInput.manualValue = new Vector2(config.wheelchairTurnSpeed > 0f ? motion.TurnSpeed / config.wheelchairTurnSpeed : 0f, 0f);
+            turn.leftHandTurnInput.manualValue = new Vector2(motion.TurnSpeed / turnLimit, 0f);
         }
 
         void FixedUpdate()

@@ -83,13 +83,13 @@ namespace FruitFlyParenting.Tests.PlayMode
                     if(i==0 && repeated) expected=Mathf.Clamp(expected+3,0,100);
                     Assert.AreEqual(expected,GameState.Current.Stats.GetValue((StatType)i),entry.Id+" stat "+i);
                 }
-                expectedR+=entry.Rebellion+(repeated ? 4 : 0); expectedTrust+=entry.Trust;
+                expectedR+=entry.Rebellion+(repeated ? 4 : 0); expectedTrust+=entry.Trust+(entry.Id=="adolescence_parents" ? 8f : 0);
                 Assert.AreEqual(expectedR,GameState.Current.Stats.GetValue(StatType.Rebellion)); Assert.AreEqual(expectedTrust,GameState.Current.Relationship.Trust);
                 Assert.AreEqual(entry.Delinquency,GameState.Current.HasDelinquencyRecord,"Only the final theft item sets the record.");
             }
             yield return Visit("theft"); yield return Visit("counsel");
             Assert.AreEqual(13,teen.Room.VisitedItemIds.Count); Assert.AreEqual(70,GameState.Current.Stats.GetValue(StatType.Rebellion));
-            Assert.AreEqual(17,GameState.Current.Relationship.Trust); Assert.IsTrue(GameState.Current.HasDelinquencyRecord);
+            Assert.AreEqual(17+8f,GameState.Current.Relationship.Trust); Assert.IsTrue(GameState.Current.HasDelinquencyRecord);
             var saved=JsonUtility.FromJson<GameStateSaveData>(File.ReadAllText(checkpoint)); Assert.IsTrue(saved.delinquencyRecord);
             Assert.IsFalse(saved.adolescenceExitCaptured); File.WriteAllText("Logs/adolescence-all-visits.json",JsonUtility.ToJson(saved,true));
         }
@@ -176,7 +176,7 @@ namespace FruitFlyParenting.Tests.PlayMode
             {
                 Assert.Less(Time.realtimeSinceStartup,deadline);
                 Assert.Less(Vector3.Distance(cameraAt,camera.transform.position),.001f); Assert.Less(Quaternion.Angle(cameraRotation,camera.transform.rotation),.01f);
-                StringAssert.Contains("잠시 지켜봐",teen.View.StatusText);
+                StringAssert.Contains("장면 진행 중",teen.View.StatusText);
                 if(teen.ExitSequence.WingsVisible && fly.transform.position.y>2 && !sawFlight)
                 {
                     sawFlight=true;

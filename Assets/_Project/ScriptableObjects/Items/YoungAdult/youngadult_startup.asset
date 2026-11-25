@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 1
   narrativeLines:
-  - "\uD22C\uC790 \uBC1C\uD45C\uAC00 \uB05D\uB098\uACE0 \uBE5A\uC758 \uBB34\uAC8C\uB97C \uB290\uAEF4\uC694."
-  - "\uC0C8 \uC77C\uC758 \uAC00\uB2A5\uC131\uACFC \uCC45\uC784\uC744 \uD568\uAED8 \uBC14\uB77C\uBD10\uC694."
-  childReflectionLine: "\uC0C8 \uC77C\uC758 \uAC00\uB2A5\uC131\uACFC \uCC45\uC784\uC744 \uD568\uAED8 \uBC14\uB77C\uBD10\uC694."
+  - "계약은 했는데… 빚을 다 갚을 수 있을까."
+  - "이번 달 비용부터 다시 계산하자."
+  childReflectionLine: "이번 달 비용부터 다시 계산하자."

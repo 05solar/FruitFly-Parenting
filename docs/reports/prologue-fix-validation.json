@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-25",
+  "cause": "Isolated Windows build had runInBackground disabled; intro required 60 active seconds without countdown or manual start.",
+  "fixes": [
+    "PC build explicitly enables runInBackground",
+    "Countdown in intro subtitles",
+    "Start button supports PC click / VR gaze; Enter starts immediately on PC",
+    "Pause blocks manual start; repeated requests cannot duplicate transition"
+  ],
+  "tests": {
+    "passed": 23,
+    "failed": 0,
+    "evidence": "Logs/Step14Project/Logs/prologue-fix-final-tests.xml"
+  },
+  "build": {
+    "guid": "ecd1c70eaa2c4a69a569dbfbe6917224",
+    "inputSetSha256": "59670105fbdd5e564eabfa79f9d1dab1fd0ad4ffa509b5e22faf1235d4272ca0",
+    "path": "Builds/FlatHUD/FruitFlyParenting.exe",
+    "artifactHashesVerified": true
+  },
+  "runtime": {
+    "automaticCompletionSeconds": 60.734535217285156,
+    "infantArrivalSeconds": 60.76789474487305,
+    "events": "PlaytestReports/prologue-fix/20261125-065957-a517bd74/run-065957-740-985ff2/events.jsonl",
+    "screenshots": [
+      "Logs/prologue-fix-countdown.png",
+      "Logs/prologue-fix-arrival.png"
+    ]
+  },
+  "headsetManualCheck": "not performed",
+  "humanPlaytestAcceptance": "pending"
+}

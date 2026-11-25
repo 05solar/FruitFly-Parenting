@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uC544\uBB34\uAC83\uB3C4 \uC99D\uBA85\uD558\uC9C0 \uC54A\uACE0 \uC7A0\uC2DC \uC26C\uC5B4\uC694."
-  - "\uB2E4\uC2DC \uC228\uC744 \uACE0\uB974\uACE0 \uB0B4 \uC18D\uB3C4\uB97C \uCC3E\uC544\uC694."
-  childReflectionLine: "\uB2E4\uC2DC \uC228\uC744 \uACE0\uB974\uACE0 \uB0B4 \uC18D\uB3C4\uB97C \uCC3E\uC544\uC694."
+  - "휴… 잠깐 앉았다 가자."
+  - "이렇게 쉬니까 좀 살 것 같네."
+  childReflectionLine: "이렇게 쉬니까 좀 살 것 같네."

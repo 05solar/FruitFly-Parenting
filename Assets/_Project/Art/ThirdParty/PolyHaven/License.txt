@@ -1,0 +1,5 @@
+wood_floor — Dimitrios Savva / Poly Haven
+Source: https://polyhaven.com/a/wood_floor
+License: CC0 1.0 Universal — https://creativecommons.org/publicdomain/zero/1.0/
+Poly Haven license policy: https://polyhaven.com/license
+Downloaded 2026-11-25. Included: 1K diffuse and OpenGL normal JPEG maps.

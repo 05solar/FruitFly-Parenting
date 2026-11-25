@@ -15,6 +15,27 @@ namespace FruitFlyParenting.Tests.EditMode
         GameState state;
         [SetUp] public void SetUp() { config=ScriptableObject.CreateInstance<GameBalanceConfig>(); state=new GameState(config,9); }
         [TearDown] public void TearDown() => Object.DestroyImmediate(config);
+        [Test] public void ShippedDialogueIsCompleteShortAndMatchesSceneAuthoringCatalogs()
+        {
+            var items=AssetDatabase.FindAssets("t:ItemDefinition",new[]{"Assets/_Project/ScriptableObjects/Items"})
+                .Select(g=>AssetDatabase.LoadAssetAtPath<ItemDefinition>(AssetDatabase.GUIDToAssetPath(g))).ToArray();
+            Assert.That(items.Length,Is.EqualTo(47));
+            foreach(var item in items)
+            {
+                Assert.That(item.narrativeLines.Length,Is.EqualTo(2),item.itemId);
+                foreach(var line in item.narrativeLines)
+                {
+                    Assert.That(string.IsNullOrWhiteSpace(line),Is.False,item.itemId);
+                    Assert.That(line.Length,Is.LessThanOrEqualTo(42),"Speech must fit the small bubble: "+item.itemId);
+                }
+                Assert.That(item.childReflectionLine,Is.EqualTo(item.narrativeLines[1]),item.itemId);
+            }
+            foreach(var entry in ChildhoodCatalog.Entries.Concat(AdolescenceCatalog.Entries).Concat(YoungAdultCatalog.Entries))
+            {
+                var item=items.Single(i=>i.itemId==entry.Id);
+                CollectionAssert.AreEqual(new[]{entry.FirstLine,entry.RevisitLine},item.narrativeLines,entry.Id);
+            }
+        }
         [TestCase("contest",10,12,-2,2,0,0,0)]
         [TestCase("craft",1,7,1,2,3,0,0)]
         [TestCase("soccer",1,0,10,5,2,0,0)]
@@ -37,7 +58,7 @@ namespace FruitFlyParenting.Tests.EditMode
             Assert.IsFalse(effects.Visit(item,true,true,2).EffectsApplied);
             float[] expected={s,i,h,p,l};
             for(int n=0;n<5;n++) Assert.AreEqual(50+expected[n],state.Stats.GetValue((StatType)n));
-            Assert.AreEqual(50+t,state.Relationship.Trust); Assert.AreEqual(r,state.Stats.GetValue(StatType.Rebellion));
+            Assert.AreEqual(50+t+(id=="family" ? config.autonomousParentTrustGain : 0),state.Relationship.Trust); Assert.AreEqual(r,state.Stats.GetValue(StatType.Rebellion));
             Assert.IsFalse(state.IsFlightSmokeEventTriggered); Assert.IsFalse(state.AdolescenceExitCaptured);
         }
         [TestCase("craft",39,PaperAirplaneOutcome.ApologizeAndRepair)]

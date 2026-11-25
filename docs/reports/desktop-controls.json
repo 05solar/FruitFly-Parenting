@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-25",
+  "feature": "Keyboard/mouse PC play alongside VR",
+  "controls": {
+    "moveAndTurn": "Arrow keys or WASD",
+    "look": "Hold right mouse button and drag",
+    "tool": "Hold left mouse button to extend the physical rod toward the pointer",
+    "buttons": "Left click",
+    "releaseCursor": "Escape",
+    "comfortMenu": "F9"
+  },
+  "modeSelection": "Running XR display or XR input device takes priority; otherwise desktop controls are enabled on Editor/Standalone. Android keeps existing VR controls.",
+  "validation": {
+    "fullPlayModeRegression": {
+      "passed": 74,
+      "failed": 0,
+      "evidence": "Logs/Step14Project/Logs/desktop-regression.xml"
+    },
+    "finalDesktopAndComfortAfterSceneRepair": {
+      "passed": 11,
+      "failed": 0,
+      "evidence": "Logs/Step14Project/Logs/desktop-repaired-tests.xml"
+    },
+    "finalEditModeComfortAudit": {
+      "passed": 5,
+      "failed": 0,
+      "evidence": "Logs/Step14Project/Logs/desktop-scene-audit.xml"
+    },
+    "coverage": [
+      "Movement, turning, neutral stop, collision",
+      "Mouse look without chair steering and Escape release",
+      "Repeated UI clicks and suppression of tool use over UI",
+      "Physical tool contact once per press",
+      "XR input takeover and tracking restoration",
+      "All seven main scenes: no missing scripts, one comfort controller per chair, one approach feedback per item slot"
+    ],
+    "windowsReleaseBuild": "Succeeded",
+    "playerSmoke": "Process responds; desktop input, comfort controller and tool initialized; Korean controls overlay rendered in prologue and infant room; infant autonomous visits and stat changes observed; no missing-script warnings or managed exceptions",
+    "playerLog": "Logs/desktop-player.log",
+    "playerScreenshot": "Logs/desktop-player.png"
+  },
+  "assetRepair": "Removed 134 obsolete missing-script references from the wheelchair prefab and item slots, retaining one working component per object.",
+  "build": {
+    "executable": "Builds/PC/FruitFlyParenting.exe",
+    "unity": "6000.6.2f1",
+    "project": "Logs/Step14Project",
+    "packages": "Existing isolated Windows OpenXR/XRI baseline; root Meta XR 209 package and project settings preserved",
+    "limitations": [
+      "Actual HMD tracking and stereo output not tested; XR switching tested with simulated input devices",
+      "No OpenXR runtime is installed on this PC; startup logs its unavailability and falls back to desktop",
+      "Existing Meta XR Standalone MRUK initialization issue is outside this change; Windows release uses the isolated baseline",
+      "Movement unlocks after the existing 60-second prologue"
+    ]
+  }
+}

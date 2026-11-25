@@ -132,9 +132,9 @@ namespace FruitFlyParenting.Tests.EditMode
             ItemDefinition Item(string id)=>AssetDatabase.LoadAssetAtPath<ItemDefinition>("Assets/_Project/ScriptableObjects/Items/YoungAdult/youngadult_"+id+".asset");
             effects.Visit(Item("independence"),true,true,0); effects.Visit(Item("letter"),true,true,11); effects.Visit(Item("letter"),false,true,12);
             Assert.AreEqual(2,state.EventLog.Count(e=>e.eventType=="experience_impact"));
-            var impact=state.EventLog.Last(e=>e.eventType=="experience_impact").impact; Assert.AreEqual(-4,impact.stress); Assert.AreEqual(10,impact.trust);
+            var impact=state.EventLog.Last(e=>e.eventType=="experience_impact").impact; Assert.AreEqual(-4,impact.stress); Assert.AreEqual(10+config.autonomousParentTrustGain,impact.trust);
             Assert.IsTrue(state.EventLog.Last(e=>e.eventType=="item_first").experience.autonomous);
-            Assert.AreEqual(42,state.Relationship.Trust);
+            Assert.AreEqual(42+config.autonomousParentTrustGain,state.Relationship.Trust);
         }
         [Test] public void MissingSnapshotAndIncompleteCatalogAreRejectedInsteadOfInventingDefaultEnding()
         {

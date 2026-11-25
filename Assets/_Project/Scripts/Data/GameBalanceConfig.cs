@@ -52,6 +52,9 @@ namespace FruitFlyParenting.Data
         public float neglectRewardTrustGain = 1f;
         [Tooltip("방치 보상으로 얻는 신뢰 T의 방당 누적 최대치")]
         public float neglectRewardTrustCapPerRoom = 4f;
+        [Header("16 Autonomous parent relationship repair")]
+        public float autonomousParentTrustGain = 8f;
+        public string[] autonomousParentTrustItems = { "childhood_family", "adolescence_parents", "youngadult_letter" };
 
         [Header("04 휠체어 이동 — 임시 편안함 설정")]
         public float wheelchairMaxSpeed = 0.8f;
@@ -79,7 +82,6 @@ namespace FruitFlyParenting.Data
         public float consecutiveContactGapSeconds = 5f;
 
         [Header("05 영유아 방 시간과 1회 효과")]
-        public float toolCooldownOnRoomEnterSeconds = 90f;
         public float roomEarliestExitSeconds = 420f;
         public float roomDoorOpenSeconds = 480f;
         public float roomEffectsStopSeconds = 600f;

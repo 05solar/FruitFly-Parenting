@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 0
   narrativeLines:
-  - "\uD070 \uC0C1\uC744 \uBC1B\uC558\uC9C0\uB9CC \uCE5C\uAD6C\uC758 \uCD95\uD558\uB97C \uB193\uCCD0\uC694."
-  - "\uC0C1\uC744 \uBC14\uB77C\uBCF4\uB2E4 \uCE5C\uAD6C \uCABD\uC73C\uB85C \uACE0\uAC1C\uB97C \uB3CC\uB824\uC694."
-  childReflectionLine: "\uC0C1\uC744 \uBC14\uB77C\uBCF4\uB2E4 \uCE5C\uAD6C \uCABD\uC73C\uB85C \uACE0\uAC1C\uB97C \uB3CC\uB824\uC694."
+  - "나 뽑혔대! 근데 친구들은 어디 갔지?"
+  - "친구들이랑 놀 시간은 없어?"
+  childReflectionLine: "친구들이랑 놀 시간은 없어?"

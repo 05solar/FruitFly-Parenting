@@ -18,10 +18,10 @@ namespace FruitFlyParenting.Tool
 
         // contactDirection은 아이에서 접촉 소스를 향한다. 휠체어는 -진행방향을 전달한다.
         // Transform/프레임/물리에 의존하지 않는다. Force는 NavMesh 밀림 거리로 해석한다.
-        public PushResult Resolve(PushSource source, Vector3 contactDirection, Vector3 targetPosition)
+        public PushResult Resolve(PushSource source, Vector3 contactDirection, Vector3 targetPosition, bool emitVisual = true)
         {
             var direction = -Vector3.ProjectOnPlane(contactDirection, Vector3.up).normalized;
-            if (source == PushSource.ElectricStick) EventBus.RaiseElectricShockVisual(targetPosition);
+            if (emitVisual && source == PushSource.ElectricStick) EventBus.RaiseElectricShockVisual(targetPosition);
             return new PushResult(direction, source == PushSource.Wheelchair ? config.wheelchairPushForce : config.strongPushForce);
         }
     }

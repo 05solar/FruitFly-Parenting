@@ -1,0 +1,310 @@
+{
+  "date": "2026-11-25",
+  "stage": 17,
+  "status": "prepared_awaiting_human_sessions",
+  "balanceChanges": [],
+  "editMode": {
+    "total": "259",
+    "passed": "259",
+    "failed": "0",
+    "duration": "2.1025992"
+  },
+  "playMode": {
+    "uniqueTests": 85,
+    "passed": 85,
+    "evidence": [
+      "Logs/Step14Project/Logs/step17-PlayMode.xml",
+      "Logs/Step14Project/Logs/step17-support-final.xml"
+    ],
+    "aggregation": "latest result per full test name"
+  },
+  "simulation": {
+    "runs": 3015,
+    "replayMatches": 3015,
+    "hiddenCostumes": 1789,
+    "passiveLove100": 1,
+    "sceneLoads": 0,
+    "seconds": 142.7774397,
+    "endingCounts": [
+      1244,
+      2,
+      388,
+      12,
+      1,
+      470,
+      361,
+      248,
+      45,
+      64,
+      3,
+      94,
+      30,
+      53
+    ],
+    "meanFinalStats": [
+      79.10174535004852,
+      87.1966832504146,
+      63.354228855721395,
+      92.00232172470979,
+      29.513432835820897,
+      83.96417910447761,
+      16.340961857379767
+    ],
+    "violations": [],
+    "witnesses": [
+      {
+        "policy": "passive",
+        "hash": "3684d49af4e551388e396282fb955d6d818f54f16f0db530e28074bd38be607f",
+        "seed": 0,
+        "ending": 6
+      },
+      {
+        "policy": "passive",
+        "hash": "137af8f6c508cb31253e684e7004c770847da0601786f031e38165fd9b4559ba",
+        "seed": 1,
+        "ending": 8
+      },
+      {
+        "policy": "passive",
+        "hash": "5087e05feded5a3fd881b568b54ea3d620d02cd837ef2d97ab4ea5f00286e333",
+        "seed": 2,
+        "ending": 1
+      },
+      {
+        "policy": "passive",
+        "hash": "2a80997adc03bffa24a4a79b122238bbf02dba2cfaad23027869708b521dc26c",
+        "seed": 6,
+        "ending": 12
+      },
+      {
+        "policy": "passive",
+        "hash": "e7baa42a22380a1eb126ad9f8ad59ac0d5a6566881e0a7c9967f2469df85e1bc",
+        "seed": 11,
+        "ending": 3
+      },
+      {
+        "policy": "passive",
+        "hash": "1f660c665e50a7cfb9fb7431ec88ac353fce0358e662215f8cf141308b1b7512",
+        "seed": 16,
+        "ending": 4
+      },
+      {
+        "policy": "passive",
+        "hash": "cf8fe4faa6e00fa7bf65c39ad2f1d5ad27610ad186d0e3669a1a792a63f6cd7e",
+        "seed": 20,
+        "ending": 7
+      },
+      {
+        "policy": "passive",
+        "hash": "857324f9e3b64bd255426dfca1fce201ab85ecb717f79b34d0200c3964ae05c1",
+        "seed": 29,
+        "ending": 10
+      },
+      {
+        "policy": "passive",
+        "hash": "e5445791aa8c58cad6eb99907e28cca2bc3a3f855fec60bf53ca702985ed0ff3",
+        "seed": 202,
+        "ending": 14
+      },
+      {
+        "policy": "passive",
+        "hash": "d7b509fd063f9d07b79aa8ad0dd7b84ad5caa762abf063fc263d56f1ef7bf856",
+        "seed": 439,
+        "ending": 13
+      },
+      {
+        "policy": "passive",
+        "hash": "5d14e7e9d9e5d588e0cb36c781ff746dda038e158501279b8ffdf866bb0f5b60",
+        "seed": 677,
+        "ending": 9
+      },
+      {
+        "policy": "random",
+        "hash": "2f63783f10f6de179405640e019b8718f41b7f8ef88d602ce1a1d0502f6d5127",
+        "seed": 238,
+        "ending": 11
+      },
+      {
+        "policy": "target_01",
+        "hash": "4f9a4ff64c3539e48cb6f6337dfc3137eac1d60bd2af847fb8d708a334d0ddba",
+        "seed": 1,
+        "ending": 1
+      },
+      {
+        "policy": "target_02",
+        "hash": "03e142ae71d0a5d7ab3487b715555f3caca8cdf6d14f08f02d3fede247877c52",
+        "seed": 1111,
+        "ending": 2
+      },
+      {
+        "policy": "target_03",
+        "hash": "071dda6b401c6078b7830765adf53a71223b9792706dd0d9606157fac827c376",
+        "seed": 7,
+        "ending": 3
+      },
+      {
+        "policy": "target_04",
+        "hash": "ca8dbed4cbaa7ddfd6e8a6c09d90fef832bcb2688fa885830438239ec9802ee0",
+        "seed": 16,
+        "ending": 4
+      },
+      {
+        "policy": "target_05",
+        "hash": "648e5bf1795a766fed8e124beb910bea22672dfac8490a0a4586b5e8a9a08bac",
+        "seed": 5036,
+        "ending": 5
+      },
+      {
+        "policy": "target_06",
+        "hash": "e96395bc40057cd135de89633abbac8611431a68888976162f8bfea43741c924",
+        "seed": 9,
+        "ending": 6
+      },
+      {
+        "policy": "target_07",
+        "hash": "f8ec717a30910d9ac2b0178fb8d98e13a73aad63d4b051431e00aeb4ee93b2f2",
+        "seed": 21,
+        "ending": 7
+      },
+      {
+        "policy": "target_08",
+        "hash": "7fdefa47bfaa4aca2e5e7b3a1bbbc973e7e3d05d5caf636021a9ae74e2d6ef42",
+        "seed": 0,
+        "ending": 8
+      },
+      {
+        "policy": "target_09",
+        "hash": "5d602fb0a5bce7a2209af1ff23933295a7d434b5175ccad488a15e824cf48547",
+        "seed": 171,
+        "ending": 9
+      },
+      {
+        "policy": "target_10",
+        "hash": "7ba02e9877774ab83c36e73dc0141011bd41522a47b4aeb8d336d2b7b0b8bfc6",
+        "seed": 29,
+        "ending": 10
+      },
+      {
+        "policy": "target_11",
+        "hash": "977f4c3873223ca5cd06eb9b664d19b830fe66b9db94bc850d52869dd9e77876",
+        "seed": 209,
+        "ending": 11
+      },
+      {
+        "policy": "target_12",
+        "hash": "137e605a045d29f202829018e687b8f302617c54bffdab3d34949ebd262922b5",
+        "seed": 63,
+        "ending": 12
+      },
+      {
+        "policy": "target_13",
+        "hash": "d47aa45984fbfac237d4056233740e0d8db3fdd0b14987aa9bd75058123c05b7",
+        "seed": 25,
+        "ending": 13
+      },
+      {
+        "policy": "target_14",
+        "hash": "b90fd118ae8b7fdd51bdf871824250dee430baa7362416df7bd0f9aa34537703",
+        "seed": 32,
+        "ending": 14
+      }
+    ],
+    "scenarioChecks": [
+      "1000 seeds: escalating stress, avoidance displacement, R100 weak/strong compliance, direction/idle reset, costume fuzz, R59/60 exit, 6000 gang conjunction and bankruptcy priority samples",
+      "Weak/strong forced training exact increments; repeat visits cannot farm; third distinct training onward capped at three",
+      "Tablet first-visit effects and transfer to childhood consumption/play choice"
+    ]
+  },
+  "simulationVerification": {
+    "passed": true,
+    "runs": 3015,
+    "endingCounts": [
+      1244,
+      2,
+      388,
+      12,
+      1,
+      470,
+      361,
+      248,
+      45,
+      64,
+      3,
+      94,
+      30,
+      53
+    ],
+    "targetedEndings": 14,
+    "passiveLove100": 1,
+    "hiddenCostumes": 1789,
+    "checks": [
+      "raw JSON SHA256 matches CSV",
+      "bounds",
+      "first-visit uniqueness",
+      "90-second input cooldown",
+      "decisive experiences sorted from actual log",
+      "gambling provenance and priority",
+      "all targeted witnesses replayed",
+      "summary accounting"
+    ]
+  },
+  "windowsBuild": {
+    "generatedUtc": "2026-11-25T04:36:17.441947+00:00",
+    "sourceCommit": "89700a50b47ad9b5ea5ebcae90640faabbb66b77",
+    "sourceHasUncommittedChanges": true,
+    "unityVersion": "6000.6.2f1",
+    "target": "StandaloneWindows64",
+    "settingsBaseline": "isolated OpenXR/XRI PC project; user Meta XR settings retained in repository",
+    "inputFileCount": 1165,
+    "inputSetSha256": "ec9867a7c8c89a6c87a6cbbffe5f273e65cce8689ef39c2c0db76e15d9f58c6c",
+    "artifactHashes": {
+      "FruitFlyParenting.exe": "af88b840e599661ac63fc10ae27ac77dd97cd46b44df8a7ce60eb0dcfacfc99e",
+      "FruitFlyParenting_Data/globalgamemanagers": "b2d9cfb523d018cfe33406cb43d6702077fdab51ddd35e8c4bbbd9f8ac0e8a78",
+      "FruitFlyParenting_Data/Managed/FruitFlyParenting.Game.dll": "722ff757ab9b0a72eab45d091ea6b133b88ae77b53c71b47b83d8322351ca698"
+    },
+    "humanAcceptance": "pending"
+  },
+  "automatedSmoke": {
+    "session": {
+      "evidenceKind": "automated_or_other_session",
+      "style": "observer",
+      "source": "automated_smoke",
+      "startedUtc": "2026-11-25T04:36:21.2413926Z",
+      "updatedUtc": "2026-11-25T04:40:05.8492895Z",
+      "buildGuid": "4b917f7ff2904168aa37b9ec86f23dfc",
+      "version": "1.0",
+      "platform": "WindowsPlayer",
+      "roomId": "01_Infant",
+      "status": "closed",
+      "seed": -1354216476,
+      "eventCount": 18,
+      "markers": 0,
+      "elapsedSeconds": 224.6087316,
+      "focusedUnpausedSeconds": 157.7787562,
+      "endingCardSeconds": -1.0,
+      "endingCardReached": false,
+      "nonRealtimeSpeedObserved": false,
+      "humanReview": "pending"
+    },
+    "path": "PlaytestReports/automated-smoke/20261125-043620-f61780d0/run-043621-239-490a90/session.json",
+    "recordedEvents": 18,
+    "autonomousFirstVisits": [
+      "infant_bed;tags=휴식;effects=True;Stress=50->44 (-6);Intelligence=50->50 (0);Health=50->55 (+5);Popularity=50->50 (0);Love=50->53 (+3);forced=False;complying=False;narrative=잠깐 쉬고 새로운 지점을 탐색해요.",
+      "infant_book;tags=공부;effects=True;Stress=44->47 (+3);Intelligence=50->58 (+8);Health=55->55 (0);Popularity=50->50 (0);Love=53->55 (+2);forced=False;complying=False;narrative=그림을 뒤집어 읽고 보호자를 찾아요.",
+      "infant_tablet;tags=소비,놀이;effects=True;Stress=47->55 (+8);Intelligence=58->52 (-6);Health=55->48 (-7);Popularity=50->46 (-4);Love=55->50 (-5);forced=False;complying=False;narrative=자동재생 영상을 보다가, 화면을 떠나며 보채요."
+    ],
+    "integrityPassed": true,
+    "screenshots": [
+      "Logs/step17-player-window.png",
+      "Logs/step17-infant-window.png"
+    ],
+    "startupWarning": "One NavMesh creation warning before navigation registration; autonomous visits subsequently recorded."
+  },
+  "humanSessions": {
+    "observer": "not_run",
+    "overprotective": "not_run",
+    "rebellious": "not_run",
+    "relationshipLove100": "not_run"
+  },
+  "manualAcceptance": false
+}

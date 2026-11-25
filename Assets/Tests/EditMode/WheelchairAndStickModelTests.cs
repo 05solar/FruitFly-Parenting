@@ -183,7 +183,8 @@ namespace FruitFlyParenting.Tests.EditMode
             Assert.AreEqual(0.8f, motion.Speed, 0.0001f);
             Assert.AreEqual(30f, motion.TurnSpeed, 0.0001f);
             motion.Step(Vector2.zero, 0.1f);
-            Assert.AreEqual(0.68f, motion.Speed, 0.0001f);
+            Assert.AreEqual(0f, motion.Speed, "Releasing input must brake in the same frame.");
+            Assert.AreEqual(0f, motion.TurnSpeed);
             motion.Step(Vector2.zero, 1f);
             Assert.AreEqual(0f, motion.Speed);
             Assert.AreEqual(0f, motion.TurnSpeed);

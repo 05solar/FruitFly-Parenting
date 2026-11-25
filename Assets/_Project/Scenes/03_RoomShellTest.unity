@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de82af13d15c8ee44bb2786e1a917b38, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Fly.FlyAgent
   config: {fileID: 11400000, guid: b6392e5d71ed4b04290797872b53845f, type: 2}
   room: {fileID: 187043891}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0a038d570303d245a3c7a9639d20446, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Fly.FlyShockFeedback
   config: {fileID: 11400000, guid: b6392e5d71ed4b04290797872b53845f, type: 2}
   spark: {fileID: 1441886534}
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5722e6a626d9d043a709cae85e16d9d, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Tool.FlyContactReceiver
   config: {fileID: 11400000, guid: b6392e5d71ed4b04290797872b53845f, type: 2}
 --- !u!1001 &187043890
@@ -326,7 +326,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8639469534724832547, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 187043910}
+    - targetCorrespondingSourceObject: {fileID: 9053458849736661470, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 187043909}
+    - targetCorrespondingSourceObject: {fileID: 7679411548110692429, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 187043908}
+    - targetCorrespondingSourceObject: {fileID: 4911941979874967165, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 187043907}
+    - targetCorrespondingSourceObject: {fileID: 8088229317627480609, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 187043906}
+    - targetCorrespondingSourceObject: {fileID: 6216740466820230064, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1083326300}
+    - targetCorrespondingSourceObject: {fileID: 2883131049100741457, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1822176412}
+    - targetCorrespondingSourceObject: {fileID: 5829945543169044596, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1998230371}
+    - targetCorrespondingSourceObject: {fileID: 8702031978792069402, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1186612881}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
 --- !u!114 &187043891 stripped
 MonoBehaviour:
@@ -337,8 +364,123 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 418eec7cf834888488929111092cc34c, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Room.RoomController
+--- !u!1 &187043892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8702031978792069402, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5829945543169044596, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2883131049100741457, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6216740466820230064, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8088229317627480609, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4911941979874967165, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7679411548110692429, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9053458849736661470, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &187043900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8639469534724832547, guid: 3dc9aed93a20e2b44b7b1c93d7c622e6, type: 3}
+  m_PrefabInstance: {fileID: 187043890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &187043906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
+--- !u!114 &187043907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
+--- !u!114 &187043908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
+--- !u!114 &187043909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
+--- !u!114 &187043910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &488324224
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +508,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3531837fa15bf04690b8a72637343d4, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Core.GameStateBootstrap
   config: {fileID: 11400000, guid: b6392e5d71ed4b04290797872b53845f, type: 2}
   runSeed: 999
@@ -476,6 +618,34 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 959753430}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1083326300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
+--- !u!114 &1186612881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &1441886534
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,11 +845,63 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4673291544176240731, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1263098051199260384, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1591303882}
   m_SourcePrefab: {fileID: 100100000, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
+--- !u!1 &1591303881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1263098051199260384, guid: 2d30190e11aa9b241ba40e1845f7784e, type: 3}
+  m_PrefabInstance: {fileID: 1591303880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1591303882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591303881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cebcf797449ee18459b6ac53838cc1cd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ComfortController
+  font: {fileID: 12800000, guid: 31b7d24da49884047b21c847862bf897, type: 3}
+  overlayMaterial: {fileID: 2100000, guid: ec188b4ac71d94e4eb65d338b7bcd87e, type: 2}
+  preferencesKey: FruitFlyParenting.Comfort.v1
+--- !u!114 &1822176412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
+--- !u!114 &1998230371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187043893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 164e3d1b06a56a4468259d66c4dd790a, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ItemApproachFeedback
+  haloMaterial: {fileID: 2100000, guid: b6012b10f25a7924d9bbca3a8b49a26a, type: 2}
+  approachCue: {fileID: 8300000, guid: a8ae33e406eefd64b901d3851a75d3c4, type: 3}
 --- !u!1 &2034102112
 GameObject:
   m_ObjectHideFlags: 0

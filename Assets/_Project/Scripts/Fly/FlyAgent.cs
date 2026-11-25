@@ -15,6 +15,10 @@ namespace FruitFlyParenting.Fly
     [RequireComponent(typeof(Rigidbody))]
     public class FlyAgent : MonoBehaviour
     {
+        static readonly List<FlyAgent> activeActors = new List<FlyAgent>();
+        public static IReadOnlyList<FlyAgent> SceneActors => activeActors;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetActors() => activeActors.Clear();
         [SerializeField] GameBalanceConfig config;
         [SerializeField] RoomController room;
 
@@ -64,8 +68,9 @@ namespace FruitFlyParenting.Fly
             if(slot!=null && slot.TryGetNavigationPoint(agent.nextPosition,agent.agentTypeID,out var point)) agent.SetDestination(point);
             else if(currentDestinationId==RoomController.ExitDestinationId) agent.SetDestination(room.ExitPoint);
         }
-        void OnEnable() => EventBus.RoomEntered += OnRoomEntered;
-        void OnDisable() => EventBus.RoomEntered -= OnRoomEntered;
+        void OnEnable() { if (!activeActors.Contains(this)) activeActors.Add(this); EventBus.RoomEntered += OnRoomEntered; }
+        void OnDisable() { EventBus.RoomEntered -= OnRoomEntered; }
+        void OnDestroy() => activeActors.Remove(this);
         void OnRoomEntered(string id) { roomEnterTime = Time.time; Learning?.Reset(); }
 
         void Awake()
@@ -99,7 +104,7 @@ namespace FruitFlyParenting.Fly
             if (GameState.Current != null) Learning = new PreferenceLearningTracker(config, GameState.Current);
             roomEnterTime = Time.time;
             PickAndMoveToNext();
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
+#if UNITY_EDITOR || (DEVELOPMENT_BUILD && !UNITY_ANDROID)
             var hud = GetComponent<DebugHud>();
             if (hud == null) hud = gameObject.AddComponent<DebugHud>();
             hud.Configure(this, config);

@@ -1,0 +1,67 @@
+{
+  "unity": "6000.6.2f1",
+  "main": {
+    "build": "MainIsolationCheck",
+    "result": "Succeeded",
+    "bytes": 131279291,
+    "containsConnectomeAssembly": false,
+    "scenes": [
+      "Assets/_Project/Scenes/00_Bootstrap.unity",
+      "Assets/_Project/Scenes/01_Infant.unity",
+      "Assets/_Project/Scenes/03_RoomShellTest.unity",
+      "Assets/_Project/Scenes/03_Childhood.unity",
+      "Assets/_Project/Scenes/04_Adolescence.unity",
+      "Assets/_Project/Scenes/05_YoungAdult.unity",
+      "Assets/_Project/Scenes/06_MiddleAge.unity"
+    ],
+    "experimentalAssets": [],
+    "projectBasis": "89700a50b47ad9b5ea5ebcae90640faabbb66b77 (step 12) + step 13 assets; in disposable worktree"
+  },
+  "experiment": {
+    "build": "ConnectomeExperiment",
+    "result": "Succeeded",
+    "bytes": 120991104,
+    "containsConnectomeAssembly": true,
+    "scenes": [
+      "Assets/_Project/Scenes/Experimental_ConnectomeViewer.unity"
+    ],
+    "experimentalAssets": [
+      "Assets/_Project/Experimental/Connectome/Art/Connectome.mat",
+      "Assets/_Project/Experimental/Connectome/Art/ConnectomeUnlit.shader",
+      "Assets/_Project/Experimental/Connectome/Data/connectome-v783.json",
+      "Assets/_Project/Experimental/Connectome/Data/memory-motif-v783.json",
+      "Assets/_Project/Experimental/Connectome/Runtime/ConnectomeGraph.cs",
+      "Assets/_Project/Experimental/Connectome/Runtime/ConnectomeViewer.cs",
+      "Assets/_Project/Scenes/Experimental_ConnectomeViewer.unity"
+    ],
+    "projectBasis": "Generated standalone project with tools/connectome/standalone-manifest.json; no main Game assembly or XR vendor packages"
+  },
+  "currentUserConfiguration": {
+    "preserved": true,
+    "editMode": "5/5 passed",
+    "playMode": "Native MRUK initialization exited with -1073740791 before viewer tests",
+    "mainBuild": "OpenXR validation blocked: Meta XR Hand Tracking Data Source requires Hand Tracking Subsystem"
+  },
+  "standaloneSmoke": {
+    "seconds": 8,
+    "stayedRunning": true,
+    "graphics": "Direct3D 11 / NVIDIA GeForce RTX 4070",
+    "runtimeErrors": 0
+  },
+  "tests": {
+    "python": {
+      "passed": 9,
+      "total": 9
+    },
+    "EditMode": {
+      "passed": 5,
+      "total": 5,
+      "started": "2026-11-24 04:42:16Z"
+    },
+    "PlayMode": {
+      "passed": 1,
+      "total": 1,
+      "started": "2026-11-24 04:42:32Z"
+    }
+  }
+}

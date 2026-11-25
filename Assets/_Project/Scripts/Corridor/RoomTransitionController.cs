@@ -65,7 +65,7 @@ namespace FruitFlyParenting.Corridor
         }
         void Update()
         {
-            if (sequence == null) return;
+            if (sequence == null || Comfort.ComfortController.IsPaused) return;
             var before = sequence.Phase;
             sequence.Advance(Time.unscaledDeltaTime);
             if (before != sequence.Phase)

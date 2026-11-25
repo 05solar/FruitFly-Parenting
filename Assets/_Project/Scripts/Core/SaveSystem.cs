@@ -16,7 +16,7 @@ namespace FruitFlyParenting.Core
         }
 
         public string GetDefaultSaveFilePath() =>
-            Path.Combine(Application.persistentDataPath, "savegame.json");
+            FruitFlyParenting.Debugging.PlaytestRecorder.IsolatedSavePath ?? Path.Combine(Application.persistentDataPath, "savegame.json");
 
         // checkpointName은 지금 단계에서는 디버그/로그용이다. 별도 슬롯 분기는 하지 않는다.
         public void SaveCheckpoint(GameState state, string checkpointName, string filePath = null)

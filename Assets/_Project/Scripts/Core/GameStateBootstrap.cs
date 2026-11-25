@@ -12,6 +12,7 @@ namespace FruitFlyParenting.Core
         [SerializeField] int runSeed;
         [SerializeField] bool useRandomSeedIfZero = true;
         GameState ownedState;
+        public GameBalanceConfig Config => config;
         public void RestartRun()
         {
             int old=GameState.Current?.RunSeed??0,seed;

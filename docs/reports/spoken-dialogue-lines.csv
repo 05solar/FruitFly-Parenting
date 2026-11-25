@@ -1,0 +1,48 @@
+﻿stage,item_id,item_name,first_visit,revisit
+adolescence,adolescence_camp,전교 1등 합숙반 ★,1등이다… 답장할 틈도 없었네.,연락 못 해서 미안. 요즘 정신없었어.
+adolescence,adolescence_club,동아리 작업대,"야, 우리 이거 진짜 완성했네.",여기만 고치면 더 괜찮겠다.
+adolescence,adolescence_counsel,상담실,요즘 좀 힘들어요. 어디서부터 말하지…,집에서도 한번 얘기해 볼게요.
+adolescence,adolescence_dayoff,학교를 빠지고 떠난 하루 ★,오늘은 학교 못 가겠어. 좀 쉬고 싶어.,걱정했지? 말 안 하고 나가서 미안.
+adolescence,adolescence_exam,입시 책상,"붙었다… 아, 이제 좀 자자.",붙긴 했는데 왜 이렇게 피곤하지.
+adolescence,adolescence_job,아르바이트 계산대,이게 내가 번 돈이네.,오늘 손님 진짜 많았어.
+adolescence,adolescence_nightgame,무단 밤샘 놀이,"벌써 아침이야? 아, 망했다.",재밌긴 했는데… 너무 졸려.
+adolescence,adolescence_parents,부모와 대화 의자,잠깐만. 내 말부터 끝까지 들어 줘.,"아까 하던 얘기, 좀 더 해도 돼?"
+adolescence,adolescence_performance,교칙에 맞서는 공개 공연 ★,혼나도 할래. 이건 내 노래니까.,다음엔 어디서 부르면 좋을까?
+adolescence,adolescence_stadium,경기장,수고했어. 아까 패스 좋더라.,다음 경기엔 실수 안 해야지.
+adolescence,adolescence_stars,친구와 옥상 별보기,"하늘아, 저 별 보여? 엄청 밝다.",다음에도 여기서 보자.
+adolescence,adolescence_theft,친구 무리의 절도 제안 ★,들켰어… 나 왜 그랬지.,내가 가져갔어. 돌려줄게. 미안해.
+adolescence,adolescence_training,전국 선발 훈련소 ★,선발됐어! 근데 발목이 좀 아파.,오늘은 쉬어야겠어. 아직 아프네.
+childhood,childhood_arcade,오락기,"와, 깼다! 너도 해 볼래?",이 판은 내가 잘해!
+childhood,childhood_birthday,친구의 생일상,생일 축하해! 선물 열어 봐!,내 생일에도 꼭 와야 돼!
+childhood,childhood_contest,경시대회 책상,나 상 받았어! 이제 놀아도 돼?,다음에도 잘해야 되는데…
+childhood,childhood_craft,만들기 책상,어? 안 날아가네. 다시 접어야지.,이번엔 날개를 크게 해 볼까?
+childhood,childhood_family,가족 식탁,오늘 학교에서 무슨 일 있었냐면!,다 먹으면 같이 놀아 줄 거지?
+childhood,childhood_gifted,전국 영재 선발 시험장 ★,나 뽑혔대! 근데 친구들은 어디 갔지?,친구들이랑 놀 시간은 없어?
+childhood,childhood_hideout,숙제 찢기와 비밀 아지트 ★,숙제 안 해! 여기서 놀 거야!,여기는 우리만 아는 비밀이야.
+childhood,childhood_library,도서관 쿠션,이 책 재밌겠다!,여기 봐! 이 장면 진짜 웃겨.
+childhood,childhood_nightgame,몰래 밤새는 게임방 ★,한 판만 더! 아직 안 졸려!,"아, 약속 있었는데… 늦었다!"
+childhood,childhood_soccer,축구 골대,여기! 내가 패스할게!,이번엔 내가 골 넣을 거야!
+childhood,childhood_star,어린이 스타 촬영장 ★,사진 또 찍어? 나 졸린데…,오늘은 집에 일찍 가면 안 돼?
+childhood,childhood_walk,동네 산책길,저 구름 강아지 같지 않아?,이쪽 길로 가 보고 싶어!
+infant,infant_ball,친구 곁 공놀이,공! 받아!,나도 줘!
+infant,infant_bed,작은 침대,졸려…,조금만 더 잘래.
+infant,infant_blocks,감각 블록,우와! 무너졌다!,내가 쌓을래!
+infant,infant_book,알파벳 그림책,이거 뭐야?,또 볼래!
+infant,infant_crawl,혼자 기어가기 길,나 여기!,혼자 갈래!
+infant,infant_hug,푹신한 포옹 의자,안아 줘…,더 안아 줘.
+infant,infant_learning,조기학습 화면,눈 아파…,이거 또 나와?
+infant,infant_snack,달콤한 간식 상자,냠냠! 맛있어!,으응… 배 아파.
+infant,infant_tablet,유튜브 태블릿,또 틀어 줘!,싫어! 더 볼래!
+youngadult,youngadult_dinner,친구·연인의 저녁 식탁,밥부터 먹자. 오늘 어땠어?,다음 주에도 여기서 만날까?
+youngadult,youngadult_gambling,반짝이는 도박장 ★,생활비도 집도… 다 잃었어.,다시 하진 않을 거야. 도움부터 구하자.
+youngadult,youngadult_independence,부모 연락 차단과 독립 선언 ★,당분간 연락하지 마. 혼자 있고 싶어.,연락할 준비는 아직 안 됐어.
+youngadult,youngadult_interview,대기업 면접실,떨리네. 준비한 만큼만 말하자.,붙으면 여기서 계속 일하게 되려나.
+youngadult,youngadult_investment,투자·과소비 계약서,수익은 좋아 보이는데… 감당되겠지?,이자까지 내면 얼마나 남지?
+youngadult,youngadult_letter,부모에게 쓰는 편지,전화로는 못 하겠어서 편지 써요.,밥은 잘 챙겨 먹고 있어요.
+youngadult,youngadult_park,쉬어 가는 공원,휴… 잠깐 앉았다 가자.,이렇게 쉬니까 좀 살 것 같네.
+youngadult,youngadult_quit,충동적인 여행과 퇴사 ★,그만뒀어. 일단 며칠 쉬려고.,이제 일은 어떻게 구하지?
+youngadult,youngadult_selection,세계 선수 선발전 ★,내 이름 있어! 이걸 진짜 해냈네.,다들 잘 지내려나. 연락 좀 해야겠다.
+youngadult,youngadult_stadium,프로 경기장,오늘은 꼭 내 실력 보여 줄 거야.,"다음 경기, 같이 맞춰 보자."
+youngadult,youngadult_startup,모든 것을 건 창업 계약 ★,계약은 했는데… 빚을 다 갚을 수 있을까.,이번 달 비용부터 다시 계산하자.
+youngadult,youngadult_studio,연구·창작 스튜디오,드디어 됐다. 생각한 대로 나왔어.,여기만 조금 더 손보자.
+youngadult,youngadult_workshop,동네 작은 일터,어서 오세요. 늘 드시던 걸로요?,오늘도 잘 부탁해요.

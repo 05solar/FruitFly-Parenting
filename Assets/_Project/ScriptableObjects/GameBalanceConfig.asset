@@ -35,6 +35,11 @@ MonoBehaviour:
   neglectRewardIntervalSeconds: 60
   neglectRewardTrustGain: 1
   neglectRewardTrustCapPerRoom: 4
+  autonomousParentTrustGain: 8
+  autonomousParentTrustItems:
+  - childhood_family
+  - adolescence_parents
+  - youngadult_letter
   wheelchairMaxSpeed: 0.8
   wheelchairAcceleration: 0.6
   wheelchairDeceleration: 1.2
@@ -53,7 +58,6 @@ MonoBehaviour:
   avoidanceContactThreshold: 4
   avoidanceDurationSeconds: 12
   consecutiveContactGapSeconds: 5
-  toolCooldownOnRoomEnterSeconds: 90
   roomEarliestExitSeconds: 420
   roomDoorOpenSeconds: 480
   roomEffectsStopSeconds: 600

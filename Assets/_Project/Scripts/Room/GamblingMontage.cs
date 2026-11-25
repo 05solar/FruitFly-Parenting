@@ -18,6 +18,7 @@ namespace FruitFlyParenting.Room
         NavMeshAgent agent;
         bool wasEnabled,wasStopped;
         float elapsed;
+        GamblingPhase spokenPhase;
         public GamblingPhase Phase { get; private set; }
         public bool IsPlaying=>Phase!=GamblingPhase.None && Phase!=GamblingPhase.Complete;
         public int CalendarMonth { get; private set; }
@@ -43,16 +44,23 @@ namespace FruitFlyParenting.Room
         }
         void Render()
         {
+            if(spokenPhase!=Phase)
+            {
+                spokenPhase=Phase;
+                if(Phase!=GamblingPhase.Complete)
+                    InfantRoomView.SpeakFor(fly,Phase==GamblingPhase.SmallWin ? "땄다! 한 번만 더 해 볼까?" :
+                        Phase==GamblingPhase.PassingMonths ? "이번엔 되겠지. 딱 한 번만 더…" : "생활비도 집도… 다 잃었어.");
+            }
             coin.SetActive(Phase==GamblingPhase.SmallWin);
-            if(Phase==GamblingPhase.SmallWin) caption.text="작은 당첨\n“한 번만 더 하면…”";
+            if(Phase==GamblingPhase.SmallWin) caption.text="당첨";
             else if(Phase==GamblingPhase.PassingMonths)
             {
                 float progress=Mathf.Clamp01((elapsed-config.gamblingWinSeconds)/Mathf.Max(.01f,config.gamblingCalendarSeconds));
                 CalendarMonth=Mathf.Clamp(1+Mathf.FloorToInt(progress*12),1,12);
-                caption.text="다시 돌아온 날들이 쌓여요\n"+CalendarMonth+"개월째";
+                caption.text=CalendarMonth+"개월 경과";
                 calendar.localRotation=Quaternion.Euler(0,0,CalendarMonth%2==0 ? 4 : -4);
             }
-            else { caption.text="생활비와 집을 잃었어요.\n남은 삶에서 다음 선택을 생각해요."; calendar.localRotation=Quaternion.identity; }
+            else { caption.text="잔액 0"; calendar.localRotation=Quaternion.identity; }
         }
         void Restore()
         {

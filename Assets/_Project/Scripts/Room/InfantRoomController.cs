@@ -67,7 +67,6 @@ namespace FruitFlyParenting.Room
             GameState.Current.CurrentRoomId = RoomId;
             EventBus.RaiseRoomEntered(RoomId);
             view.Initialize(Camera.main, room);
-            view.ShowNarrative("아이의 첫 선택을 함께 지켜봐 주세요.");
             transition.CheckpointPath = CheckpointPath;
             transition.TransitionStarted += OnTransitionStarted;
             transition.CorridorEntered += OnCorridorEntered;
@@ -87,7 +86,7 @@ namespace FruitFlyParenting.Room
 
         void UpdateRoom()
         {
-            contact.ContactsEnabled = Timeline.ToolsEnabled;
+            contact.ContactsEnabled = true;
             exitDoor.SetActive(!Timeline.DoorOpen);
             transition.SourceExitOpen = Timeline.DoorOpen;
             exitLight.intensity = Mathf.Lerp(0f, 4f, Timeline.DayProgress);
@@ -104,7 +103,7 @@ namespace FruitFlyParenting.Room
         {
             if (Phase != InfantRoomPhase.InRoom) return;
             var result = effects.Visit(slot.Definition, first, Timeline.EffectsEnabled, Time.time, slot.LastVisitContext);
-            view.ShowNarrative(result.Narrative);
+            view.ShowDialogue(result.Narrative);
             EventBus.RaiseItemVisited(slot.ItemId, result.FirstVisit);
             if (result.FirstVisit) Save("item_first:" + slot.ItemId);
         }

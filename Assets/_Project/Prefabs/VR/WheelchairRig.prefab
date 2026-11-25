@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 2584666778185774458}
   - component: {fileID: 4179721393740597812}
   - component: {fileID: 3543841654970027407}
+  - component: {fileID: 4673291544176240731}
   m_Layer: 0
   m_Name: WheelchairRig
   m_TagString: Untagged
@@ -276,7 +277,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a26c941eb8a46f7b6d00416227ab8c0, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.XRBodyTransformer
   m_XROrigin: {fileID: 5200868117404437899}
   m_BodyPositionEvaluatorObject: {fileID: 3543841654970027407}
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fa7b4195685c3846be746c74f0ab2f8, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.LocomotionMediator
 --- !u!114 &2584666778185774458
 MonoBehaviour:
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 626a4d6723d6ad24b9aebb811ad5a3dd, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement.ContinuousMoveProvider
   m_Mediator: {fileID: 7906601065009187034}
   m_TransformationPriority: 0
@@ -320,8 +321,8 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: Vector2
       m_Id: fc08b1d6-5667-41ba-a735-a1461dfd687e
-      m_Processors: 
-      m_Interactions: 
+      m_Processors:
+      m_Interactions:
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -335,8 +336,8 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: Vector2
       m_Id: bd2286da-1530-4700-ac5f-9a01883e612f
-      m_Processors: 
-      m_Interactions: 
+      m_Processors:
+      m_Interactions:
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -354,7 +355,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75b29b6c6428c984a8a73ffc2d58063b, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning.ContinuousTurnProvider
   m_Mediator: {fileID: 7906601065009187034}
   m_TransformationPriority: 0
@@ -368,8 +369,8 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: Vector2
       m_Id: d3e7ac88-93b1-4f4b-b034-c2805291ccda
-      m_Processors: 
-      m_Interactions: 
+      m_Processors:
+      m_Interactions:
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -383,8 +384,8 @@ MonoBehaviour:
       m_Type: 0
       m_ExpectedControlType: Vector2
       m_Id: c7afd492-6dcf-441d-bf21-b5a523dfc519
-      m_Processors: 
-      m_Interactions: 
+      m_Processors:
+      m_Interactions:
       m_SingletonActionBindings: []
       m_Flags: 0
       m_Priority: 0
@@ -401,12 +402,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91b0b2804061be84197b65ac27b4e6ad, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Wheelchair.WheelchairLocomotion
   config: {fileID: 11400000, guid: b6392e5d71ed4b04290797872b53845f, type: 2}
   leftStick: {fileID: -60998027439631388, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   move: {fileID: 2584666778185774458}
   turn: {fileID: 4179721393740597812}
+--- !u!114 &4673291544176240731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263098051199260384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cebcf797449ee18459b6ac53838cc1cd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Comfort.ComfortController
+  font: {fileID: 12800000, guid: 31b7d24da49884047b21c847862bf897, type: 3}
+  overlayMaterial: {fileID: 2100000, guid: ec188b4ac71d94e4eb65d338b7bcd87e, type: 2}
+  preferencesKey: FruitFlyParenting.Comfort.v1
 --- !u!1 &1600968936701780471
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +607,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 442294491adb4c441a8aa740088e384e, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Tool.LoveStickTool
 --- !u!1 &3535873678352008071
 GameObject:
@@ -775,7 +791,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da44d3b8a8cf884428f20288ea707bec, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: FruitFlyParenting.Game::FruitFlyParenting.Wheelchair.WheelchairBumper
   config: {fileID: 11400000, guid: b6392e5d71ed4b04290797872b53845f, type: 2}
   locomotion: {fileID: 3543841654970027407}
@@ -1111,7 +1127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5347102047730080393, guid: 742ab248f00e5d44b95b2d6adde4969a, type: 3}
       propertyPath: m_OriginBaseGameObject
-      value: 
+      value:
       objectReference: {fileID: 1263098051199260384}
     - target: {fileID: 8721631283157665314, guid: 742ab248f00e5d44b95b2d6adde4969a, type: 3}
       propertyPath: m_Name
@@ -1144,5 +1160,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.XR.CoreUtils::Unity.XR.CoreUtils.XROrigin

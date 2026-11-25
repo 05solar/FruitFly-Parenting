@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-25",
+  "changes": [
+    "Separate six left-aligned HUD bars; removed chapter card",
+    "Opaque black bottom-center narration; plain Settings wording",
+    "Desktop forward/backward speed 3.2 m/s (twice previous build); VR speed unchanged",
+    "Player launcher window 1920x1080",
+    "Stat column text, bars and spacing scaled to 65 percent"
+  ],
+  "tests": {
+    "total": 21,
+    "passed": 21,
+    "failed": 0,
+    "evidence": "Logs/Step14Project/Logs/compact-hud-tests.xml"
+  },
+  "build": {
+    "guid": "f7fa274f922e4a2aac27b632a1cd54b6",
+    "unityVersion": "6000.6.2f1",
+    "inputSetSha256": "bdded85d35640f9900762e660d37f1ad9d34a472820a483f7f2d618ba1a5099e",
+    "artifactHashesVerified": true,
+    "path": "Builds/FlatHUD/FruitFlyParenting.exe"
+  },
+  "headsetManualCheck": "not performed",
+  "humanPlaytestAcceptance": "pending"
+}

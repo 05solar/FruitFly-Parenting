@@ -10,8 +10,6 @@ namespace FruitFlyParenting.Room
         public float Elapsed { get; private set; }
         public RoomTimeline(GameBalanceConfig config) { this.config = config; }
         public void Advance(float seconds) { Elapsed += Math.Max(0f, seconds); }
-        public float ToolCooldownRemaining => Math.Max(0f, config.toolCooldownOnRoomEnterSeconds - Elapsed);
-        public bool ToolsEnabled => ToolCooldownRemaining <= 0f;
         public bool DoorOpen => Elapsed >= Math.Max(config.roomEarliestExitSeconds, config.roomDoorOpenSeconds);
         public bool EffectsEnabled => Elapsed < config.roomEffectsStopSeconds;
         public bool ExitOnly => !EffectsEnabled;

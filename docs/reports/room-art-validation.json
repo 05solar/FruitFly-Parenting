@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-25",
+  "change": "Downloaded furniture and room environment art",
+  "sources": [
+    {
+      "name": "Kenney Furniture Kit 2.0",
+      "url": "https://kenney.nl/assets/furniture-kit",
+      "license": "CC0",
+      "includedFbxModels": 27
+    },
+    {
+      "name": "Poly Haven wood_floor",
+      "author": "Dimitrios Savva",
+      "url": "https://polyhaven.com/a/wood_floor",
+      "license": "CC0",
+      "resolution": "1K diffuse / OpenGL normal"
+    }
+  ],
+  "uniqueItems": 47,
+  "growthRooms": 4,
+  "savedRoomInstancesChecked": 10,
+  "checks": [
+    "Existing collider counts unchanged",
+    "Solid furniture visuals fit original 1m footprint",
+    "All new materials use URP Lit",
+    "Installation is idempotent",
+    "Architecture meshes combined by material"
+  ],
+  "playMode": {
+    "result": "Passed",
+    "total": "7",
+    "passed": "7",
+    "failed": "0"
+  },
+  "tests": [
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.SavedNavMesh_IsOneConnectedFloor_AllThirteenSlotsReachable",
+    "FruitFlyParenting.Tests.PlayMode.ChildhoodRoomIntegrationTests.AllTwelveActualVisits_StackTrainingButNeverRepeatExtremeTrustOrRebellion",
+    "FruitFlyParenting.Tests.PlayMode.ChildhoodRoomIntegrationTests.ConnectedNavMesh_AllSlotsReachable_AndAgentCrossesClassroomPlayground",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.NineSavedItems_ApplyExactEffectsOnce_AndCheckpointEveryFirstVisit",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.TabletRoutes_AreConnected_AndTraversableWithoutFurniturePenetration",
+    "FruitFlyParenting.Tests.PlayMode.YoungAdultRoomIntegrationTests.SavedNavMesh_IsOneConnectedFloor_AllThirteenSlotsReachable",
+    "FruitFlyParenting.Tests.PlayMode.YoungAdultRoomIntegrationTests.ThirteenActualVisits_ApplyAllValuesAndFlags_WithoutRepeatedGamblingLoss"
+  ],
+  "playerBuild": "Succeeded / Windows PC OpenXR baseline",
+  "sourceSynchronization": {
+    "files": 306,
+    "differences": []
+  },
+  "preview": "Builds/FlatHUD/FruitFlyParenting.exe",
+  "vrHardwareValidation": "Not performed",
+  "screenshots": [
+    "docs/images/room-art-infant.png",
+    "docs/images/room-art-childhood.png",
+    "docs/images/room-art-adolescence.png",
+    "docs/images/room-art-youngadult.png",
+    "docs/images/room-art-player.png"
+  ],
+  "groundCue": "Soft transparent radial shader; replaces opaque black squares; stereo instancing supported",
+  "buildLog": "Logs/Step14Project/Logs/room-art-final-build.log",
+  "playerLog": "Logs/room-art-final-player.log",
+  "runtimeVisualCheck": {
+    "newFurnitureAndFloorVisible": true,
+    "opaqueBlackGroundSquaresRemoved": true,
+    "roomEntered": true,
+    "firstBedInteractionRecorded": true,
+    "window": "1920x1080",
+    "runningPreviewProcess": 60092
+  }
+}

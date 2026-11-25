@@ -1,0 +1,55 @@
+{
+  "unity": "6000.6.2f1",
+  "basis": "Step 12 commit 89700a5 package/project settings + step 13/14 code and assets; isolated Logs/Step14Project",
+  "tests": {
+    "fullEditMode": {
+      "result": "Passed",
+      "total": "250",
+      "passed": "250",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-11-24 07:07:31Z",
+      "end-time": "2026-11-24 07:07:32Z"
+    },
+    "fullPlayMode": {
+      "result": "Passed",
+      "total": "67",
+      "passed": "67",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-11-24 07:07:49Z",
+      "end-time": "2026-11-24 07:14:35Z"
+    },
+    "finalComfortPlayMode": {
+      "result": "Passed",
+      "total": "6",
+      "passed": "6",
+      "failed": "0",
+      "skipped": "0",
+      "start-time": "2026-11-24 07:21:48Z",
+      "end-time": "2026-11-24 07:21:52Z"
+    }
+  },
+  "sceneAudit": {
+    "scenes": 7,
+    "rigs": 7,
+    "slots": 133
+  },
+  "build": {
+    "result": "Succeeded",
+    "bytes": 131545088,
+    "processPersistencePassed": true,
+    "comfortShaderIncluded": true,
+    "experimentAssets": 0
+  },
+  "preservedPreexistingFiles": 74,
+  "preservedXrUserFiles": 26,
+  "limitations": [
+    "Current Meta XR 209 configuration preserved; MRUK initialization and Hand Tracking Subsystem issue remain outside this verification configuration.",
+    "HMD stereo comfort, physical seated calibration and listening still require manual verification."
+  ],
+  "screenshots": [
+    "docs/images/comfort-settings.png",
+    "docs/images/comfort-feedback.png"
+  ]
+}

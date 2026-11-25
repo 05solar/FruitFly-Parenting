@@ -34,6 +34,6 @@ MonoBehaviour:
   recordsDelinquency: 0
   youngAdultFlags: 1
   narrativeLines:
-  - "\uD070 \uC218\uC775\uC758 \uAC00\uB2A5\uC131\uACFC \uBE5A\uC758 \uC704\uD5D8\uC5D0 \uC11C\uBA85\uD574\uC694."
-  - "\uACC4\uC57D\uC5D0 \uB0A8\uC740 \uCC45\uC784\uC744 \uB2E4\uC2DC \uC77D\uC5B4\uC694."
-  childReflectionLine: "\uACC4\uC57D\uC5D0 \uB0A8\uC740 \uCC45\uC784\uC744 \uB2E4\uC2DC \uC77D\uC5B4\uC694."
+  - "수익은 좋아 보이는데… 감당되겠지?"
+  - "이자까지 내면 얼마나 남지?"
+  childReflectionLine: "이자까지 내면 얼마나 남지?"
