@@ -1,0 +1,164 @@
+{
+  "models": [
+    {
+      "name": "Cap",
+      "triangles": 418,
+      "materials": [
+        {
+          "name": "Cap_0",
+          "color": [
+            0.057803,
+            0.057803,
+            0.057803,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Cap_1",
+          "color": [
+            0.110689,
+            0.110689,
+            0.110689,
+            1
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Shirt",
+      "triangles": 2261,
+      "materials": [
+        {
+          "name": "Shirt_0",
+          "color": [
+            0.0157,
+            0.0157,
+            0.0157,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Shirt_1",
+          "color": [
+            0.949,
+            0.949,
+            0.949,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Shirt_2",
+          "color": [
+            1,
+            0.0078,
+            0.0078,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Shirt_3",
+          "color": [
+            0.0196,
+            0.8039,
+            1,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Shirt_4",
+          "color": [
+            0.7098,
+            0.8824,
+            0.0235,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Shirt_5",
+          "color": [
+            0.0157,
+            0.451,
+            0.0667,
+            1
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Jacket",
+      "triangles": 592,
+      "materials": [
+        {
+          "name": "Jacket_0",
+          "color": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "texture": "Jacket-albedo-0.png"
+        }
+      ]
+    },
+    {
+      "name": "Backpack",
+      "triangles": 3960,
+      "materials": [
+        {
+          "name": "Backpack_0",
+          "color": [
+            0.0788012817502022,
+            0.0435263216495514,
+            0.0299921073019505,
+            1.0
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Backpack_1",
+          "color": [
+            0.110062144696712,
+            0.0599538050591946,
+            0.0408735908567905,
+            1.0
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Backpack_2",
+          "color": [
+            0.48305344581604,
+            0.376230657100677,
+            0.078701876103878,
+            1.0
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Bowtie",
+      "triangles": 104,
+      "materials": [
+        {
+          "name": "Bowtie_0",
+          "color": [
+            0.91,
+            0.05,
+            0.03,
+            1
+          ],
+          "texture": ""
+        }
+      ]
+    }
+  ]
+}

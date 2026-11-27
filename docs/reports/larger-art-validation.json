@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-27",
+  "flyVisualScale": 1.6,
+  "furnitureScale": 1.5,
+  "interactionRadiusMeters": 1.65,
+  "navigation": "Enlarged existing BoxColliders plus carving NavMeshObstacle; no saved scene replacement",
+  "roomVerification": "Logs/Step14Project/Logs/RoomArt/validation.txt",
+  "playMode": {
+    "result": "Passed",
+    "total": "8",
+    "passed": "8",
+    "failed": "0"
+  },
+  "tests": [
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.SavedNavMesh_IsOneConnectedFloor_AllThirteenSlotsReachable",
+    "FruitFlyParenting.Tests.PlayMode.ChildhoodRoomIntegrationTests.ConnectedNavMesh_AllSlotsReachable_AndAgentCrossesClassroomPlayground",
+    "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.MouseToolMakesOnePhysicalContactPerPress",
+    "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.ThreeDistinctPresentations_KeepFinalState_AndLastFifteenSecondsQuiet",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.DownloadedFlyArt_CoversGrowthStages_PreservesPhysics_AndKeepsDialogueAboveWings",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.NineSavedItems_ApplyExactEffectsOnce_AndCheckpointEveryFirstVisit",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.TabletRoutes_AreConnected_AndTraversableWithoutFurniturePenetration",
+    "FruitFlyParenting.Tests.PlayMode.YoungAdultRoomIntegrationTests.SavedNavMesh_IsOneConnectedFloor_AllThirteenSlotsReachable"
+  ],
+  "testResults": "Logs/Step14Project/Logs/larger-art-tests.xml",
+  "build": "Succeeded: Windows PC/PCVR isolated OpenXR baseline",
+  "buildLog": "Logs/Step14Project/Logs/larger-art-build.log",
+  "vrHeadsetHardware": "Not tested",
+  "screenshots": [
+    "docs/images/fly-character-in-game.png",
+    "docs/images/larger-furniture-room.png"
+  ],
+  "runtimePreview": {
+    "processId": 133992,
+    "log": "Logs/larger-art-player.log",
+    "launched": true
+  }
+}

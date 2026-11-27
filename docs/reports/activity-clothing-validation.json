@@ -1,0 +1,187 @@
+{
+  "date": "2026-11-27",
+  "activityCount": 47,
+  "clothingAssets": [
+    "Cap",
+    "Shirt",
+    "Jacket",
+    "Backpack",
+    "Bowtie"
+  ],
+  "activityAssets": [
+    "Tree",
+    "Pine",
+    "Rock",
+    "Path",
+    "Goal",
+    "Guitar",
+    "Arcade",
+    "Cake",
+    "Telescope"
+  ],
+  "additionalKenneyFurnitureModels": 22,
+  "sources": [
+    {
+      "name": "Cap",
+      "url": "https://poly.pizza/m/aWxhfEnYwl",
+      "download": "https://static.poly.pizza/b50f564c-03d3-4a07-8817-199eb9d76fa0.glb",
+      "license": "https://creativecommons.org/licenses/by/3.0/",
+      "author": "J-Toastie"
+    },
+    {
+      "name": "Shirt",
+      "url": "https://poly.pizza/m/bdOMzzh-fSl",
+      "download": "https://static.poly.pizza/859b2ce6-83a6-41bc-a7da-8f2ddba25fff.glb",
+      "license": "https://creativecommons.org/licenses/by/3.0/",
+      "author": "Poly by Google"
+    },
+    {
+      "name": "Jacket",
+      "url": "https://poly.pizza/m/eeKk3ObCbf",
+      "download": "https://static.poly.pizza/829bbd95-9d98-4093-97bd-14fd9717241c.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Polygonal Mind"
+    },
+    {
+      "name": "Backpack",
+      "url": "https://poly.pizza/m/vF7TuXCPDH",
+      "download": "https://static.poly.pizza/2eb5178b-0c98-4a0d-b0ea-ad8925525d1e.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "author": "Quaternius"
+    },
+    {
+      "name": "Bowtie",
+      "url": "https://poly.pizza/m/fQGdyazJ-2m",
+      "download": "https://static.poly.pizza/3ed1f376-54bf-406d-8133-dd2cbd97d491.glb",
+      "license": "https://creativecommons.org/licenses/by/3.0/",
+      "author": "jeremy"
+    },
+    {
+      "name": "Tree",
+      "author": "Poly by Google",
+      "url": "https://poly.pizza/m/6pwiq7hSrHr",
+      "download": "https://static.poly.pizza/25df0593-9c28-4487-81dc-1ff8ec9527dc.glb",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "name": "Pine",
+      "author": "Quaternius",
+      "url": "https://poly.pizza/m/79gmlLnweB",
+      "download": "https://static.poly.pizza/082c2026-56af-4e3f-bea7-9ae5de71101f.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "name": "Rock",
+      "author": "Quaternius",
+      "url": "https://poly.pizza/m/RtLRqYjfMs",
+      "download": "https://static.poly.pizza/87d3dfd2-de47-4b03-b9f1-4c84c2a605b0.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "name": "Path",
+      "author": "Quaternius",
+      "url": "https://poly.pizza/m/ZuRHRsKWoz",
+      "download": "https://static.poly.pizza/7eb6f9bc-5995-413b-88c9-7809ebd16bf7.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "name": "Goal",
+      "author": "Poly by Google",
+      "url": "https://poly.pizza/m/7t4hmicGHV4",
+      "download": "https://static.poly.pizza/1fbff756-5656-4e8c-ada5-5d968ca95e17.glb",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "name": "Guitar",
+      "author": "Quaternius",
+      "url": "https://poly.pizza/m/5Fp8gpomrb",
+      "download": "https://static.poly.pizza/7a272c92-3d46-483d-bf42-ff2c20851a2c.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "name": "Arcade",
+      "author": "J-Toastie",
+      "url": "https://poly.pizza/m/GLDkMhiynM",
+      "download": "https://static.poly.pizza/e45e15cd-7b22-4b5d-ba19-e29fe9d5811a.glb",
+      "license": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "name": "Cake",
+      "author": "Kenney",
+      "url": "https://poly.pizza/m/38GEFBlOXw",
+      "download": "https://static.poly.pizza/294f70e0-bab8-453c-bc85-edc5c94375f7.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "name": "Telescope",
+      "author": "CreativeTrio",
+      "url": "https://poly.pizza/m/RjyTCQvA8b",
+      "download": "https://static.poly.pizza/2c0070d8-e239-4a8f-939f-be5b2007ce93.glb",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "variants": [
+    "Infant",
+    "Childhood",
+    "Adolescence",
+    "YoungAdult",
+    "MiddleAge"
+  ],
+  "retainedScales": {
+    "character": 1.6,
+    "furniture": 1.5
+  },
+  "themes": {
+    "walk/park/dayoff/quit": "Outdoor backdrop, trees, stones, paving, grass; park bench",
+    "stars": "Night sky, moon, stars and telescope",
+    "soccer/stadium/training/selection": "Goal, pitch and ball; training markers",
+    "birthday/family/dinner": "Dining furniture and food; birthday cake",
+    "camp": "Study desk, books and bunk bed (academic boarding class)",
+    "performance": "Guitar, speakers and stage",
+    "arcade/gambling": "Downloaded arcade cabinets",
+    "study/exam": "Desks, books, paper, screens and exam boards"
+  },
+  "navigation": "Existing collider objects resized to composition bounds; carving obstacles and approach radii follow size; quarter-turn orientation faces centre aisle",
+  "verification": "Logs/Step14Project/Logs/RoomArt/validation.txt",
+  "playMode": {
+    "result": "Passed",
+    "total": "13",
+    "passed": "13",
+    "failed": "0"
+  },
+  "tests": [
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.ExitAt60_FliesSmokesExtinguishesOnce_WithoutMovingCamera_ThenDrivesCorridorThree",
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.SavedNavMesh_IsOneConnectedFloor_AllThirteenSlotsReachable",
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.ThirteenActualVisits_ApplyValuesAndTheftRecord_RecoveryDoesNotClearIt",
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.UniformAndHiddenCostume_UseEntrySnapshotsOnly",
+    "FruitFlyParenting.Tests.PlayMode.ChildhoodRoomIntegrationTests.AllTwelveActualVisits_StackTrainingButNeverRepeatExtremeTrustOrRebellion",
+    "FruitFlyParenting.Tests.PlayMode.ChildhoodRoomIntegrationTests.ConnectedNavMesh_AllSlotsReachable_AndAgentCrossesClassroomPlayground",
+    "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.MouseToolMakesOnePhysicalContactPerPress",
+    "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.ThreeDistinctPresentations_KeepFinalState_AndLastFifteenSecondsQuiet",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.DownloadedFlyArt_CoversGrowthStages_PreservesPhysics_AndKeepsDialogueAboveWings",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.NineSavedItems_ApplyExactEffectsOnce_AndCheckpointEveryFirstVisit",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.TabletRoutes_AreConnected_AndTraversableWithoutFurniturePenetration",
+    "FruitFlyParenting.Tests.PlayMode.YoungAdultRoomIntegrationTests.SavedNavMesh_IsOneConnectedFloor_AllThirteenSlotsReachable",
+    "FruitFlyParenting.Tests.PlayMode.YoungAdultRoomIntegrationTests.ThirteenActualVisits_ApplyAllValuesAndFlags_WithoutRepeatedGamblingLoss"
+  ],
+  "testResults": "Logs/Step14Project/Logs/activity-clothing-tests.xml",
+  "sourceSynchronization": {
+    "files": 584,
+    "differences": []
+  },
+  "build": "Succeeded: Windows PC/PCVR isolated OpenXR baseline",
+  "buildLog": "Logs/Step14Project/Logs/activity-clothing-build.log",
+  "vrHeadsetHardware": "Not tested",
+  "screenshots": [
+    "docs/images/fly-character-variants.png",
+    "docs/images/activity-childhood_walk.png",
+    "docs/images/activity-adolescence_stars.png",
+    "docs/images/activity-childhood_soccer.png",
+    "docs/images/activity-childhood_birthday.png"
+  ],
+  "runtimePreview": {
+    "processId": 122136,
+    "log": "Logs/activity-clothing-player.log",
+    "launched": true
+  }
+}

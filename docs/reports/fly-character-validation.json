@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-27",
+  "source": {
+    "title": "Fly",
+    "author": "AroniaStudios",
+    "url": "https://poly.pizza/m/tPHgsoiRCZ",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+    "triangles": 648
+  },
+  "variants": [
+    "Infant",
+    "Childhood",
+    "Adolescence",
+    "YoungAdult",
+    "MiddleAge"
+  ],
+  "changes": [
+    "Replaced Kohyzazi model with AroniaStudios low-poly body, eyes, legs and two independent wings; retained original color scheme",
+    "Growth accessories and alternate adolescence costume",
+    "Idle, movement and flight wing animation",
+    "Legacy placeholder meshes hidden while story effects remain",
+    "Speech positioned above visible wings",
+    "Ending actors and companions use the fly asset",
+    "Repositioned growth accessories and wing hinges for the new body"
+  ],
+  "checks": [
+    "No added character colliders",
+    "NavMeshAgent radius unchanged",
+    "Asset installation is idempotent",
+    "Two animated wing pivots per variant",
+    "All new character surfaces use URP Lit",
+    "Legacy placeholder disabled",
+    "Dialogue stays above wings"
+  ],
+  "playMode": {
+    "result": "Passed",
+    "total": "5",
+    "passed": "5",
+    "failed": "0"
+  },
+  "tests": [
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.ExitAt60_FliesSmokesExtinguishesOnce_WithoutMovingCamera_ThenDrivesCorridorThree",
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.UniformAndHiddenCostume_UseEntrySnapshotsOnly",
+    "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.ThreeDistinctPresentations_KeepFinalState_AndLastFifteenSecondsQuiet",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.DownloadedFlyArt_CoversGrowthStages_PreservesPhysics_AndKeepsDialogueAboveWings",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.TabletRoutes_AreConnected_AndTraversableWithoutFurniturePenetration"
+  ],
+  "sourceSynchronization": {
+    "files": 49,
+    "differences": []
+  },
+  "build": "Succeeded: Windows PC/PCVR isolated OpenXR baseline",
+  "vrHeadsetHardware": "Not tested",
+  "screenshots": [
+    "docs/images/fly-character-variants.png",
+    "docs/images/fly-character-in-game.png"
+  ],
+  "buildLog": "Logs/Step14Project/Logs/aronia-fly-build.log",
+  "attributionInPlayer": "FruitFlyParenting_Data/StreamingAssets/Fly-Attribution.txt",
+  "testResults": "Logs/Step14Project/Logs/aronia-fly-tests.xml",
+  "runtimePreview": {
+    "processId": 116196,
+    "log": "Logs/aronia-fly-player.log",
+    "launched": true
+  },
+  "latestSizeValidation": "docs/reports/larger-art-validation.json"
+}

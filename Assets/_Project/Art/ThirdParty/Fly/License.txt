@@ -1,0 +1,13 @@
+Fly by AroniaStudios (2026-06-09)
+Source: https://poly.pizza/m/tPHgsoiRCZ
+Original: https://static.poly.pizza/db1a9d82-90db-4b26-8e63-75b3a82e3ea7.glb
+License: Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+https://creativecommons.org/licenses/by/3.0/
+Downloaded 2026-11-27.
+
+Original GLB is retained (648 triangles). Derived OBJs preserve geometry and flat
+normals, transform coordinates and separate the wings. Game adaptations include
+URP materials, resizing, growth-stage accessories and procedural motion.
+No endorsement by the original creator is implied.
+This is a stylized game character adapted from a generic fly, not a scientific model.
+Conversion tool: tools/convert_fly_asset.py (numpy required).

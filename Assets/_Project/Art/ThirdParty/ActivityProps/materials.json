@@ -1,0 +1,298 @@
+{
+  "models": [
+    {
+      "name": "Tree",
+      "triangles": 157,
+      "materials": [
+        {
+          "name": "Tree_0",
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "texture": "Tree-albedo-0.png"
+        }
+      ]
+    },
+    {
+      "name": "Pine",
+      "triangles": 3370,
+      "materials": [
+        {
+          "name": "Pine_0",
+          "color": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "texture": "Pine-albedo-0.png"
+        },
+        {
+          "name": "Pine_1",
+          "color": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "texture": "Pine-albedo-1.png"
+        }
+      ]
+    },
+    {
+      "name": "Rock",
+      "triangles": 632,
+      "materials": [
+        {
+          "name": "Rock_0",
+          "color": [
+            0.244364306330681,
+            0.246188819408417,
+            0.215450540184975,
+            1.0
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Path",
+      "triangles": 506,
+      "materials": [
+        {
+          "name": "Path_0",
+          "color": [
+            0.177224159240723,
+            0.211410626769066,
+            0.230633974075317,
+            1.0
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Path_1",
+          "color": [
+            0.123761616647243,
+            0.146180182695389,
+            0.181264355778694,
+            1.0
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Goal",
+      "triangles": 684,
+      "materials": [
+        {
+          "name": "Goal_0",
+          "color": [
+            0.5882,
+            0.5882,
+            0.5882,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Goal_1",
+          "color": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Guitar",
+      "triangles": 2325,
+      "materials": [
+        {
+          "name": "Guitar_0",
+          "color": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "texture": "Guitar-albedo-0.png"
+        }
+      ]
+    },
+    {
+      "name": "Arcade",
+      "triangles": 1150,
+      "materials": [
+        {
+          "name": "Arcade_0",
+          "color": [
+            0.018849,
+            0.018849,
+            0.018849,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Arcade_1",
+          "color": [
+            0.045621,
+            0.189451,
+            0.384375,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Arcade_2",
+          "color": [
+            0.8,
+            0.8,
+            0.8,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Arcade_3",
+          "color": [
+            0.8,
+            0.183098,
+            0.13797,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Arcade_4",
+          "color": [
+            0.03968,
+            0.03968,
+            0.03968,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Arcade_5",
+          "color": [
+            0.003095,
+            0.003095,
+            0.003095,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Arcade_6",
+          "color": [
+            0.003095,
+            0.003095,
+            0.003095,
+            1
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Cake",
+      "triangles": 1332,
+      "materials": [
+        {
+          "name": "Cake_0",
+          "color": [
+            0.05,
+            0.02,
+            0.01,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Cake_1",
+          "color": [
+            0.6,
+            0.22,
+            0.11,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Cake_2",
+          "color": [
+            1,
+            0.41,
+            0.79,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Cake_3",
+          "color": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Cake_4",
+          "color": [
+            0.81,
+            0.09,
+            0.08,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Cake_5",
+          "color": [
+            0.35,
+            0.28,
+            0.81,
+            1
+          ],
+          "texture": ""
+        },
+        {
+          "name": "Cake_6",
+          "color": [
+            1,
+            0.61,
+            0.11,
+            1
+          ],
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "Telescope",
+      "triangles": 734,
+      "materials": [
+        {
+          "name": "Telescope_0",
+          "color": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "texture": "Telescope-albedo-0.png"
+        }
+      ]
+    }
+  ]
+}

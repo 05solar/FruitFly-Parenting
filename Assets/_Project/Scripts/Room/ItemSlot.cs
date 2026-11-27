@@ -27,6 +27,11 @@ namespace FruitFlyParenting.Room
         public void AssignDefinition(ItemDefinition item) { definition = item; itemId = item.itemId; ResetTracker(); }
         public void ConfigureHesitation(float seconds) { extremeHesitationSeconds = seconds; ResetTracker(); }
         public float InteractionRadius => interactionRadius;
+        public void SetInteractionRadius(float radius)
+        {
+            interactionRadius = Mathf.Max(.1f, radius);
+            ApplyColliderSettings();
+        }
         public ItemVisitContext LastVisitContext { get; private set; }
         public bool HasConfirmedCurrentStay => dwellTracker != null && dwellTracker.HasConfirmedVisit;
         public bool IsHesitating => dwellTracker != null && dwellTracker.IsHesitating;

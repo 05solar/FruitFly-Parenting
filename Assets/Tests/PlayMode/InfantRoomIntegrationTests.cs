@@ -69,6 +69,47 @@ namespace FruitFlyParenting.Tests.PlayMode
             if (File.Exists(checkpoint)) File.Delete(checkpoint);
         }
         void Stick(Vector2 value) => InputSystem.QueueDeltaStateEvent((StickControl)left["thumbstick"], value);
+        [UnityTest]
+        public IEnumerator DownloadedFlyArt_CoversGrowthStages_PreservesPhysics_AndKeepsDialogueAboveWings()
+        {
+            HoldFly();
+            var actors=Object.FindObjectsByType<FlyAgent>(FindObjectsInactive.Include,FindObjectsSortMode.None);
+            Assert.That(actors.Length,Is.GreaterThanOrEqualTo(4));
+            foreach(var actor in actors)
+            {
+                int colliders=actor.GetComponentsInChildren<Collider>(true).Length;
+                float radius=actor.GetComponent<NavMeshAgent>().radius;
+                var art=actor.GetComponent<FlyCharacterArt>() ?? actor.gameObject.AddComponent<FlyCharacterArt>();
+                var oldBody=actor.GetComponentsInChildren<MeshRenderer>(true).Where(r=>r.name=="Fly Placeholder" || r.name=="Body" || r.name=="Pacifier").ToArray();
+                art.Install(actor.Stage);
+                Assert.That(art.Visual,Is.Not.Null,actor.Stage.ToString());
+                Assert.That(art.VisualStage,Is.EqualTo(actor.Stage));
+                Assert.That(art.Visual.GetComponentsInChildren<Collider>(true),Is.Empty);
+                Assert.That(actor.GetComponentsInChildren<Collider>(true).Length,Is.EqualTo(colliders));
+                Assert.That(actor.GetComponent<NavMeshAgent>().radius,Is.EqualTo(radius));
+                foreach(var bodyRenderer in oldBody)if(!bodyRenderer.transform.IsChildOf(art.Visual))Assert.That(bodyRenderer.enabled,Is.False,"Legacy body overlaps fly model");
+                var wings=art.Visual.GetComponentsInChildren<Transform>(true).Where(t=>t.name.StartsWith("Wing Pivot")).ToArray();
+                Assert.That(wings.Length,Is.EqualTo(2));
+                int count=actor.GetComponentsInChildren<Renderer>(true).Length;art.Install(actor.Stage);
+                Assert.That(actor.GetComponentsInChildren<Renderer>(true).Length,Is.EqualTo(count));
+                foreach(var renderer in art.Visual.GetComponentsInChildren<Renderer>(true))
+                    foreach(var material in renderer.sharedMaterials)Assert.That(material.shader.name,Is.EqualTo("Universal Render Pipeline/Lit"));
+            }
+            var current=fly.GetComponent<FlyCharacterArt>();
+            var wing=current.Visual.GetComponentsInChildren<Transform>().First(t=>t.name.StartsWith("Wing Pivot"));
+            var rotation=wing.localRotation;yield return new WaitForSeconds(.18f);
+            Assert.That(Quaternion.Angle(rotation,wing.localRotation),Is.GreaterThan(.1f));
+            var view=flow.GetComponent<InfantRoomView>();view.ShowDialogue("우와! 날개다!");yield return null;yield return null;
+            var dialogue=fly.transform.Find("Child Dialogue");Assert.That(dialogue,Is.Not.Null);
+            Assert.That(dialogue.position.y,Is.GreaterThan(current.TopY));
+            var review=new GameObject("Fly review").AddComponent<Camera>();
+            review.transform.position=fly.transform.position+new Vector3(.9f,.55f,1.35f);review.transform.LookAt(fly.transform.position+Vector3.up*.05f);
+            review.fieldOfView=45;review.nearClipPlane=.03f;review.aspect=16f/9f;
+            var target=new RenderTexture(1600,900,24);review.targetTexture=target;yield return null;dialogue.gameObject.SetActive(false);review.Render();review.Render();
+            var previous=RenderTexture.active;RenderTexture.active=target;var picture=new Texture2D(1600,900,TextureFormat.RGB24,false);
+            picture.ReadPixels(new Rect(0,0,1600,900),0,0);picture.Apply();File.WriteAllBytes("Logs/fly-character-in-game.png",picture.EncodeToPNG());
+            RenderTexture.active=previous;review.targetTexture=null;dialogue.gameObject.SetActive(true);Object.Destroy(picture);Object.Destroy(target);Object.Destroy(review.gameObject);
+        }
         void HoldFly()
         { fly.enabled = false; agent.isStopped = true; agent.ResetPath(); }
         IEnumerator LeaveItem()

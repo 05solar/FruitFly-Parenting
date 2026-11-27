@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-27",
+  "changes": [
+    "Tailored sleeveless garment from actual AroniaStudios abdomen facets",
+    "4.5 percent surface clearance with collar and hem bands",
+    "Removed protruding human shirt sleeves and face bowties",
+    "Reduced and lowered cap; smaller side bag close to abdomen",
+    "Retained five growth variants and alternate adolescence outfit"
+  ],
+  "meshTriangles": 192,
+  "generator": "tools/fit_fly_garment.py",
+  "playMode": {
+    "result": "Passed",
+    "total": "5",
+    "passed": "5",
+    "failed": "0"
+  },
+  "tests": [
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.ExitAt60_FliesSmokesExtinguishesOnce_WithoutMovingCamera_ThenDrivesCorridorThree",
+    "FruitFlyParenting.Tests.PlayMode.AdolescenceRoomIntegrationTests.UniformAndHiddenCostume_UseEntrySnapshotsOnly",
+    "FruitFlyParenting.Tests.PlayMode.DesktopControlsTests.MouseToolMakesOnePhysicalContactPerPress",
+    "FruitFlyParenting.Tests.PlayMode.EndingIntegrationTests.ThreeDistinctPresentations_KeepFinalState_AndLastFifteenSecondsQuiet",
+    "FruitFlyParenting.Tests.PlayMode.InfantRoomIntegrationTests.DownloadedFlyArt_CoversGrowthStages_PreservesPhysics_AndKeepsDialogueAboveWings"
+  ],
+  "testResults": "Logs/Step14Project/Logs/fitted-clothing-tests.xml",
+  "visualReview": [
+    "Front growth variants",
+    "Side/rear growth variants",
+    "Actual infant-room PlayMode capture"
+  ],
+  "screenshots": [
+    "docs/images/fly-character-variants.png",
+    "docs/images/fly-character-side.png",
+    "docs/images/fly-character-in-game.png"
+  ],
+  "build": "Succeeded: Windows64 PC/PCVR release",
+  "buildLog": "Logs/Step14Project/Logs/fitted-clothing-build.log",
+  "vrHeadsetHardware": "Not tested",
+  "player": "Builds/FlatHUD/FruitFlyParenting.exe",
+  "runtimePreview": {
+    "processId": 132444,
+    "resolution": "1920x1080",
+    "saveMode": "isolated playtest save",
+    "log": "Logs/fitted-clothing-player.log"
+  }
+}

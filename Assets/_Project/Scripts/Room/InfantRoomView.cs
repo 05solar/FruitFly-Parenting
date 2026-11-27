@@ -151,6 +151,8 @@ namespace FruitFlyParenting.Room
             childMarker.transform.localScale = Vector3.one * scale / Mathf.Max(.01f, child.transform.lossyScale.x);
             var body=child.GetComponent<Collider>();
             if(body!=null && body.enabled) headOffset=body.bounds.max.y-child.transform.position.y;
+            var character=child.GetComponent<FlyCharacterArt>();
+            if(character!=null && character.Visual!=null)headOffset=Mathf.Max(headOffset,character.TopY-child.transform.position.y);
             childMarker.transform.position=child.transform.position+Vector3.up*(headOffset+.1f+((RectTransform)childMarker.transform).rect.height*scale*.5f);
         }
         Canvas CanvasAt(string name, Transform parent, Vector3 at, Vector2 size, float scale, int order)

@@ -46,7 +46,14 @@ namespace FruitFlyParenting.Editor
                         var renderers=prop.GetComponentsInChildren<Renderer>();
                         var bounds=renderers[0].bounds;
                         foreach(var r in renderers) bounds.Encapsulate(r.bounds);
-                        if(bounds.size.x>1.001f || bounds.size.z>1.001f)throw new Exception("Furniture exceeds collider footprint: "+slot.ItemId+" "+bounds.size);
+                        if(bounds.size.x>2.24f || bounds.size.z>2.24f)throw new Exception("Activity exceeds corner footprint: "+slot.ItemId+" "+bounds.size);
+                        if(slot.InteractionRadius<RoomArt.FurnitureInteractionRadius)throw new Exception("Furniture approach distance mismatch: "+slot.ItemId);
+                        var solid=room.GetComponentsInChildren<BoxCollider>(true).FirstOrDefault(c=>c.name.StartsWith("Furniture_") && Vector2.Distance(new Vector2(c.transform.position.x,c.transform.position.z),new Vector2(slot.transform.position.x,slot.transform.position.z))<.1f);
+                        if(solid==null)throw new Exception("Missing furniture collision: "+slot.ItemId);
+                        var solidSize=Vector3.Scale(solid.size,solid.transform.lossyScale);
+                        if(solidSize.x+.001f<bounds.size.x || solidSize.z+.001f<bounds.size.z || solidSize.y+.001f<bounds.size.y)throw new Exception("Furniture collision too small: "+slot.ItemId);
+                        var obstacle=solid.GetComponent<UnityEngine.AI.NavMeshObstacle>();
+                        if(obstacle==null || !obstacle.carving)throw new Exception("Missing enlarged navigation obstacle: "+slot.ItemId);
                     }
                     foreach(var r in art.GetComponentsInChildren<Renderer>(true))
                         foreach(var m in r.sharedMaterials)
@@ -54,10 +61,12 @@ namespace FruitFlyParenting.Editor
                     int count=art.childCount;
                     RoomArt.Apply(room);
                     if(count!=art.childCount)throw new Exception("Repeated art installation duplicated props");
-                    report.Add(scene+" / "+room.Stage+": "+slots.Length+" items; collision unchanged; materials valid; footprint valid; renderers="+art.GetComponentsInChildren<Renderer>(true).Length);
+                    report.Add(scene+" / "+room.Stage+": "+slots.Length+" items; collider count unchanged; enlarged collision/carving/approach valid; materials valid; renderers="+art.GetComponentsInChildren<Renderer>(true).Length);
                 }
                 var primary=rooms.First(r=>r.gameObject.activeInHierarchy);
                 Capture(primary,scene);
+                foreach(var id in new[]{"childhood_walk","childhood_soccer","childhood_birthday","adolescence_stars","adolescence_performance","youngadult_park"})
+                    if(primary.ItemSlots.Any(s=>s.ItemId==id))CaptureActivity(primary,id);
             }
             File.WriteAllLines("Logs/RoomArt/validation.txt",report);
             Debug.Log("ROOM_ART_VERIFIED\n"+string.Join("\n",report));
@@ -78,6 +87,21 @@ namespace FruitFlyParenting.Editor
             File.WriteAllBytes("Logs/RoomArt/"+name+".png",image.EncodeToPNG());
             RenderTexture.active=previous;cam.targetTexture=null;
             Object.DestroyImmediate(image);Object.DestroyImmediate(target);Object.DestroyImmediate(go);
+        }
+        static void CaptureActivity(RoomController room,string id)
+        {
+            var prop=room.transform.Find(RoomArt.RootName).Find(id+"(Clone)");
+            var camera=new GameObject("Activity review camera").AddComponent<Camera>();
+            camera.transform.position=prop.position+prop.rotation*new Vector3(2.25f,1.8f,-3.4f);
+            camera.transform.LookAt(prop.position+Vector3.up*.9f);
+            camera.fieldOfView=43;camera.nearClipPlane=.03f;camera.aspect=16f/9f;
+            var target=new RenderTexture(1600,900,24);camera.targetTexture=target;
+            camera.Render();camera.Render();camera.Render();
+            var prev=RenderTexture.active;RenderTexture.active=target;
+            var picture=new Texture2D(1600,900,TextureFormat.RGB24,false);picture.ReadPixels(new Rect(0,0,1600,900),0,0);picture.Apply();
+            File.WriteAllBytes("Logs/RoomArt/"+id+".png",picture.EncodeToPNG());
+            RenderTexture.active=prev;camera.targetTexture=null;
+            Object.DestroyImmediate(picture);Object.DestroyImmediate(target);Object.DestroyImmediate(camera.gameObject);
         }
     }
 }

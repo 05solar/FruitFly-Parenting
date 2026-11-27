@@ -1,0 +1,50 @@
+Activity props for FruitFly Parenting
+Downloaded 2026-11-27.
+
+Tree by Poly by Google
+Source: https://poly.pizza/m/6pwiq7hSrHr
+Original: https://static.poly.pizza/25df0593-9c28-4487-81dc-1ff8ec9527dc.glb
+License: https://creativecommons.org/licenses/by/3.0/
+
+Pine by Quaternius
+Source: https://poly.pizza/m/79gmlLnweB
+Original: https://static.poly.pizza/082c2026-56af-4e3f-bea7-9ae5de71101f.glb
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Rock by Quaternius
+Source: https://poly.pizza/m/RtLRqYjfMs
+Original: https://static.poly.pizza/87d3dfd2-de47-4b03-b9f1-4c84c2a605b0.glb
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Path by Quaternius
+Source: https://poly.pizza/m/ZuRHRsKWoz
+Original: https://static.poly.pizza/7eb6f9bc-5995-413b-88c9-7809ebd16bf7.glb
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Goal by Poly by Google
+Source: https://poly.pizza/m/7t4hmicGHV4
+Original: https://static.poly.pizza/1fbff756-5656-4e8c-ada5-5d968ca95e17.glb
+License: https://creativecommons.org/licenses/by/3.0/
+
+Guitar by Quaternius
+Source: https://poly.pizza/m/5Fp8gpomrb
+Original: https://static.poly.pizza/7a272c92-3d46-483d-bf42-ff2c20851a2c.glb
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Arcade by J-Toastie
+Source: https://poly.pizza/m/GLDkMhiynM
+Original: https://static.poly.pizza/e45e15cd-7b22-4b5d-ba19-e29fe9d5811a.glb
+License: https://creativecommons.org/licenses/by/3.0/
+
+Cake by Kenney
+Source: https://poly.pizza/m/38GEFBlOXw
+Original: https://static.poly.pizza/294f70e0-bab8-453c-bc85-edc5c94375f7.glb
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Telescope by CreativeTrio
+Source: https://poly.pizza/m/RjyTCQvA8b
+Original: https://static.poly.pizza/2c0070d8-e239-4a8f-939f-be5b2007ce93.glb
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+Changes: coordinates normalized, converted to OBJ, URP materials, resized and
+arranged into activity scenes. Original GLBs retained. No creator endorsement.

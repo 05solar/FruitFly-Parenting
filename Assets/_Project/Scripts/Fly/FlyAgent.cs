@@ -75,6 +75,7 @@ namespace FruitFlyParenting.Fly
 
         void Awake()
         {
+            if(GetComponent<FlyCharacterArt>()==null)gameObject.AddComponent<FlyCharacterArt>();
             agent = GetComponent<NavMeshAgent>();
             var rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;

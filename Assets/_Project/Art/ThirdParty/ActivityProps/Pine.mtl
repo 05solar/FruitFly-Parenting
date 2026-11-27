@@ -1,0 +1,6 @@
+newmtl Pine_0
+Kd 1.0 1.0 1.0
+map_Kd Pine-albedo-0.png
+newmtl Pine_1
+Kd 1.0 1.0 1.0
+map_Kd Pine-albedo-1.png

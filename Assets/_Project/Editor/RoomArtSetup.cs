@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 
 namespace FruitFlyParenting.Editor
 {
-    public static class RoomArtSetup
+    public static partial class RoomArtSetup
     {
         const string Source = "Assets/_Project/Art/ThirdParty/KenneyFurniture/";
         const string Root = "Assets/_Project/Resources/RoomArt/";
@@ -72,6 +72,7 @@ namespace FruitFlyParenting.Editor
                 }
                 importer.SaveAndReimport();
             }
+            PrepareActivityModels();
             foreach (var stage in new[]{LifeStage.Infant, LifeStage.Childhood, LifeStage.Adolescence, LifeStage.YoungAdult})
                 BuildDecor(stage);
             foreach (var guid in AssetDatabase.FindAssets("t:ItemDefinition", new[]{"Assets/_Project/ScriptableObjects/Items"}))
@@ -93,51 +94,7 @@ namespace FruitFlyParenting.Editor
             Materials[name] = material; EditorUtility.SetDirty(material); return material;
         }
 
-        static void BuildItem(string id)
-        {
-            var root = new GameObject(id);
-            var key = id.Substring(id.IndexOf('_') + 1);
-            var model = "desk";
-            switch (key)
-            {
-                case "bed": case "dayoff": case "quit": model = "bedSingle"; break;
-                case "hug": case "family": case "parents": case "counsel": model = "loungeSofa"; break;
-                case "book": case "library": model = "bookcaseOpenLow"; break;
-                case "blocks": case "crawl": case "hideout": model = "cardboardBoxOpen"; break;
-                case "ball": case "soccer": case "stadium": case "training": case "selection": model = "benchCushion"; break;
-                case "snack": case "birthday": case "dinner": model = "tableRound"; break;
-                case "walk": case "park": case "stars": model = "loungeChair"; break;
-                case "independence": model = "bedDouble"; break;
-                case "theft": case "gifted": case "camp": model = "bookcaseOpen"; break;
-                case "performance": case "star": model = "cabinetBed"; break;
-            }
-            var main = Model(model, root.transform, Vector3.zero, .96f);
-            float top = Bounds(main).max.y;
-            if (model == "desk")
-            {
-                bool screen = key == "tablet" || key == "nightgame" || key == "arcade" || key == "gambling" ||
-                    key == "investment" || key == "startup" || key == "interview" || key == "studio";
-                Model(screen ? "laptop" : "books", root.transform, new Vector3(0,top,0), .45f);
-                Model("plantSmall1",root.transform,new Vector3(.3f,top,.1f),.18f);
-            }
-            else if (model == "tableRound")
-            {
-                Model(id.StartsWith("infant") ? "bear" : "plantSmall2",root.transform,new Vector3(0,top,0),.24f);
-            }
-            else if (model == "cardboardBoxOpen") Model("bear",root.transform,new Vector3(0,.2f,0),.42f);
-            else if (key == "performance" || key == "star") Model("lampRoundTable",root.transform,new Vector3(0,top,0),.4f);
-            else if (key == "ball" || key == "soccer" || key == "stadium" || key == "training" || key == "selection")
-            {
-                var ball = Shape(root.transform,"Ball",PrimitiveType.Sphere,new Vector3(.1f,top+.18f,0),Vector3.one*.36f,"Ochre");
-                Shape(ball.transform,"Stripe",PrimitiveType.Cylinder,Vector3.zero,new Vector3(1.01f,.14f,1.01f),"Trim");
-            }
-            if (id.StartsWith("infant") && model == "bookcaseOpenLow") Model("bear",root.transform,new Vector3(.22f,top,0),.3f);
-            // Keep all solid-looking geometry inside the existing one-metre obstacle footprint.
-            var bounds = Bounds(root);
-            var scale = Mathf.Min(1f, .98f / Mathf.Max(bounds.size.x,bounds.size.z), 1.75f/bounds.size.y);
-            root.transform.localScale = Vector3.one * scale;
-            Save(root,"Items/"+id);
-        }
+        static void BuildItem(string id) => BuildActivityItem(id);
 
         static void BuildDecor(LifeStage stage)
         {

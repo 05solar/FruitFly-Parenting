@@ -19,6 +19,14 @@ Unity 프로젝트 본체는 이 루트의 `Assets/`, `Packages/`, `ProjectSetti
 
 전동 휠체어·전기봉도 CC0 모델로 교체했다. 휠체어 왼쪽 앞에 조이스틱과 상태 표시 패널을 배치하여 기본 착석 시점에서 볼 수 있고, 방향키 또는 VR 왼손 스틱 입력에 따라 조이스틱이 기울어진다. PC의 전기봉은 오른쪽 시야에 보관되며 클릭하면 기존 접촉 방식으로 뻗는다. VR에서는 오른손 추적을 따른다. [에셋 출처](Assets/_Project/Art/ThirdParty/PlayerEquipment/License.txt), [착석 화면](docs/images/player-equipment-seated.png), [휠체어 외형](docs/images/player-equipment-exterior.png), [검증 기록](docs/reports/player-equipment-validation.json)을 참고한다. 에셋 재생성 메뉴는 `Fruit Fly Parenting/Art/Prepare Player Equipment`이다.
 
+2026-11-27 초파리 캐릭터 업데이트: AroniaStudios의 CC BY 3.0 Fly 모델(648개 삼각형)을 초록색 등·짙은 몸통·붉은 눈·밝은 날개로 적용했다. 성장 단계별 턱받이·모자·스카프·가방, 이동과 비행에 반응하는 날개 움직임을 추가했다. 기존 임시 몸통은 숨기고 이동·충돌·접촉 판정은 유지하며, 청소년기의 의상 변화와 중년기 엔딩에도 연결했다. 말풍선은 새 날개 높이 위에 표시된다. 원작자 표기는 배포본의 `StreamingAssets/Fly-Attribution.txt`에도 포함한다. [라이선스](Assets/_Project/Art/ThirdParty/Fly/License.txt), [게임 내 캐릭터](docs/images/fly-character-in-game.png), [검증 기록](docs/reports/fly-character-validation.json)을 참고한다. 재생성 메뉴는 `Fruit Fly Parenting/Art/Prepare Fly Character`이다.
+
+캐릭터 외형은 기존 대비 1.6배, 상호작용 가구와 그 위 소품은 1.5배로 확대했다. 가구 충돌 상자와 NavMesh 장애물도 확대하고 접근 반경을 1.65m로 조정했다. 말풍선은 커진 캐릭터의 실제 높이를 따라간다.
+
+옷은 다운로드한 초파리의 실제 몸통 곡면을 따라 감싸는 소매 없는 조끼로 다듬었다. 몸에서 약간만 띄운 원단에 목둘레·밑단 배색을 넣고, 날개·다리·얼굴을 가리던 사람용 소매와 나비넥타이는 제거했다. 다운로드한 캡모자와 가방도 줄여 머리·몸통 가까이에 붙였다. 성장 단계별 색상과 청소년기 대체 의상은 유지한다. [의상 출처 및 라이선스](Assets/_Project/Art/ThirdParty/FlyClothing/License.txt)는 실행 파일에도 포함된다. 조끼 재생성: `python tools/fit_fly_garment.py` 실행 후 `Fruit Fly Parenting/Art/Prepare Fly Character`.
+
+47개 활동 구역은 이름에 맞게 다시 구성했다. 산책길·공원에는 야외 배경 벽, 나무, 돌과 보도블록을 배치하고, 별보기에는 밤하늘과 망원경을 사용한다. 축구장에는 골대와 잔디, 생일상에는 케이크, 공연장에는 기타와 스피커, 합숙반에는 이층침대와 공부 책상을 배치했다. 가구는 중앙 통로를 향하며 실제 외형 크기에 맞춰 충돌 상자·NavMesh 장애물·접근 반경을 계산한다. [추가 소품 출처](Assets/_Project/Art/ThirdParty/ActivityProps/License.txt). 전체 재생성 및 검증: `FruitFlyParenting.Editor.RoomArtSetup.PrepareActivityReview`.
+
 ## 기술 스택 요약
 
 - **엔진:** Unity (URP), XR Interaction Toolkit + OpenXR

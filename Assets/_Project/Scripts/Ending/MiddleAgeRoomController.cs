@@ -45,7 +45,12 @@ namespace FruitFlyParenting.Ending
         public void ConfigureStandalone()=>standalone=true;
         void OnEnable() { if(entrance!=null) entrance.Entering+=Begin; }
         void OnDisable() { if(entrance!=null) entrance.Entering-=Begin; }
-        void Start() { if(standalone) { entrance.Prepare(); entrance.Enter(); } }
+        void Start()
+        {
+            Fly.FlyCharacterArt.InstallEnding(child);
+            if(companions!=null)foreach(Transform companion in companions.transform)Fly.FlyCharacterArt.InstallEnding(companion.gameObject);
+            if(standalone) { entrance.Prepare(); entrance.Enter(); }
+        }
         void Begin()
         {
             if(entered) return; entered=true; CheckpointPath=CheckpointPath??incoming?.CheckpointPath;
